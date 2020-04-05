@@ -97,6 +97,23 @@ git commit -a # delete "#" from which you want to alter
 git status # 查看状态，可省略
 git push -f <url> # the same as pull
 ```
+## 大国关爱
+设置代理(下面两者选一即可，不建议使用 http)
+```shell
+git config --global https.proxy 'socks5://127.0.0.1:1080'
+git config --global https.proxy 'https://127.0.0.1:1080'
+```
+查看配置
+```shell
+git config --global --get https.proxy
+```
+取消代理
+```shell
+git config --global --unset https.proxy
+```
+我的配置
+![Snipaste_2020-04-05_19-19-56](/assets/Snipaste_2020-04-05_19-19-56.png)
+
 ## 搭建图床
 #### 安装与使用
 参考 [PicGo手册][1]。
