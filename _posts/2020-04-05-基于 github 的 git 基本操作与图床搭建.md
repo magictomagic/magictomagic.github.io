@@ -112,7 +112,7 @@ git config --global --get https.proxy
 git config --global --unset https.proxy
 ```
 我的配置
-![Snipaste_2020-04-05_19-19-56](/assets/Snipaste_2020-04-05_19-19-56.png)
+![Snipaste_2020-04-05_19-19-56](/img/Snipaste_2020-04-05_19-19-56.png)
 
 ## 搭建图床
 #### 安装与使用
