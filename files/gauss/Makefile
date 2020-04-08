@@ -10,10 +10,5 @@ program: serial.c parallel-pthreads.c parallel-chunk-threads.c parallel-openmp.c
 
 	 $(CC) parallel-openmp.c -fopenmp -o parallel-openmp.o
 
-#	 $(CC) chunk_thpool_gauss.c thpool.c -pthread -o chunkpool.out
-
-#	 $(CC) thpool_gauss.c thpool.c -pthread -o pool.out
-
-
 clean:
 	rm -rf *.out
