@@ -34,19 +34,19 @@
 
 ![](/img/Snipaste_2020-04-09_03-48-40.png)
 
-    可以发现，Pthread 改进版的性能居然比原版差，而且是每个数据规模都差。如果忽略其它影响因素，可能是我的内存太小，导致前期申请结构体数据的开销不足以弥补不用释放的开销，后期内存耗尽的开销影响不用释放内存的开销。或者是前面的判断是错的，是我忽略了修改以后的算法中的某些细节。
+可以发现，Pthread 改进版的性能居然比原版差，而且是每个数据规模都差。如果忽略其它影响因素，可能是我的内存太小，导致前期申请结构体数据的开销不足以弥补不用释放的开销，后期内存耗尽的开销影响不用释放内存的开销。或者是前面的判断是错的，是我忽略了修改以后的算法中的某些细节。
 
 >附件：[Makefile][8]
 
 >自动化测试工具：[串行][5], [OpenMP][6], [Pthread][7]，[chunk-Pthread][9]
 
 
-[1]: \files\gauss\serial.c
-[2]: \files\gauss\parallel-openmp.c
-[3]: \files\gauss\parallel-pthreads.c
-[4]: \files\gauss\parallel-chunk-threads.c
-[5]: \files\gauss\serial.sh
-[6]: \files\gauss\openmp.sh
-[7]: \files\gauss\pthread.sh
-[9]: \files\gauss\chunk-thread.sh
-[8]: \files\gauss\Makefile
+[1]: /files/gauss/serial.c
+[2]: /files/gauss/parallel-openmp.c
+[3]: /files/gauss/parallel-pthreads.c
+[4]: /files/gauss/parallel-chunk-threads.c
+[5]: /files/gauss/serial.sh
+[6]: /files/gauss/openmp.sh
+[7]: /files/gauss/pthread.sh
+[9]: /files/gauss/chunk-thread.sh
+[8]: /files/gauss/Makefile
