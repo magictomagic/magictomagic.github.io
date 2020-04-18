@@ -8,5 +8,5 @@ ipconfig -a
 发现主机里的网络设备多了 s1, s1-eth1, s1-eth2, 分别表示控制器，连接 h1, h2 的端口
 对于 h1, h2 协议的分析，可以参考[简析 OpenFlow 协议][2]
 
-[1]:./2020-04-18-SDN-ex1.md
-[2]:./2020-04-18-SDN-ex1.md/#OpenFlow-protocol
+[1]:/_post/2020-04-18-SDN-ex1.md
+[2]:/post/2020-04-18-SDN-ex1.md/#OpenFlow-protocol
