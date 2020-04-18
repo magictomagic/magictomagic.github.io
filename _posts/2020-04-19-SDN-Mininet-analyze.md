@@ -9,4 +9,4 @@ ipconfig -a
 对于 h1, h2 协议的分析，可以参考[简析 OpenFlow 协议][2]
 
 [1]:https://magictomagic.github.io/2020/04/18/SDN-ex1/
-[2]:https://magictomagic.github.io/2020/04/18/SDN-ex1/#简析-OpenFlow-协议
+[2]:https://magictomagic.github.io/2020/04/18/SDN-ex1/##简析-OpenFlow-协议
