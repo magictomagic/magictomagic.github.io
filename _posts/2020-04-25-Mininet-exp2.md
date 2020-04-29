@@ -69,7 +69,6 @@ if out_port != ofproto.OFPP_FLOOD:
             path = self.paths[src][dst]
             next_hop = path[path.index(dpid)+1]
             out_port = self.network[dpid][next_hop]['attr_dict']['port']
-            print(path)
         else:
             out_port = datapath.ofproto.OFPP_FLOOD   
         return out_port
