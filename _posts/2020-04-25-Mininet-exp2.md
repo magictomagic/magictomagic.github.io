@@ -69,6 +69,7 @@ if out_port != ofproto.OFPP_FLOOD:
             path = self.paths[src][dst]
             next_hop = path[path.index(dpid)+1]
             out_port = self.network[dpid][next_hop]['attr_dict']['port']
+            print(path)
         else:
             out_port = datapath.ofproto.OFPP_FLOOD   
         return out_port
@@ -85,9 +86,9 @@ s25(MIT 对应的控制器)稳定在
 
 ![](/img/Snipaste_2020-04-25_00-50-34.png)![](/img/Snipaste_2020-04-25_00-51-00.png)
 
-最后输出的链路有两条
+输出
 
-![](/img/Snipaste_2020-04-29_14-45-00.png)
+![](/img/Snipaste_2020-04-30_21-59-22.png)
 
 
 
