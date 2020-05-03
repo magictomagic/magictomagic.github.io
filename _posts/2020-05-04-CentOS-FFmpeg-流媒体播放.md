@@ -1,5 +1,7 @@
-# [install ffmpeg][10]
-## install yasm
+# 點播平臺的搭建
+環境：CentOS 8
+## [install ffmpeg][10]
+### install yasm
 goto http://www.tortall.net/projects/yasm/releases/ and find the lastest version
 ```shell
 wget http://www.tortall.net/projects/yasm/releases/yasm-1.3.0.tar.gz
@@ -10,7 +12,7 @@ yum -y install gcc automake autoconf libtool make
 make
 make install
 ```
-## install [x264][1]
+### install [x264][1]
 goto https://github.com/qupai/ or google x264 to find it in github
 ```shell
 git clone https://github.com/qupai/x264.git
@@ -19,7 +21,7 @@ cd x264/
 make
 make install
 ```
-## install ffmpeg
+### install ffmpeg
 goto https://ffmpeg.org/download.html and find the lastest version
 ```shell
 wget https://ffmpeg.org/releases/ffmpeg-4.2.2.tar.bz2
@@ -41,7 +43,7 @@ vi /etc/ld.so.conf
 ##
 ldconfig
 ```
-# [install Nginx and RMTP][8]
+## [install Nginx and RMTP][8]
 **install dependencies**: [EPEL][2]
 ```shell
 yum -y groupinstall 'Development Tools'
@@ -170,8 +172,8 @@ nginx -t    # test nginx configuration
 nginx -V    # the installed nginx version
 ```
 ![](/img/Snipaste_2020-05-04_00-53-41.png)
-# Configure Service
-## Nginx
+## Configure Service
+### Nginx
 Go to the '/lib/systemd/system' directory and create a new 'nginx.service' file using vim.
 ```shell
 cd /lib/systemd/system/
@@ -202,7 +204,7 @@ systemctl daemon-reload
 systemctl start nginx
 systemctl enable nginx
 ```
-## Nginx RTMP Module
+### Nginx RTMP Module
 Go to the '/etc/nginx' configuration directory and backup the original 'nginx.conf' file.
 ```shell
 cd /etc/nginx/
@@ -289,7 +291,7 @@ Test the configuration and restart the nginx service.
 nginx -t
 systemctl restart nginx
 ```
-# Setup First RTMP Live Stream
+## Setup First RTMP Live Stream
 Go to the '/etc/nginx' configuration directory and edit the 'nginx.conf' file.
 ```shell
 cd /etc/nginx/
@@ -314,7 +316,7 @@ chown -R nginx:nginx /mnt/mp4s
 nginx -t
 systemctl restart nginx
 ```
-# If you are rich
+## If you are rich
 Install GetPageSpeed repository and install axel rpm package:
 ```shell
 dnf install https://extras.getpagespeed.com/release-el8-latest.rpm
@@ -322,25 +324,25 @@ dnf install axel
 ```
 ![](/img/Snipaste_2020-05-04_02-09-46.png)
 ![](/img/Snipaste_2020-05-04_02-07-22.png)
-![](/img/Snipaste_2020-05-04_02-08-17.png)
-# Open firewall
+![](/img/Snipaste_2020-05-04_06-46-40.png)
+## Open firewall
 ```shell
 firewall-cmd --permanent --add-service=http # permanently enable HTTP connections on port 80
 firewall-cmd --zone=public --add-port=1935/tcp --permanent
 firewall-cmd --list-ports    # check
 firewall-cmd --reload
 ```
-# Run ffmpeg
+## Run ffmpeg
 [常见错误][11]
-## 點播
+### 點播
 Put videos in /mnt/mp4s
 ```shell
 ffmpeg -re -i "/mnt/mp4s/your_video_name.mp4" -vcodec libx264 -vprofile baseline -acodec aac  -ar 44100 -strict -2 -ac 1 -f flv -s 1280x720 -q 10 rtmp://{IP}:1935/stream/test1
 ```
 type rtmp://149.248.57.125:1935/vod/your_video_name.mp4 in web as link and open the link in potplayer.
-### if you are brave
+#### if you are brave
 把郭文貴，文昭，悉尼奶爸，財經冷眼，南方公園等視屏放上去，並在牆內大範圍傳播
-## 直播
+### 直播
 因爲生活的壓力，目前沒時間做
 大致命令
 ```shell
