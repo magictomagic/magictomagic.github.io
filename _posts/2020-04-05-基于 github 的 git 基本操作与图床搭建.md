@@ -124,4 +124,10 @@ git config --global --unset https.proxy
 #### 中国特色
 【PicGo设置】里可以配置代理，用来提高传输速度。
 
+## 同步与更新
+```shell
+git pull  # == git fetch && git merge # 从远程获取最新版本并合并到本地
+
+```
+
 [1]:https://picgo.github.io/PicGo-Doc/zh/guide/#%E5%BA%94%E7%94%A8%E8%AF%B4%E6%98%8E
