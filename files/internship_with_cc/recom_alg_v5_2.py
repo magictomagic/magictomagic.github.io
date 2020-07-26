@@ -64,9 +64,7 @@ def updateSomeUserHobby(userID, bookID=0, like=-1):
         if userID == u_name:
             is_new_user = False
     if bookID == 0 and like == -1 and not is_new_user:
-        sys.stderr.write('用户: %s 已存在~\n' % userID)
-        sys.stderr.write('你已经初始化了，不能重复初始化呀！')
-        exit()
+        return is_new_user
     if is_new_user:
         hobby = hobby.append([{'userName': userID}])
         hobby = hobby.dropna(axis=0, how='all')
