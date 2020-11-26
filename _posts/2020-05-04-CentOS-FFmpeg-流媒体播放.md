@@ -171,7 +171,7 @@ chown -R nginx:nginx /var/cache/nginx/
 nginx -t    # test nginx configuration
 nginx -V    # the installed nginx version
 ```
-![](/img/Snipaste_2020-05-04_00-53-41.png)
+![](../img/Snipaste_2020-05-04_00-53-41.png)
 ## Configure Service
 ### Nginx
 Go to the '/lib/systemd/system' directory and create a new 'nginx.service' file using vim.
@@ -322,9 +322,9 @@ Install GetPageSpeed repository and install axel rpm package:
 dnf install https://extras.getpagespeed.com/release-el8-latest.rpm
 dnf install axel
 ```
-![](/img/Snipaste_2020-05-04_02-09-46.png)
-![](/img/Snipaste_2020-05-04_02-07-22.png)
-![](/img/Snipaste_2020-05-04_06-46-40.png)
+![](../img/Snipaste_2020-05-04_02-09-46.png)
+![](../img/Snipaste_2020-05-04_02-07-22.png)
+![](../img/Snipaste_2020-05-04_06-46-40.png)
 ## Open firewall
 ```shell
 firewall-cmd --permanent --add-service=http # permanently enable HTTP connections on port 80
