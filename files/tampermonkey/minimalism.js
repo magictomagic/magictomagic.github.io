@@ -9,6 +9,7 @@
 // @match        https://*/*
 // @note         0.0.2 修复：去除 警告遮罩 范围过大
 // @updateURL    https://github.com/magictomagic/magictomagic.github.io/blob/master/files/tampermonkey/minimalism.js
+// @require      https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js
 // ==/UserScript==
 
 /** 欢迎 inoreader 的用户，或其它追求 minimalism 的同学，加我 QQ 1172765646 来骂我的脚本那里出问题了 */
