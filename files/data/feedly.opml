@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<opml version="1.0">
+    <head>
+        <title>magictomagic subscriptions in feedly Cloud</title>
+    </head>
+    <body>
+        <outline text="tools" title="tools">
+            <outline type="rss" text="Recent Commits to feedback:master" title="Recent Commits to feedback:master" xmlUrl="https://github.com/MicrosoftDocs/feedback/commits/master.atom" htmlUrl="https://github.com/MicrosoftDocs/feedback/commits/master"/>
+            <outline type="rss" text="Codecademy Blog" title="Codecademy Blog" xmlUrl="https://www.codecademy.com/blog.rss" htmlUrl="https://www.codecademy.com/blog"/>
+            <outline type="rss" text="電腦玩物" title="電腦玩物" xmlUrl="http://feeds.feedburner.com/playpc" htmlUrl="http://www.playpcesor.com/"/>
+            <outline type="rss" text="少数派" title="少数派" xmlUrl="http://sspai.me/feed" htmlUrl="https://sspai.com"/>
+            <outline type="rss" text="Codecademy Blog" title="Codecademy Blog" xmlUrl="http://blog.codecademy.com/feed.xml" htmlUrl="http://blog.codecademy.com/"/>
+        </outline>
+        <outline text="EnglishArticles" title="EnglishArticles">
+            <outline type="rss" text="Slashdot" title="Slashdot" xmlUrl="http://rss.slashdot.org/Slashdot/slashdot" htmlUrl="https://slashdot.org/"/>
+            <outline type="rss" text="MIT Technology Review" title="MIT Technology Review" xmlUrl="http://www.technologyreview.com/rss/rss.aspx" htmlUrl="https://www.technologyreview.com"/>
+            <outline type="rss" text="Scientific American" title="Scientific American" xmlUrl="http://rss.sciam.com/ScientificAmerican-Global" htmlUrl="http://www.scientificamerican.com"/>
+        </outline>
+        <outline text="精品" title="精品">
+            <outline type="rss" text="Free Mind" title="Free Mind" xmlUrl="http://freemind.pluskid.org/rss.xml" htmlUrl="http://freemind.pluskid.org"/>
+            <outline type="rss" text="新闻实验室・会员计划｜newslab.info" title="新闻实验室・会员计划｜newslab.info" xmlUrl="https://newslab.info/feed/" htmlUrl="https://newslab.info"/>
+            <outline type="rss" text="科技島讀" title="科技島讀" xmlUrl="http://feeds.soundcloud.com/users/soundcloud:users:322164009/sounds.rss" htmlUrl="https://daodu.tech"/>
+            <outline type="rss" text="CJ Ting's Blog" title="CJ Ting's Blog" xmlUrl="https://cjting.me/index.xml" htmlUrl="https://cjting.me/"/>
+            <outline type="rss" text="Posts on MeiK's blog" title="Posts on MeiK's blog" xmlUrl="https://meik2333.com/posts/index.xml" htmlUrl="https://meik2333.com/posts/"/>
+            <outline type="rss" text="" title="" xmlUrl="https://shuziyimin.org/feed/"/>
+            <outline type="rss" text="阮一峰的网络日志" title="阮一峰的网络日志" xmlUrl="http://feeds.feedburner.com/ruanyifeng" htmlUrl="http://www.ruanyifeng.com/blog/"/>
+            <outline type="rss" text="Pine Wu's Blog" title="Pine Wu's Blog" xmlUrl="https://blog.matsu.io/feed.xml" htmlUrl="http://blog.matsu.io"/>
+            <outline type="rss" text="小胡子哥的个人网站" title="小胡子哥的个人网站" xmlUrl="http://barretlee.com/rss2.xml" htmlUrl="http://www.barretlee.com/"/>
+            <outline type="rss" text="极客兔兔" title="极客兔兔" xmlUrl="https://geektutu.com/feed.xml" htmlUrl="https://geektutu.com/"/>
+            <outline type="rss" text="编程随想的博客" title="编程随想的博客" xmlUrl="http://feeds.feedburner.com/programthink" htmlUrl="https://program-think.blogspot.com/"/>
+            <outline type="rss" text="财新周刊" title="财新周刊" xmlUrl="http://feeds.feedburner.com/52/tEtn" htmlUrl="http://weekly.caixin.com/"/>
+            <outline type="rss" text="139团队博客" title="139团队博客" xmlUrl="https://www.139.team/feed/" htmlUrl="https://www.139.team/"/>
+            <outline type="rss" text="中文日志 on Yihui Xie | 谢益辉" title="中文日志 on Yihui Xie | 谢益辉" xmlUrl="https://yihui.org/cn/index.xml" htmlUrl="https://yihui.org/cn/"/>
+            <outline type="rss" text="观海听涛" title="观海听涛" xmlUrl="https://bitsflow.org/index.xml" htmlUrl="https://bitsflow.org/index.xml"/>
+            <outline type="rss" text="面向信仰编程" title="面向信仰编程" xmlUrl="https://draveness.me/feed.xml" htmlUrl="https://draveness.me/"/>
+            <outline type="rss" text="JJy Blog" title="JJy Blog" xmlUrl="https://justjjy.com/atom.xml" htmlUrl="https://justjjy.com"/>
+            <outline type="rss" text="The Tutanota Blog" title="The Tutanota Blog" xmlUrl="https://tutanota.com/blog/feed.xml" htmlUrl="https://tutanota.com/blog"/>
+        </outline>
+        <outline text="news essence" title="news essence">
+            <outline type="rss" text="奇客Solidot–传递最新科技情报" title="奇客Solidot–传递最新科技情报" xmlUrl="http://www.solidot.org/index.rss" htmlUrl="https://www.solidot.org"/>
+            <outline type="rss" text="China Digital Times (CDT)" title="China Digital Times (CDT)" xmlUrl="http://chinadigitaltimes.net/feed/" htmlUrl="https://chinadigitaltimes.net"/>
+            <outline type="rss" text="AFP News Agency" title="AFP News Agency" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UC86dbj-lbDks_hZ5gRKL49Q" htmlUrl="https://www.youtube.com/channel/UC86dbj-lbDks_hZ5gRKL49Q"/>
+            <outline type="rss" text="PBS NewsHour - Segments" title="PBS NewsHour - Segments" xmlUrl="http://www.pbs.org/newshour/rss/podcast.xml" htmlUrl="https://www.pbs.org/newshour/video"/>
+        </outline>
+        <outline text="新闻论坛" title="新闻论坛">
+            <outline type="rss" text="TechCrunch" title="TechCrunch" xmlUrl="http://feeds.feedburner.com/Techcrunch" htmlUrl="https://techcrunch.com"/>
+            <outline type="rss" text="BBC News - World" title="BBC News - World" xmlUrl="http://feeds.bbci.co.uk/news/world/rss.xml" htmlUrl="https://www.bbc.co.uk/news/"/>
+            <outline type="rss" text="Engadget" title="Engadget" xmlUrl="http://www.engadget.com/rss-full.xml" htmlUrl="http://www.engadget.com"/>
+            <outline type="rss" text="V2EX" title="V2EX" xmlUrl="http://www.v2ex.com/index.xml" htmlUrl="https://www.v2ex.com/"/>
+            <outline type="rss" text="爱范儿" title="爱范儿" xmlUrl="https://www.ifanr.com/feed" htmlUrl="https://www.ifanr.com?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign="/>
+            <outline type="rss" text="Reuters" title="Reuters" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UChqUTb7kYRX8-EiaN3XFrSQ" htmlUrl="https://www.youtube.com/channel/UChqUTb7kYRX8-EiaN3XFrSQ"/>
+            <outline type="rss" text="Vox - All" title="Vox - All" xmlUrl="http://www.vox.com/rss/index.xml" htmlUrl="https://www.vox.com/"/>
+            <outline type="rss" text="熱門文章 - Matters" title="熱門文章 - Matters" xmlUrl="https://rsshub.app/matters/hot" htmlUrl="https://matters.news/"/>
+            <outline type="rss" text="中国数字时代" title="中国数字时代" xmlUrl="http://feeds.feedburner.com/chinadigitaltimes/IyPt" htmlUrl="https://chinadigitaltimes.net/chinese"/>
+            <outline type="rss" text="香港新聞RSS - 香港經濟日報 hket.com" title="香港新聞RSS - 香港經濟日報 hket.com" xmlUrl="http://www.hket.com/rss/hongkong" htmlUrl="https://www.hket.com/"/>
+            <outline type="rss" text="36氪" title="36氪" xmlUrl="http://www.36kr.com/feed" htmlUrl="http://36kr.com"/>
+            <outline type="rss" text="Business Insider" title="Business Insider" xmlUrl="http://feeds2.feedburner.com/businessinsider" htmlUrl="https://www.businessinsider.com"/>
+            <outline type="rss" text="Tech Insider" title="Tech Insider" xmlUrl="http://www.businessinsider.com/sai/rss" htmlUrl="https://www.businessinsider.com/sai"/>
+            <outline type="rss" text="商周.Com 最新綜合文章" title="商周.Com 最新綜合文章" xmlUrl="http://www.businessweekly.com.tw/adclick.php?id=14421" htmlUrl="http://www.businessweekly.com.tw/"/>
+            <outline type="rss" text="9to5Google" title="9to5Google" xmlUrl="http://9to5google.com/feed/" htmlUrl="https://9to5google.com"/>
+            <outline type="rss" text="Hacker News" title="Hacker News" xmlUrl="https://news.ycombinator.com/rss" htmlUrl="https://news.ycombinator.com/"/>
+            <outline type="rss" text="Bloomberg" title="Bloomberg" xmlUrl="http://www.newslookup.com/rss/business/bloomberg.rss" htmlUrl="http://www.bloomberg.com/"/>
+            <outline type="rss" text="CNET" title="CNET" xmlUrl="https://www.cnet.com/rss/all/" htmlUrl="https://www.cnet.com/#ftag=CADf328eec"/>
+            <outline type="rss" text="cnBeta.COM" title="cnBeta.COM" xmlUrl="http://rss.cnbeta.com/rss" htmlUrl="http://www.cnbeta.com"/>
+            <outline type="rss" text="FOX news" title="FOX news" xmlUrl="http://feeds.foxnews.com/foxnews/latest" htmlUrl="http://www.foxnews.com/"/>
+            <outline type="rss" text="CodeProject" title="CodeProject" xmlUrl="http://www.codeproject.com/webservices/articlerss.aspx?cat=1" htmlUrl="https://www.codeproject.com"/>
+            <outline type="rss" text="Android Police – Android news, reviews, apps, games, phones, tablets" title="Android Police – Android news, reviews, apps, games, phones, tablets" xmlUrl="http://www.androidpolice.com/feed/" htmlUrl="https://www.androidpolice.com"/>
+            <outline type="rss" text="日經中文網" title="日經中文網" xmlUrl="https://zh.cn.nikkei.com/rss.html" htmlUrl="https://zh.cn.nikkei.com/"/>
+            <outline type="rss" text="Associated Press" title="Associated Press" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UC52X5wxOL_s5yw0dQk7NtgA" htmlUrl="https://www.youtube.com/channel/UC52X5wxOL_s5yw0dQk7NtgA"/>
+            <outline type="rss" text="Ars Technica" title="Ars Technica" xmlUrl="http://feeds.arstechnica.com/arstechnica/index/" htmlUrl="https://arstechnica.com"/>
+            <outline type="rss" text="The Next Web" title="The Next Web" xmlUrl="http://feeds2.feedburner.com/thenextweb" htmlUrl="https://thenextweb.com"/>
+            <outline type="rss" text="Android Authority" title="Android Authority" xmlUrl="http://feeds.feedburner.com/androidauthority" htmlUrl="https://www.androidauthority.com"/>
+            <outline type="rss" text="Android Central - Android Forums, News, Reviews, Help and Android Wallpapers" title="Android Central - Android Forums, News, Reviews, Help and Android Wallpapers" xmlUrl="http://www.androidcentral.com/feed" htmlUrl="https://www.androidcentral.com/"/>
+            <outline type="rss" text="Story of the Day : NPR" title="Story of the Day : NPR" xmlUrl="http://www.npr.org/rss/podcast.php?id=1090" htmlUrl="https://www.npr.org"/>
+            <outline type="rss" text="Mashable" title="Mashable" xmlUrl="http://feeds.mashable.com/Mashable" htmlUrl="https://mashable.com/?utm_campaign=Mash-Prod-RSS-Feedburner-All-Partial&amp;utm_cid=Mash-Prod-RSS-Feedburner-All-Partial"/>
+            <outline type="rss" text="Fast Company" title="Fast Company" xmlUrl="http://feeds.feedburner.com/fastcompany/headlines" htmlUrl="https://www.fastcompany.com"/>
+            <outline type="rss" text="Wired" title="Wired" xmlUrl="http://www.wired.com/news/feeds/rss2/0,2610,,00.xml" htmlUrl="https://www.wired.com"/>
+            <outline type="rss" text="The Verge" title="The Verge" xmlUrl="http://www.theverge.com/rss/full.xml" htmlUrl="https://www.theverge.com/"/>
+        </outline>
+    </body>
+</opml>
