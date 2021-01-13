@@ -6,7 +6,7 @@
 // @author       magictomagic
 // @match        http://nsa.xjtu.edu.cn/*
 // @note         已知问题：测试活动也会给你选上去
-// @updateURL   
+// @updateURL    https://raw.githubusercontent.com/magictomagic/magictomagic.github.io/master/files/tampermonkey/auto100activity.js
 // ==/UserScript==
 // make sure your web is
 var vernier = 11,
