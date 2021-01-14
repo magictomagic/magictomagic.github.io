@@ -1,14 +1,16 @@
 // ==UserScript==
 // @name         auto100activity
+// @version      0.0.2
 // @namespace    http://tampermonkey.net/
-// @version      0.0.1
-// @description  到 http://nsa.xjtu.edu.cn/apply/hdblsq?dataId=null 那个选活动的页面，启用这个脚本，然后刷新网页，40分钟后，100个活动就帮你选好了。
+// @description  到 http://nsa.xjtu.edu.cn/apply/hdblsq?dataId=null 那个选活动的页面，启用这个脚本，然后刷新网页，40分钟后，100个活动就帮你选好了。已知问题：测试活动也会给你选上去。
 // @author       magictomagic
+// @create       2021-01-12
+// @lastmodified 2021-01-14
 // @match        http://nsa.xjtu.edu.cn/*
-// @note         已知问题：测试活动也会给你选上去
+// @note         0.0.1 NaN
 // @updateURL    https://raw.githubusercontent.com/magictomagic/magictomagic.github.io/master/files/tampermonkey/auto100activity.js
+// @require      https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js
 // ==/UserScript==
-// make sure your web is
 var vernier = 11,
     daPage = 0,
     daColumn = 0,
