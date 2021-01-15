@@ -135,8 +135,9 @@ function jdktf() {
             await sleep(3000);
 
             let ele = document.getElementsByTagName("textarea")[1]
-            let evt = document.createEvent('HTMLEvents')
-            evt.initEvent('input', true, true);
+                // let evt = document.createEvent('HTMLEvents')
+            let evt = new Event('input')
+                // evt.initEvent('input', true, true);
             ele.value = jdktf();
             ele.dispatchEvent(evt)
 
