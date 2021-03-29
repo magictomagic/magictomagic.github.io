@@ -73,7 +73,7 @@ tar zcf cpio-root.tar.gz cpio-root
 
 如果是小端的，就要将`cpio-root.tar.gz`发送到**QEMU MIPSEL**中的 **rootfs folder** 
 
-## qemu
+## qemu 运行
 
 ### 常识
 
@@ -96,6 +96,23 @@ Initrd ramdisk或者initrd是指一个临时文件系统，它在启动阶段被
 ![image-20210330064326406](../img/image-20210330064326406.png)
 
 然后我又试了`qemu-system-mipsel -M malta -kernel vmlinux-2.6.32-5-4kc-malta -hda debian_squeeze_mipsel_standard.qcow2 -append "root=/dev/sda1 console=tty0"`，还是老问题。
+
+### 回归 Linux
+
+在 Ubuntu20.04TLS 下到 https://people.debian.org/~aurel32/qemu/mipsel/ 中下载
+
+![image-20210330065303212](../img/image-20210330065303212.png)
+
+然后参考`README.txt`运行，最后：
+
+![image-20210330065445835](../img/image-20210330065445835.png)
+
+## Copy the rootfs folder to QEMU MIPSEL
+
+到了[这篇教程][1]的第三步了，到目前为止这篇教程一直是对的，所以后面搞出来只是时间问题。
+
+
+
 
 
 
