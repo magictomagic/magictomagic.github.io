@@ -10,6 +10,15 @@
 
 https://docs.microsoft.com/en-gb/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&tabs=preview-page
 
+```shell
+vsce package
+vsce publish
+```
+
+
+
+https://marketplace.visualstudio.com/manage
+
 ## 经验
 
 ### TS 语法
@@ -46,6 +55,8 @@ python装饰器
 
 明确别人的使用场景与需求，现有的解决方案，别人在用自己的东西时候的体验
 
+### 没事看一看
 
+https://code.visualstudio.com/api/extension-guides/command 
 
   
