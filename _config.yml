@@ -4,7 +4,7 @@ SEOTitle: MTM的博客 | MTM
 header-img: img/post-bg-desk.jpg
 email: 1172765646@qq.com
 description: "Every failure is leading towards success."
-keyword: "MTM, MTM Blog, MTM的博客, 翻墙，科学上网，V2Ray"
+keyword: "magictomagic 笔记"
 url: "https://magictomagic.github.io/"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
 github_repo: "https://github.com/magictomagic/magictomagic.github.io.git" # you code repository
@@ -17,10 +17,12 @@ sidebar-avatar: /img/kklt.jpg      # use absolute URL, seeing it's used in both 
 
 
 # SNS settings
-RSS: false
+RSS: true
 # weibo_username:     MTM
 # zhihu_username:     MTM
-# github_username:    MTM
+github_username:    magictomagic
+QQ:                 1172765646
+telegram:           https://t.me/magictomagic
 # facebook_username:  baiying.qiu.7
 # jianshu_username:   e71990ada2fd
 # twitter_username:   qiubaiying
@@ -97,18 +99,18 @@ service-worker: true
 
 
 # Friends
-friends: [
-    {
-        title: "WY",
-        href: "http://zhengwuyang.com"
-    },{
-        title: "简书·BY",
-        href: "http://www.jianshu.com/u/e71990ada2fd"
-    },{
-        title: "Apple",
-        href: "https://apple.com"
-    },{
-        title: "Apple Developer",
-        href: "https://developer.apple.com/"
-    }
-]
+# friends: [
+#     {
+#         title: "WY",
+#         href: "http://zhengwuyang.com"
+#     },{
+#         title: "简书·BY",
+#         href: "http://www.jianshu.com/u/e71990ada2fd"
+#     },{
+#         title: "Apple",
+#         href: "https://apple.com"
+#     },{
+#         title: "Apple Developer",
+#         href: "https://developer.apple.com/"
+#     }
+# ]
