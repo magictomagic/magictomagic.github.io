@@ -8,7 +8,7 @@
 + [X] turn off auto-update ~single~ app in ~play store~
 **** Adaway app
 #+attr_html: :width 16
-[[file:d:/mtm-github/blog/img/20210609_213716_WXKSxd.png]]
+[[file:../img/20210609_213716_WXKSxd.png]]
 *** Sodom ads
 **** splash screen ads(开屏广告) [1/2]
 + [X] install [[https://wiki.ad-gone.com/adMagisk.html][大圣净化]] in ~root~ mode
