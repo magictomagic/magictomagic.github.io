@@ -1,24 +1,181 @@
-#+title: asd
+#+title: Poco F2/Redmi K30 pro
 
-* 需求
-** DOING Remove ads in app
+* Requirement
+** Remove ads in app
 *** Google ads
-**** microg [2/2]
+**** Microg [2/2]
 + [X] install [[https://vancedapp.com/][Vanced Manager]] in ~root~ mode
+  *note*
+  1) If YouTube occurred to flash back or other problems, udpate YouTube in Play Store and reinstall it in Vanced Manager.
 + [X] turn off auto-update ~single~ app in ~play store~
 **** Adaway app
-#+attr_html: :width 16
+#+attr_html: :width 29
 [[file:../img/20210609_213716_WXKSxd.png]]
-*** Sodom ads
+*** Mainland ads apps(only for Sodom app)
 **** splash screen ads(开屏广告) [1/2]
 + [X] install [[https://wiki.ad-gone.com/adMagisk.html][大圣净化]] in ~root~ mode
 + [ ] crisis awareness, to backup rules, learn about the underlying principle
 **** pop-up ads and stupid PMP(弹窗广告/红包，傻逼的产品经理设计的花里胡哨的组件) [1/2]
 + [X] [[https://github.com/kaisar945/Xposed-GodMode][Xposed-GodMode]]
 + [ ] create RemoveHub or use other apps
-** TODO Optimize browsing experience
+*** SMS ads
+**** NekoSMS ~with rules~
+#+attr_html: :width 29
+[[file:../img/20210610_010726_Ai6D4B.png]]
+
+** Better browsing experience
 *** Remove ads
-**** Adblock browser app
-**** 
-*** Surprise jump to Taobao or Alipay
-*** Press button to continue read
+**** Adblock Browser, 1DM+ Browser
+#+attr_html: :width 29
+[[file:../img/20210609_215954_zDjfKu.png]]  [[file:../img/20210609_220610_eFlEAj.png]]
+**** TODO Kiwi Browser ~with plugin~
+#+attr_html: :width 29
+[[file:../img/20210609_224057_YbwFmd.png]]
+*** TODO Surprise jump from chrome to Taobao or Alipay
+*** TODO Press button to continue read in 知乎 or CSDN
+** Privacy management
+*** Mainland bandit apps(only for Sodom app)
+**** Cannot use without your privacy [1/2]
++ [X] Island, Storage Isolation
+#+attr_html: :width 29
+[[file:../img/20210609_232111_l5VIPQ.png]] [[file:../img/20210609_232217_ImEQhe.png]]
++ [ ] XPrivacyLua
+#+attr_html: :width 29
+[[file:../img/20210609_232439_rHTCVc.png]]
+**** Build-in Browser in *Sodomese have to use*
++ [ ] ExLink
+#+attr_html: :width 29
+[[file:../img/20210610_005809_wxvKdT.png]]
+*** Big government or company for altisonant reasons
+**** DOING bloatware
++ [ ] MIUI
+  [[https://gist.github.com/Biswa96/81fe477079fa5279f7cfd7b98d5519c7][refer1]], [[https://technastic.com/xiaomi-bloatware-list-miui/][refer2]]
+**** TODO privacy expore direction
++ [ ] Cirlig and Tierney's research on MIUI
++ [ ] Google's PID or other PIDs
+*** disable apps
+**** ice box
+#+attr_html: :width 29
+[[file:../img/20210609_234643_kHXPN1.png]]
+*** disguise location
+**** X 定位保护
+#+attr_html: :width 29
+[[file:../img/20210610_010306_GXv3ER.png]]
+*** Hide root and xposed from apps do not need
+** Backup and Restore
+*** data In app
+**** Swift Backup
+attention: do not hide magisk by alias
+*** permission About apps
+**** App Ops
+*** TODO plugin In magisk
+backup installed plugins
+*** TODO module In xposed
+backup xposed modules
+*** TODO rules in FilterBox
+*** TODO Tasker
+*** desktop layout
+**** DOING xiaomi yun or other methods, including shotcuts
+*** Whole ROM
+**** Migrate-GPE
+** WAITING SafetyNet hack
+** interest me when boring
+*** VPN hotspot
+**** Repeater(WiFi中继器)
+works, but require WiFi
+**** TODO Mobile data
+Alternative when WiFi is unavailable
+**** Battery protection
+AccA
+  *note*
+  1) Lock the progress in background when use it as a 24h router
+*** Enable screenshot in tsundere apps
+WeiJu
+*** TODO Use as server
++ termux(in F-droid), JuiceSSH
++ coding outdoor with a keyboard: use python, nodejs, mysql on it.
+*** TODO Launcher
++ Nova Launcher、Lawnchair、Hola Launcher、Hyperion Launcher
++ [[https://sspai.com/post/54805][Beautify]] Launcher with KWGT and KLWP
+*** TODO Solution to break walls between regions
+**** Install bilibili in google play version
+**** Install netflix without GMS
+SAI
+**** install apk with specified websites or sources
+*** TODO Efficiency
++ wechat scan
++ read Wechat, QQ, Welink, e-mail, SMS, Google calendar in one space
++ Downlaod YouTube Video by IDM or SkyTube(May need to change the download component)
+*** TODO Decompile Paid App, modify, recompile
++ Storage Isolation
+  Too expensive, so I fuck it.
+*** TODO Send information automatically
+**** send text by wechat according to others' text
+**** send documents by QQ according to date time(usually, ddl)
+* Checker
+** Detect root and xposed
+*** Momo
+Root, Xposed, other system outliers.
+*** Xposed Check
+Xposed
+*** Welink, ICBC Mobile Banking(中国工商银行)
+Root
+** Detect safetynet
+*** Magisk
+*** SafetyNet Test
+*** Netflix, Play Store
+* Root MIUI
+** Old but success in 2021-06-01
+1) Unlock bootloader
+2) Reboot to fastboot
+   #+begin_src bash
+     adb reboot bootloader
+   #+end_src
+3) Flash in third-party recovery
+   1. Flash img into boot partition
+      #+begin_src bash
+        fastboot boot twrp.img
+      #+end_src
+      *note*: ~fastboot flash recovery twrp.img~ only work in old device.
+   2. Go to recovery system
+      *note*: ~fastboot reboot~ may not work in your device, press power and volume up button instead.
+   *note*
+      + Sometimes you cannot enter REC due to recovery img broken or other unexpectable errors. Do not use MIUI offcial toolkit in 2021, use the version not higher than 2018. Because the 2021 one has tighter restrictions and fewer options.
+      + Erase data but do not lock bootloader.
+      + Wire brush and choose unziped directory
+4) Install Magisk.zip in recovery
+   1. Rename Magisk.apk to Magisk.zip
+   2. Move it to recovery
+      #+begin_src shell
+        adb push Magisk-v23.0.zip /mnt/sdcard/Magisk-v23.0.zip
+      #+end_src
+   3. Install it in TWRP recovery, just like ~Card Flash~
+5) Install Magisk.apk with essential modules
+   *must install*
+   1. Riru  ~Rikka~
+   2. Riru-EdXposed  ~solohsu, MlgmXyysd~
+   3. Systemless Hosts  ~Magisk~
+   *recommend install*
+   1. Busybox for Android NDK  ~xda-developers~
+   2. Universal GMS Doze  ~gloeyisk~
+   3. Energized Protection  ~AdroitAdorKhan~
+   4. 大圣净化  ~lingyu0~ (only for Sodomese)
+   5. Riru-Enhanced mode for Storage Isolation  ~Rikka~
+   6. Riru-Location Report Enabler  ~Rikka~
+   7. Advanced Charging Controller(ACC)  ~VR25~
+   *other*
+   1. NFS INJECTOR @nfsinjector  ~K1ks~
+   2. Font Manager  ~Androidacy~
+   3. MagiskHide Props Config  ~Didgeridoohan~
+   4. Universal SafetyNet Fix  ~kdrag0n~
+   5. App Systemizer(Terminal Emulator)  ~veez21~
+6) Restore, Hide, check
+** TODO New method
+[[https://topjohnwu.github.io/Magisk/install.html#patching-images][Magisk official]]
+* Principle
+** DOING General
+*** recovery upgrade
+[[https://cloud.tencent.com/developer/article/1512939][refer1]]
+** TODO Hook detect
+Weiju Alipy Hook
+** Crack paid app
