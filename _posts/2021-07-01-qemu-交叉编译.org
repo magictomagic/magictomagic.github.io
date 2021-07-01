@@ -47,20 +47,20 @@ Tune for CPU = -mtune 不搞, 因为新版的会自动推导
 
 
 #+attr_html: :width 666
-[[file:../../public/img/20210701_185909_7vxSfe.png]]
+[[file:../img/20210701_185909_7vxSfe.png]]
 
 
 编译: ~ct-ng build~
 #+attr_html: :width 666
-[[file:../../public/img/20210702_010025_G3WtLy.png]]
+[[file:../public/img/20210702_010025_G3WtLy.png]]
 
 测试: 到 prefix 代表的目录下
 #+attr_html: width 666
-[[file:../../public/img/20210702_012357_Any6LG.png]]
+[[file:../img/20210702_012357_Any6LG.png]]
 
 运行
 #+attr_html: width 666
-[[file:../../public/img/20210702_012816_XJ8bs7.png]]
+[[file:../img/20210702_012816_XJ8bs7.png]]
 
 
 * build
