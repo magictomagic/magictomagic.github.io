@@ -3,8 +3,8 @@
 略
 
 * Ubuntu 20 TLS
-VMware 4核17G 100G磁盘
-编译好后共用42G
++ VMware 4核17G 100G磁盘
++ 编译好后共用42G
 * install
 #+begin_src bash
   git clone https://github.com/crosstool-ng/crosstool-ng
@@ -41,29 +41,29 @@ ct-ng menuconfig
 ** 关键配置
 goto [[https://gcc.gnu.org/onlinedocs/gcc/ARM-Options.html][link]] to find
 
-Architecture level = -march ~armv7~
-Emit assembly for CPU = -mcpu ~arm920t~
-Tune for CPU = -mtune 不搞, 因为新版的会自动推导
++ Architecture level = -march ~armv7~
++ Emit assembly for CPU = -mcpu ~arm920t~
++ Tune for CPU = -mtune 不搞, 因为新版的会自动推导
 
 
-#+attr_html: :width 666
+#+attr_html: :width 555
 [[file:../img/20210701_185909_7vxSfe.png]]
 
 
 编译: ~ct-ng build~
-#+attr_html: :width 666
-[[file:../public/img/20210702_010025_G3WtLy.png]]
+#+attr_html: :width 555
+[[file:../img/20210702_010025_G3WtLy.png]]
 
 测试: 到 prefix 代表的目录下
-#+attr_html: width 666
+#+attr_html: width 555
 [[file:../img/20210702_012357_Any6LG.png]]
 
 运行
-#+attr_html: width 666
+#+attr_html: width 444
 [[file:../img/20210702_012816_XJ8bs7.png]]
 
 
-* build
+* 参考
 [[https://www.cnblogs.com/andyfly/p/10507600.html][flow]]
 
 
@@ -71,14 +71,4 @@ Tune for CPU = -mtune 不搞, 因为新版的会自动推导
 
 
 
-* handle bug
-Build failed in step 'Installing pass-1 core C gcc compiler'
 
-** change gcc version
-sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-sudo apt-get update
-sudo apt install gcc-7 g++-7 gcc-8 g++-8 gcc-9 g++-9
-sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 90 --slave /usr/bin/g++ g++ /usr/bin/g++-9 --slave /usr/bin/gcov gcov /usr/bin/gcov-9
-sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 80 --slave /usr/bin/g++ g++ /usr/bin/g++-8 --slave /usr/bin/gcov gcov /usr/bin/gcov-8
-sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 70 --slave /usr/bin/g++ g++ /usr/bin/g++-7 --slave /usr/bin/gcov gcov /usr/bin/gcov-7
-sudo update-alternatives --config gcc
