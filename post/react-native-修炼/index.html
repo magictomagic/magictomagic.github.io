@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>react native 修炼 - Iron Age</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="magictomagic" /><meta name="description" content="每日一句 不练习就会被卷出 马太效应 自激振荡 环境搭建 adb 命令 1 adb devices 环境变量 AS 装相关包 跑起来 1 2 3 4 yarn react-native start # 或 yarn global add expo-cli 后直接 yarn start adb reverse tcp:8081 tcp:8081 # AS 打开，运" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.86.1 with theme even" />
+
+
+<link rel="canonical" href="https://magictomagic.github.io/post/react-native-%E4%BF%AE%E7%82%BC/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="react native 修炼" />
+<meta property="og:description" content="每日一句 不练习就会被卷出 马太效应 自激振荡 环境搭建 adb 命令 1 adb devices 环境变量 AS 装相关包 跑起来 1 2 3 4 yarn react-native start # 或 yarn global add expo-cli 后直接 yarn start adb reverse tcp:8081 tcp:8081 # AS 打开，运" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://magictomagic.github.io/post/react-native-%E4%BF%AE%E7%82%BC/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-03-21T01:37:56+08:00" />
+<meta property="article:modified_time" content="2021-03-21T01:37:56+08:00" />
+
+<meta itemprop="name" content="react native 修炼">
+<meta itemprop="description" content="每日一句 不练习就会被卷出 马太效应 自激振荡 环境搭建 adb 命令 1 adb devices 环境变量 AS 装相关包 跑起来 1 2 3 4 yarn react-native start # 或 yarn global add expo-cli 后直接 yarn start adb reverse tcp:8081 tcp:8081 # AS 打开，运"><meta itemprop="datePublished" content="2021-03-21T01:37:56+08:00" />
+<meta itemprop="dateModified" content="2021-03-21T01:37:56+08:00" />
+<meta itemprop="wordCount" content="937">
+<meta itemprop="keywords" content="React Native," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="react native 修炼"/>
+<meta name="twitter:description" content="每日一句 不练习就会被卷出 马太效应 自激振荡 环境搭建 adb 命令 1 adb devices 环境变量 AS 装相关包 跑起来 1 2 3 4 yarn react-native start # 或 yarn global add expo-cli 后直接 yarn start adb reverse tcp:8081 tcp:8081 # AS 打开，运"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Iron</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Iron</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">react native 修炼</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-03-21 </span>
+        <div class="post-category">
+            <a href="/categories/notes/"> notes </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#每日一句">每日一句</a></li>
+    <li><a href="#环境搭建">环境搭建</a>
+      <ul>
+        <li><a href="#adb-命令">adb 命令</a></li>
+        <li><a href="#环境变量">环境变量</a></li>
+        <li><a href="#as-装相关包">AS 装相关包</a></li>
+        <li><a href="#跑起来">跑起来</a></li>
+        <li><a href="#错误处理">错误处理</a></li>
+      </ul>
+    </li>
+    <li><a href="#编程思想">编程思想</a>
+      <ul>
+        <li><a href="#函数式组件">函数式组件</a>
+          <ul>
+            <li><a href="#上层建筑--逼话">上层建筑 | 逼话</a></li>
+            <li><a href="#理解与坑">理解与坑</a></li>
+            <li><a href="#模板--经验">模板 | 经验</a></li>
+            <li><a href="#不同的useeffect监控不同的状态">不同的useEffect监控不同的状态</a></li>
+            <li><a href="#尽早规整化输出方便发现错误">尽早规整化输出，方便发现错误</a></li>
+            <li><a href="#useeffect最小状态包含">useEffect最小状态包含</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#组件概览">组件概览</a>
+      <ul>
+        <li><a href="#长列表">长列表</a>
+          <ul>
+            <li><a href="#flatlist">FlatList</a></li>
+            <li><a href="#sectionlist">SectionList</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="每日一句">每日一句</h1>
+<p>不练习就会被卷出 马太效应 自激振荡</p>
+<h1 id="环境搭建">环境搭建</h1>
+<h2 id="adb-命令">adb 命令</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">adb devices
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="环境变量">环境变量</h2>
+<h2 id="as-装相关包">AS 装相关包</h2>
+<h2 id="跑起来">跑起来</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">yarn react-native start  <span class="c1"># 或 yarn global add expo-cli 后直接 yarn start</span>
+adb reverse tcp:8081 tcp:8081
+<span class="c1"># AS 打开，运行 </span>
+yarn react-native run-android  <span class="c1"># 直接 yarn run 即可</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="错误处理">错误处理</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">adb kill-server <span class="o">[</span>设备名字<span class="o">]</span>
+
+<span class="c1"># 杀端口</span>
+netstat -ano <span class="p">|</span> findstr <span class="m">8081</span> <span class="c1"># 列出进程极其占用的端口，且包含 8081</span>
+taskkill -PID &lt;进程号&gt; -F <span class="c1"># 强制关闭某个进程</span>
+
+<span class="c1"># 若 jb 系列因端口被占用而无法启动</span>
+net stop winnat
+net start winnat
+
+<span class="c1"># 端口被占用（permission denied）</span>
+https://superuser.com/questions/1437780/how-to-fix-listen-eacces-permission-denied-on-any-port
+
+<span class="c1"># 修改RN监听端口</span>
+https://blog.csdn.net/fengyuzhengfan/article/details/77389953
+
+<span class="c1"># 其它</span>
+https://reactnative.dev/docs/troubleshooting
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="编程思想">编程思想</h1>
+<h2 id="函数式组件">函数式组件</h2>
+<h3 id="上层建筑--逼话">上层建筑 | 逼话</h3>
+<p>抓住主脉，忽略细节，上来就干。分析出需求点和关键点。</p>
+<p>事件（动作）改变状态，Hook 组件函数操纵生命周期。</p>
+<p>重点在 定义状态，明确状态之间是如何 转移|变换 的。</p>
+<p>状态的要分 逻辑层|后端 与 视图层|前端，状态不够之间 Hook 加一个过来。</p>
+<p>明确 哪些事件和状态转移有关，哪些无关。</p>
+<p>初次写项目容易把状态分少。</p>
+<blockquote>
+<p>增加状态：并列 | 包含(特殊情况处理)</p>
+</blockquote>
+<p>一个个需求实现，敏捷开发，状态按需 Hook。</p>
+<p>Hook 的本质是闭包，需求分析与软件结构设计时要考虑哪些状态应该始终保留在内存中。</p>
+<h3 id="理解与坑">理解与坑</h3>
+<p>状态可以理解为后端。Hook（以useState为例）是<code>设置后端数据的方法</code>与<code>后端的数据</code>。</p>
+<p>useMemo shouldcomponentUpdate</p>
+<p>useEffect 中的方法改变页面的 render。</p>
+<h4 id="useeffect">useEffect</h4>
+<p>副作用：</p>
+<ul>
+<li>
+<p>第一个参数</p>
+<ul>
+<li>回调函数：完成状态更新（componentDidUpdate）或组件渲染（componentDidMount）被触发。</li>
+<li>返回函数：componentWillUnmount</li>
+</ul>
+</li>
+<li>
+<p>第二个参数，可选，列表。</p>
+<ul>
+<li>
+<p>不存在：第一次初始化 &amp; 每次重新渲染 都触发回调</p>
+</li>
+<li>
+<p>数组存在且有值：数组中的任何值发生更改，每次重新渲染触发回调。</p>
+</li>
+<li>
+<p>空数组：回调只触发一次，类似于compoentDidMount</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>坑：</p>
+<p>多个状态改变导致频繁调用useEffect</p>
+<p>避坑：</p>
+<p>明确限制哪些状态改变触发useEffect</p>
+<h4 id="函数实例">函数“实例”</h4>
+<p>useRef()</p>
+<p>可自定义Hook保存上一个“实例”的状态</p>
+<h5 id="todo">TODO:</h5>
+<p>demo</p>
+<h3 id="模板--经验">模板 | 经验</h3>
+<h4 id="事件脉冲-导致视图层改变">事件脉冲 导致视图层改变</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt">useEffect外部定义平稳状态 | 里面定义处理高电平时的状态，处理完后返回平稳状态（低电平状态）
+                      __
+                     /  \
+                    /    \
+                ___/       \_____
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="不同的useeffect监控不同的状态">不同的useEffect监控不同的状态</h3>
+<h3 id="尽早规整化输出方便发现错误">尽早规整化输出，方便发现错误</h3>
+<h3 id="useeffect最小状态包含">useEffect最小状态包含</h3>
+<p>目前的实践是 结合<strong>事件脉冲</strong>使用</p>
+<h1 id="组件概览">组件概览</h1>
+<p><a href="https://reactnative.cn/docs/components-and-apis">https://reactnative.cn/docs/components-and-apis</a></p>
+<h2 id="长列表">长列表</h2>
+<h3 id="flatlist">FlatList</h3>
+<h3 id="sectionlist">SectionList</h3>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">magictomagic</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2021-03-21
+        
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content"><a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a></span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/react-native/">React Native</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/vscode-extension-%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">vscode extension 开发笔记</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/react-%E7%AC%94%E8%AE%B0/">
+            <span class="next-text nav-default">react native</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="https://magictomagic.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
