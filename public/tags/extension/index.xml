@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>extension on Iron Age</title>
+    <link>https://magictomagic.github.io/tags/extension/</link>
+    <description>Recent content in extension on Iron Age</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 29 Mar 2021 01:37:56 +0800</lastBuildDate><atom:link href="https://magictomagic.github.io/tags/extension/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>vscode extension 开发笔记</title>
+      <link>https://magictomagic.github.io/post/vscode-extension-%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Mon, 29 Mar 2021 01:37:56 +0800</pubDate>
+      
+      <guid>https://magictomagic.github.io/post/vscode-extension-%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/</guid>
+      <description>发布流程 直接上传 根据官方文档 使用token管理 https://docs.microsoft.com/en-gb/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&amp;amp;tabs=preview-page 1 2 vsce package vsce publish https://marketplace.visualstudio.com/manage 经验 TS 语法 Number(xxx) 有0 不用C++ isdigit 强类型如何开？（eslint有无这种风格：必须有分</description>
+    </item>
+    
+  </channel>
+</rss>

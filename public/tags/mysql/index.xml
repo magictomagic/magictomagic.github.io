@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mysql on Iron Age</title>
+    <link>https://magictomagic.github.io/tags/mysql/</link>
+    <description>Recent content in mysql on Iron Age</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 01 Apr 2021 01:37:56 +0800</lastBuildDate><atom:link href="https://magictomagic.github.io/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>mysql 常识 笔记</title>
+      <link>https://magictomagic.github.io/post/mysql-%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Thu, 01 Apr 2021 01:37:56 +0800</pubDate>
+      
+      <guid>https://magictomagic.github.io/post/mysql-%E7%AC%94%E8%AE%B0/</guid>
+      <description>安装 Ubuntu20.04TLS sudo apt install mysql-server 基本命令 以;为脚本结束符，不写则一直追加 1 2 3 4 5 6 7 8 9 10 11 12 showdatabases;CREATEDATABASEdat</description>
+    </item>
+    
+  </channel>
+</rss>
