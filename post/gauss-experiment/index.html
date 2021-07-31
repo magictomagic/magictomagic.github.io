@@ -1,0 +1,228 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<title>使用 OpenMP Pthread 实现高斯消元法 - Iron Age</title>
+<meta name=renderer content="webkit">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta http-equiv=cache-control content="no-transform">
+<meta http-equiv=cache-control content="no-siteapp">
+<meta name=theme-color content="#f8f5ec">
+<meta name=msapplication-navbutton-color content="#f8f5ec">
+<meta name=apple-mobile-web-app-capable content="yes">
+<meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
+<meta name=author content="magictomagic"><meta name=description content="性能分析使用从系统获取时间的方法 由于是在虚拟机上运行，性能受主机负载影响。还会受温度等情况影响，不能保证性能分析的准确性 串行 思路：Forwa"><meta name=keywords content="Hugo,theme,even">
+<meta name=generator content="Hugo 0.86.1 with theme even">
+<link rel=canonical href=https://magictomagic.github.io/post/gauss-experiment/>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
+<link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
+<meta property="og:title" content="使用 OpenMP Pthread 实现高斯消元法">
+<meta property="og:description" content="性能分析使用从系统获取时间的方法 由于是在虚拟机上运行，性能受主机负载影响。还会受温度等情况影响，不能保证性能分析的准确性 串行 思路：Forwa">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://magictomagic.github.io/post/gauss-experiment/"><meta property="article:section" content="post">
+<meta property="article:published_time" content="2020-04-09T01:37:56+08:00">
+<meta property="article:modified_time" content="2020-04-09T01:37:56+08:00">
+<meta itemprop=name content="使用 OpenMP Pthread 实现高斯消元法">
+<meta itemprop=description content="性能分析使用从系统获取时间的方法 由于是在虚拟机上运行，性能受主机负载影响。还会受温度等情况影响，不能保证性能分析的准确性 串行 思路：Forwa"><meta itemprop=datePublished content="2020-04-09T01:37:56+08:00">
+<meta itemprop=dateModified content="2020-04-09T01:37:56+08:00">
+<meta itemprop=wordCount content="784">
+<meta itemprop=keywords content="OpenMP,Pthread,experiment,"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="使用 OpenMP Pthread 实现高斯消元法">
+<meta name=twitter:description content="性能分析使用从系统获取时间的方法 由于是在虚拟机上运行，性能受主机负载影响。还会受温度等情况影响，不能保证性能分析的准确性 串行 思路：Forwa"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
+</head>
+<body>
+<div id=mobile-navbar class=mobile-navbar>
+<div class=mobile-header-logo>
+<a href=/ class=logo>Iron</a>
+</div>
+<div class=mobile-navbar-icon>
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+<nav id=mobile-menu class="mobile-menu slideout-menu">
+<ul class=mobile-menu-list>
+<a href=/>
+<li class=mobile-menu-item>Home</li>
+</a><a href=/post/>
+<li class=mobile-menu-item>Archives</li>
+</a><a href=/tags/>
+<li class=mobile-menu-item>Tags</li>
+</a><a href=/categories/>
+<li class=mobile-menu-item>Categories</li>
+</a>
+</ul>
+</nav>
+<div class=container id=mobile-panel>
+<header id=header class=header>
+<div class=logo-wrapper>
+<a href=/ class=logo>Iron</a>
+</div>
+<nav class=site-navbar>
+<ul id=menu class=menu>
+<li class=menu-item>
+<a class=menu-item-link href=/>Home</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/post/>Archives</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/tags/>Tags</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/categories/>Categories</a>
+</li>
+</ul>
+</nav>
+</header>
+<main id=main class=main>
+<div class=content-wrapper>
+<div id=content class=content>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>使用 OpenMP Pthread 实现高斯消元法</h1>
+<div class=post-meta>
+<span class=post-time> 2020-04-09 </span>
+<div class=post-category>
+<a href=/categories/exp/> exp </a>
+</div>
+</div>
+</header>
+<div class=post-toc id=post-toc>
+<h2 class=post-toc-title>Contents</h2>
+<div class="post-toc-content always-active">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#串行>串行</a></li>
+<li><a href=#openmp>OpenMP</a></li>
+<li><a href=#pthread>Pthread</a></li>
+<li><a href=#pthread-改进版>Pthread 改进版</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+<div class=post-content>
+<blockquote>
+<p>性能分析使用从系统获取时间的方法
+由于是在虚拟机上运行，性能受主机负载影响。还会受温度等情况影响，不能保证性能分析的准确性</p>
+</blockquote>
+<h2 id=串行>串行</h2>
+<p>思路：Forward Elimination，把矩阵变为倒三角形，Back Substitution，反向求出解。</p>
+<p>代码：见<a href=/files/gauss/serial.c>附件</a></p>
+<p>性能分析：见下图，还要与后面的性能分析对比着看</p>
+<p><img src=/img/Snipaste_2020-04-09_00-24-38.png alt></p>
+<h2 id=openmp>OpenMP</h2>
+<p>思路：仅在【计算三角形】，也就是 Forward Elimination 时，加一条 #pragma 语句，将内层原本循环一次生成一个“0”的部分并行化，但外层循环，Back Substitution 都不能并行化，因为存在数据依赖。</p>
+<p>代码：见<a href=/files/gauss/parallel-openmp.c>附件</a></p>
+<p>性能分析：见下图，还要与前后的性能分析对比着看</p>
+<p><img src=/img/Snipaste_2020-04-09_01-35-53.png alt></p>
+<h2 id=pthread>Pthread</h2>
+<p>思路：可并行部分与前面一样，将内层循环作为一个函数，每次创建一个线程就调用这个函数，也就是这个函数被 pthread_create 创建的线程调用，等每个线程将“0”算出，就把每个线程调用的函数之前申请的空间释放，然后将这个线程销毁。</p>
+<p>代码：见<a href=/files/gauss/parallel-pthreads.c>附件</a></p>
+<p>性能分析：见下图，还要与前后的性能分析对比着看</p>
+<p><img src=/img/Snipaste_2020-04-09_02-51-50.png alt></p>
+<h2 id=pthread-改进版>Pthread 改进版</h2>
+<p>思路：由于每次调用内层循环后都要把原来申请的空间释放，那么，能不能将这个空间到最后才释放，以减少频繁释放空间的开销，提高并行计算速度呢？将 param 设置为一个结构体数组，到最后才释放所有内存空间。理论上，在内存很大的情况下，这样操作可以提高数据处理速度；现实中，内存大小有限，在数据规模较小的情况下，性能提升，随着数据规模的增大，性能可能会因为内存耗损而下降。</p>
+<p>代码：见<a href=/files/gauss/parallel-chunk-threads.c>附件</a></p>
+<p>性能分析：见下图，还要与前面的性能分析对比着看</p>
+<p><img src=/img/Snipaste_2020-04-09_03-48-40.png alt></p>
+<p>可以发现，Pthread 改进版的性能比原版差，而且是每个数据规模都比原版差。如果忽略其它影响因素，仅从理论上分析，可能是我的内存太小，导致前期申请结构体数据的开销不足以弥补不用释放的开销，后期内存耗尽的开销影响不用释放内存的开销。或者是前面的判断是错的，是我忽略了修改以后的算法中的某些细节。</p>
+<blockquote>
+<p>附件：<a href=/files/gauss/Makefile>Makefile</a></p>
+</blockquote>
+<blockquote>
+<p>自动化测试工具：<a href=/files/gauss/serial.sh>串行</a>, <a href=/files/gauss/openmp.sh>OpenMP</a>, <a href=/files/gauss/pthread.sh>Pthread</a>，<a href=/files/gauss/chunk-thread.sh>chunk-Pthread</a></p>
+</blockquote>
+</div>
+<div class=post-copyright>
+<p class=copyright-item>
+<span class=item-title>Author</span>
+<span class=item-content>magictomagic</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>LastMod</span>
+<span class=item-content>
+2020-04-09
+</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>License</span>
+<span class=item-content><a rel="license noopener" href=https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License target=_blank>Creative Commons Attribution-ShareAlike License</a></span>
+</p>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/openmp/>OpenMP</a>
+<a href=/tags/pthread/>Pthread</a>
+<a href=/tags/experiment/>experiment</a>
+</div>
+<nav class=post-nav>
+<a class=prev href=/post/sdn-ex1/>
+<i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">SDN 实验环境配置</span>
+<span class="prev-text nav-mobile">Prev</span>
+</a>
+<a class=next href=/post/mpi-experiment/>
+<span class="next-text nav-default">MPI experiment</span>
+<span class="next-text nav-mobile">Next</span>
+<i class="iconfont icon-right"></i>
+</a>
+</nav>
+</footer>
+</article>
+</div>
+</div>
+</main>
+<footer id=footer class=footer>
+<div class=social-links>
+<a href=mailto:your@email.com class="iconfont icon-email" title=email></a>
+<a href=http://localhost:1313 class="iconfont icon-stack-overflow" title=stack-overflow></a>
+<a href=http://localhost:1313 class="iconfont icon-twitter" title=twitter></a>
+<a href=http://localhost:1313 class="iconfont icon-facebook" title=facebook></a>
+<a href=http://localhost:1313 class="iconfont icon-linkedin" title=linkedin></a>
+<a href=http://localhost:1313 class="iconfont icon-google" title=google></a>
+<a href=http://localhost:1313 class="iconfont icon-github" title=github></a>
+<a href=http://localhost:1313 class="iconfont icon-weibo" title=weibo></a>
+<a href=http://localhost:1313 class="iconfont icon-zhihu" title=zhihu></a>
+<a href=http://localhost:1313 class="iconfont icon-douban" title=douban></a>
+<a href=http://localhost:1313 class="iconfont icon-pocket" title=pocket></a>
+<a href=http://localhost:1313 class="iconfont icon-tumblr" title=tumblr></a>
+<a href=http://localhost:1313 class="iconfont icon-instagram" title=instagram></a>
+<a href=http://localhost:1313 class="iconfont icon-gitlab" title=gitlab></a>
+<a href=http://localhost:1313 class="iconfont icon-bilibili" title=bilibili></a>
+<a href=https://magictomagic.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
+</div>
+<div class=copyright>
+<span class=power-by>
+Powered by <a class=hexo-link href=https://gohugo.io>Hugo</a>
+</span>
+<span class=division>|</span>
+<span class=theme-info>
+Theme -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a>
+</span>
+<span class=copyright-year>
+&copy;
+2017 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+</span>
+</div>
+</footer>
+<div class=back-to-top id=back-to-top>
+<i class="iconfont icon-up"></i>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
+</body>
+</html>

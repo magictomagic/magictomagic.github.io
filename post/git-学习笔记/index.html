@@ -1,0 +1,743 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<title>git 笔记 - Iron Age</title>
+<meta name=renderer content="webkit">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta http-equiv=cache-control content="no-transform">
+<meta http-equiv=cache-control content="no-siteapp">
+<meta name=theme-color content="#f8f5ec">
+<meta name=msapplication-navbutton-color content="#f8f5ec">
+<meta name=apple-mobile-web-app-capable content="yes">
+<meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
+<meta name=author content="magictomagic"><meta name=description content="git 裸体 概览 git 目录下 1 2 find 目录名 # 将对应目录下的 子孙文件&amp;amp;子孙目录 平铺在控制台 find 目录名 -type f # 将对应目录下的文件平铺在控制台 初始化 1 2 3"><meta name=keywords content="Hugo,theme,even">
+<meta name=generator content="Hugo 0.86.1 with theme even">
+<link rel=canonical href=https://magictomagic.github.io/post/git-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
+<link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
+<meta property="og:title" content="git 笔记">
+<meta property="og:description" content="git 裸体 概览 git 目录下 1 2 find 目录名 # 将对应目录下的 子孙文件&子孙目录 平铺在控制台 find 目录名 -type f # 将对应目录下的文件平铺在控制台 初始化 1 2 3">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://magictomagic.github.io/post/git-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><meta property="article:section" content="post">
+<meta property="article:published_time" content="2021-02-28T01:37:56+08:00">
+<meta property="article:modified_time" content="2021-02-28T01:37:56+08:00">
+<meta itemprop=name content="git 笔记">
+<meta itemprop=description content="git 裸体 概览 git 目录下 1 2 find 目录名 # 将对应目录下的 子孙文件&子孙目录 平铺在控制台 find 目录名 -type f # 将对应目录下的文件平铺在控制台 初始化 1 2 3"><meta itemprop=datePublished content="2021-02-28T01:37:56+08:00">
+<meta itemprop=dateModified content="2021-02-28T01:37:56+08:00">
+<meta itemprop=wordCount content="2623">
+<meta itemprop=keywords content="git,"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="git 笔记">
+<meta name=twitter:description content="git 裸体 概览 git 目录下 1 2 find 目录名 # 将对应目录下的 子孙文件&子孙目录 平铺在控制台 find 目录名 -type f # 将对应目录下的文件平铺在控制台 初始化 1 2 3"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
+</head>
+<body>
+<div id=mobile-navbar class=mobile-navbar>
+<div class=mobile-header-logo>
+<a href=/ class=logo>Iron</a>
+</div>
+<div class=mobile-navbar-icon>
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+<nav id=mobile-menu class="mobile-menu slideout-menu">
+<ul class=mobile-menu-list>
+<a href=/>
+<li class=mobile-menu-item>Home</li>
+</a><a href=/post/>
+<li class=mobile-menu-item>Archives</li>
+</a><a href=/tags/>
+<li class=mobile-menu-item>Tags</li>
+</a><a href=/categories/>
+<li class=mobile-menu-item>Categories</li>
+</a>
+</ul>
+</nav>
+<div class=container id=mobile-panel>
+<header id=header class=header>
+<div class=logo-wrapper>
+<a href=/ class=logo>Iron</a>
+</div>
+<nav class=site-navbar>
+<ul id=menu class=menu>
+<li class=menu-item>
+<a class=menu-item-link href=/>Home</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/post/>Archives</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/tags/>Tags</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/categories/>Categories</a>
+</li>
+</ul>
+</nav>
+</header>
+<main id=main class=main>
+<div class=content-wrapper>
+<div id=content class=content>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>git 笔记</h1>
+<div class=post-meta>
+<span class=post-time> 2021-02-28 </span>
+<div class=post-category>
+<a href=/categories/notes/> notes </a>
+</div>
+</div>
+</header>
+<div class=post-toc id=post-toc>
+<h2 class=post-toc-title>Contents</h2>
+<div class="post-toc-content always-active">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#git-裸体>git 裸体</a>
+<ul>
+<li><a href=#概览>概览</a>
+<ul>
+<li><a href=#初始化>初始化</a></li>
+</ul>
+</li>
+<li><a href=#基本>基本</a>
+<ul>
+<li><a href=#错误处理>错误处理</a></li>
+</ul>
+</li>
+<li><a href=#分支>分支</a>
+<ul>
+<li><a href=#原则>原则</a></li>
+<li><a href=#命令>命令</a></li>
+</ul>
+</li>
+<li><a href=#命令糖>命令糖</a></li>
+<li><a href=#后悔药>后悔药</a></li>
+<li><a href=#tag>Tag</a></li>
+</ul>
+</li>
+<li><a href=#git-远程>git 远程</a>
+<ul>
+<li><a href=#新建--删除-公共的远程分支>新建 | 删除 公共的远程分支</a></li>
+<li><a href=#push有冲突>push有冲突</a></li>
+<li><a href=#保持-fork最新>保持 fork最新</a></li>
+<li><a href=#跟踪>跟踪</a></li>
+</ul>
+</li>
+<li><a href=#git-限制>git 限制</a>
+<ul>
+<li><a href=#eslint>eslint</a></li>
+<li><a href=#husky>husky</a></li>
+<li><a href=#gitignore>gitignore</a></li>
+</ul>
+</li>
+<li><a href=#gitflow>gitflow</a></li>
+</ul>
+</nav>
+</div>
+</div>
+<div class=post-content>
+<h1 id=git-裸体>git 裸体</h1>
+<h2 id=概览>概览</h2>
+<p>git 目录下</p>
+<p><img src=/img/image-20210228220310279.png alt=image-20210228220310279></p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>find 目录名  <span class=c1># 将对应目录下的 子孙文件&amp;子孙目录 平铺在控制台</span>
+find 目录名 -type f  <span class=c1># 将对应目录下的文件平铺在控制台</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=初始化>初始化</h3>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>git config --global user.name <span class=s2>&#34;your_name&#34;</span>
+git config --global user.email your_email
+git config --list
+</code></pre></td></tr></table>
+</div>
+</div><p><img src=/img/image-20210228221124009.png alt=image-20210228221124009></p>
+<h2 id=基本>基本</h2>
+<ul>
+<li>高层命令：由多个底层命令组成</li>
+<li>区域：工作区，暂存区，版本库</li>
+<li>对象：Git 对象，树对象，提交对象</li>
+</ul>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=c1># 初始化仓库</span>
+git init
+
+<span class=c1># 查看工作目录中文件的状态（已跟踪（已提交 已暂存 已修改）未跟踪）</span>
+git status
+
+<span class=c1># 查看哪些修改还没暂存</span>
+git diff
+
+<span class=c1># 查看哪些修改被暂存了还没被提交</span>
+git diff --staged
+
+<span class=c1># 将修改添加到暂存区 &amp;&amp; 跟踪文件（若没被跟踪commit -a 跳过暂存区不管用）</span>
+git add .  <span class=c1># 生成 git 对象（修改了当前工作目录中的文件）</span>
+<span class=c1># 目标文件快照 ==&gt; 工作目录 -&gt; 版本库 -&gt; 暂存区 ==&gt; 未跟踪变已跟踪状态</span>
+
+<span class=c1># 将暂存区提交到版本库</span>
+git commit -m <span class=s2>&#34;xxx&#34;</span>  <span class=c1># 参照暂存区，生成树对象，放到版本库（对暂存区作快照）-&gt; 树对象 加上注释信息 包裹封装成 提交对象</span>
+
+<span class=c1># 跳过使用暂存区</span>
+git commit -a
+
+<span class=c1># 查看提交记录</span>
+<span class=c1># 输出的 log 前面的 hash 值代表提交对象</span>
+git log --oneline
+git log --pretty<span class=o>=</span>oneline
+</code></pre></td></tr></table>
+</div>
+</div><p><img src=/img/image-20210228214140075.png alt=image-20210228214140075><img src=/img/image-20210228215300506.png alt=image-20210228215300506></p>
+<h3 id=错误处理>错误处理</h3>
+<p>.gitignore无效
+<code>git rm -r --cached .</code></p>
+<p><code>git rm --cached filename</code></p>
+<h2 id=分支>分支</h2>
+<h3 id=原则>原则</h3>
+<ul>
+<li>以主分支为基点</li>
+<li>切换分支会改变当前工作目录中的文件，<strong>每次切换分支前，提交一下当前分支，看一下<code>git status</code></strong>,若 working tree is clean，则可<code>checkout</code>，否则危险（未提交的暂存第一次，污染其它分支）。</li>
+<li>主分支不能动，确保新的分支代码测试成功了再提交给主分支。</li>
+<li>分支模式（策略）举例：</li>
+</ul>
+<p><img src=/img/image-20210312061542282.png alt=image-20210312061542282></p>
+<h3 id=命令>命令</h3>
+<p>分支是活动的指针，指向最近提交对象的指针<code>HEAD</code>。分支的本质就是一个提交对象（没有后缀名的文件，里面存了一个 hash）。</p>
+<p>HEAD: 是一个指针，默认指向 master 分支，切换分支时就是让 HEAD 指向不同的分支。每次有新的提交时HEAD都会带着当前指向的分支一直往前移动。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=c1># 创建分支 为当前所在的提交对象创建一个指针</span>
+git branch branch_name
+
+<span class=c1># 在指定的提交对象上创建新的分支</span>
+git branch branch_name commithash  <span class=c1># 版本穿梭（时光机）</span>
+
+<span class=c1># 当前所有分支的列表</span>
+git branch
+
+<span class=c1># 查看分支指向的最新提交 </span>
+git branch -v  <span class=c1># -a 查看所有</span>
+
+<span class=c1># 删除分支（先要切换到主分支）</span>
+git branch -d branch_name  <span class=c1># 删除空的，已经被合并的分支</span>
+<span class=c1># -D 强制删除</span>
+
+<span class=c1># 切换的新分支下（若要在原来可交付的版本下添加新功能）</span>
+git checkout branch_name
+
+<span class=c1># 查看整个项目的分支图</span>
+git log --oneline --decorate --graph --all
+
+<span class=c1># 查看所有包含未合并工作的分支（需要在主分支下）</span>
+git branch --no-merged  <span class=c1># --merged 为合并过的分支，可以删除</span>
+
+<span class=c1># 分支合并</span>
+git merge branch_name
+<span class=c1># 解决冲突：打开发生冲突的文件，看哪些代码留哪些不留</span>
+<span class=c1># 其它软件看复杂分支</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=命令糖>命令糖</h2>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=c1># 之后可直接 commit</span>
+git rm 要删除的文件  <span class=c1># 删除</span>
+git mv 老文件 新文件  <span class=c1># 重命名</span>
+
+<span class=c1># 别名</span>
+git config --global alias.logall <span class=s2>&#34;log --oneline --decorate --graph --all&#34;</span>
+git config --global alias.co checkout
+
+<span class=c1># git branch name + git checkout name</span>
+git checkout -b name
+
+<span class=c1># 暂存已经被跟踪的文件(保存做到一半的东西在栈上，然后就可以切换到其它分支去写代码了)</span>
+git stash
+
+<span class=c1># git stash apply 恢复（相当于stack.top()）+ git stash drop 删除（相当于stack.pop()）</span>
+git stash pop
+
+<span class=c1># git stash list 查看后恢复指定的 stash</span>
+git stash apply stash@<span class=o>{</span>0<span class=o>}</span>
+
+<span class=c1># git show 可显示任意类型的对象： git对象，树对象，提交对象，tag对象</span>
+git show tagname
+
+<span class=c1># 在master分支上修复的bug，想要合并到当前dev分支，可以用git cherry-pick &lt;commit&gt;命令，把bug提交的修改“复制”到当前分支，避免重复劳动。</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=后悔药>后悔药</h2>
+<p>checkout 只动 HEAD；&ndash;hard 动 HEAD 而且带着分支一起走</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=c1># 丢弃工作区的修改，让这个文件回到最近一次git commit或git add时的状态</span>
+git checkout -- file  <span class=c1># 你还没有 add</span>
+<span class=c1># 针对工作区 modified</span>
+
+<span class=c1># git reset 命令既可以回退版本，也可以把暂存区的修改回退到工作区。当我们用HEAD时，表示最新的版本。</span>
+git reset HEAD file  <span class=c1># add 了以后没有 commit</span>
+<span class=c1># 针对暂存区改了然后执行命令后变工作区 modified</span>
+
+<span class=c1># 上一个版本就是HEAD^，上上一个版本就是HEAD^^，当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100</span>
+git reset --hard HEAD^  <span class=c1># 回到上一个版本</span>
+<span class=c1># 也可以reflog看了之后跳到各个版本</span>
+<span class=c1># 少用硬重置，多用分支</span>
+
+<span class=c1># 修改提交注释</span>
+git commit --amend
+
+<span class=c1># 恢复丢弃掉的分支</span>
+git branch recover-branch hash值
+</code></pre></td></tr></table>
+</div>
+</div><p>with a reset you move the current branch and the HEAD to a specific commit but with a checkout, you only move the HEAD .</p>
+<blockquote>
+<p><code>git checkout branch_name</code>与<code>git reset --hard commit_hash</code>:</p>
+</blockquote>
+<ul>
+<li>都重置 HEAD，暂存区，工作目录</li>
+<li><code>checkout</code>对工作目录是安全的，<code>reset --hard</code>是强制覆盖</li>
+<li><code>checkout</code>动HEAD时不会带着分支走而是切换分支</li>
+<li><code>reset --hard</code>是带着分支走</li>
+</ul>
+<h2 id=tag>Tag</h2>
+<p>使用此功能来发布结点</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=c1># 在当前hash打标签</span>
+git tag -a <span class=s2>&#34;v3.4&#34;</span> -m <span class=s2>&#34;mytag&#34;</span>
+
+<span class=c1># 在特定 hash 打 tag</span>
+git tag -a <span class=s2>&#34;v0.2&#34;</span> hash值 -m <span class=s2>&#34;myroot&#34;</span>
+
+<span class=c1># 切换到 tag v3.4 (产生头部分离) ((v3.4))</span>
+git checkout v3.4
+
+<span class=c1># 解决头部分离：创建一个新的分支指向那里</span>
+git checkout -b <span class=s2>&#34;v3.4&#34;</span>   <span class=c1># 场景是修复老版本的错误</span>
+
+<span class=c1># 查看所有tag</span>
+git tag
+</code></pre></td></tr></table>
+</div>
+</div><h1 id=git-远程>git 远程</h1>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=c1># git 将 master 变成 main 了</span>
+git checkout -b main
+git branch -M main  <span class=c1># 改主分支的名字</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=新建--删除-公共的远程分支>新建 | 删除 公共的远程分支</h2>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>git checkout -b <span class=s2>&#34;xiaohuang&#34;</span>
+<span class=c1># Switched to a new branch &#39;xiaohuang&#39;</span>
+
+<span class=nb>echo</span> <span class=s2>&#34;小黄走西口&#34;</span> &gt; local.txt
+
+git add .
+<span class=c1># The file will have its original line endings in your working directory</span>
+
+git commit -m <span class=s2>&#34;local warehouse&#34;</span>
+<span class=c1># [xiaohuang aa9b11c] local warehouse</span>
+<span class=c1># 1 file changed, 1 insertion(+)</span>
+<span class=c1># create mode 100644 local.txt</span>
+
+<span class=c1># 新建</span>
+git push origin xiaohuang
+<span class=c1># Enumerating objects: 4, done.</span>
+<span class=c1># Counting objects: 100% (4/4), done.</span>
+<span class=c1># ...</span>
+
+<span class=c1># 推送本地分支到远程 e.g.</span>
+ git push origin no_part:no_part
+
+<span class=c1># 删除</span>
+git push origin --delete xiaohuang
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=push有冲突>push有冲突</h2>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=c1># 直接敲下面命令时报错</span>
+git push origin xiaohuang  <span class=c1># 或 git push</span>
+<span class=c1># ! [rejected]        xiaohuang -&gt; xiaohuang (fetch first)</span>
+<span class=c1># error: failed to push some refs to &#39;https://github.com/magictomagic/WebSimplifyHUB.git&#39;</span>
+
+<span class=c1># 1. pull</span>
+git pull origin xiaohuang  <span class=c1># 或 git pull</span>
+
+<span class=c1># 2. 解决冲突</span>
+vim xxx
+
+<span class=c1># 3. add commit push</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=保持-fork最新>保持 fork最新</h2>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>git fetch  <span class=c1># 看一看</span>
+git pull origin xiaohuang  <span class=c1># 或 git pull 下载</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=跟踪>跟踪</h2>
+<p>若分支的 push 和 pull 不想跟 origin xiaohuang(直接 pull 和 push)</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=c1># 1. clone 后自动为master做跟踪</span>
+
+<span class=c1># 2. 本地没有分支</span>
+git checkout --track 远程跟踪分支<span class=o>(</span>remote/分支名<span class=o>)</span>
+
+<span class=c1># 3. 本地已经创建了分支</span>
+git branch -u 远程跟踪分支<span class=o>(</span>remote/分支名<span class=o>)</span>
+<span class=c1># e.g.</span>
+<span class=c1># magic@LAPTOP-0QROVKKB MINGW64 /d/mtm-github/WebSimplifyHUB (xiaohuang)</span>
+<span class=c1># $ git branch -u remotes/origin/xiaohuang</span>
+<span class=c1># Branch &#39;xiaohuang&#39; set up to track remote branch &#39;xiaohuang&#39; from &#39;origin&#39;.</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h1 id=git-限制>git 限制</h1>
+<h2 id=eslint>eslint</h2>
+<blockquote>
+<p><code>--save-dev</code></p>
+</blockquote>
+<p><code>package.json</code>中<code>script</code></p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=s2>&#34;lint&#34;</span><span class=err>:</span> <span class=s2>&#34;eslint ./src&#34;</span>
+<span class=s2>&#34;lint:create&#34;</span><span class=err>:</span> <span class=s2>&#34;eslint --init&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>eslint ./src</code>自动校验<code>src</code>目录下的所有<code>.js</code>文件。</p>
+<p><code>eslint --init</code>生成.eslintrc.js文件，提供编码规则（去官网学习）。</p>
+<ul>
+<li>安装后，先改<code>package.json</code>文件，再<code>npm run lint:create</code>后进行一系列的选择来创建规则</li>
+</ul>
+<h2 id=husky>husky</h2>
+<blockquote>
+<p><code>--save-dev</code></p>
+</blockquote>
+<p>要<code>git init</code>后才可以装，在git commit前要通过npm run lint检查</p>
+<p>老版(config文件)和新版(命令行参数)配置方法不一样，去官网看看</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>npx husky add .husky/pre-commit <span class=s2>&#34;npm run lint&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=gitignore>gitignore</h2>
+<p>github上有模板</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-txt data-lang=txt>* 匹配任意字符
+? 匹配一个字符
+** 代表匹配多级匹配目录
+/dist/ 只忽略根目录下底下
+node_modules/ 忽略所有这种目录
+</code></pre></td></tr></table>
+</div>
+</div><h1 id=gitflow>gitflow</h1>
+<blockquote>
+<p>猜测：场景映射工作流</p>
+</blockquote>
+</div>
+<div class=post-copyright>
+<p class=copyright-item>
+<span class=item-title>Author</span>
+<span class=item-content>magictomagic</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>LastMod</span>
+<span class=item-content>
+2021-02-28
+</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>License</span>
+<span class=item-content><a rel="license noopener" href=https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License target=_blank>Creative Commons Attribution-ShareAlike License</a></span>
+</p>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/git/>git</a>
+</div>
+<nav class=post-nav>
+<a class=prev href=/post/rn%E7%AC%94%E8%AE%B0%E6%94%B6%E8%97%8F/>
+<i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">react native notes save</span>
+<span class="prev-text nav-mobile">Prev</span>
+</a>
+<a class=next href=/post/docker-%E7%AC%94%E8%AE%B0/>
+<span class="next-text nav-default">docker 笔记</span>
+<span class="next-text nav-mobile">Next</span>
+<i class="iconfont icon-right"></i>
+</a>
+</nav>
+</footer>
+</article>
+</div>
+</div>
+</main>
+<footer id=footer class=footer>
+<div class=social-links>
+<a href=mailto:your@email.com class="iconfont icon-email" title=email></a>
+<a href=http://localhost:1313 class="iconfont icon-stack-overflow" title=stack-overflow></a>
+<a href=http://localhost:1313 class="iconfont icon-twitter" title=twitter></a>
+<a href=http://localhost:1313 class="iconfont icon-facebook" title=facebook></a>
+<a href=http://localhost:1313 class="iconfont icon-linkedin" title=linkedin></a>
+<a href=http://localhost:1313 class="iconfont icon-google" title=google></a>
+<a href=http://localhost:1313 class="iconfont icon-github" title=github></a>
+<a href=http://localhost:1313 class="iconfont icon-weibo" title=weibo></a>
+<a href=http://localhost:1313 class="iconfont icon-zhihu" title=zhihu></a>
+<a href=http://localhost:1313 class="iconfont icon-douban" title=douban></a>
+<a href=http://localhost:1313 class="iconfont icon-pocket" title=pocket></a>
+<a href=http://localhost:1313 class="iconfont icon-tumblr" title=tumblr></a>
+<a href=http://localhost:1313 class="iconfont icon-instagram" title=instagram></a>
+<a href=http://localhost:1313 class="iconfont icon-gitlab" title=gitlab></a>
+<a href=http://localhost:1313 class="iconfont icon-bilibili" title=bilibili></a>
+<a href=https://magictomagic.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
+</div>
+<div class=copyright>
+<span class=power-by>
+Powered by <a class=hexo-link href=https://gohugo.io>Hugo</a>
+</span>
+<span class=division>|</span>
+<span class=theme-info>
+Theme -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a>
+</span>
+<span class=copyright-year>
+&copy;
+2017 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+</span>
+</div>
+</footer>
+<div class=back-to-top id=back-to-top>
+<i class="iconfont icon-up"></i>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
+</body>
+</html>

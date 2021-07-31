@@ -1,0 +1,368 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<title>Simple chat program - Iron Age</title>
+<meta name=renderer content="webkit">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta http-equiv=cache-control content="no-transform">
+<meta http-equiv=cache-control content="no-siteapp">
+<meta name=theme-color content="#f8f5ec">
+<meta name=msapplication-navbutton-color content="#f8f5ec">
+<meta name=apple-mobile-web-app-capable content="yes">
+<meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
+<meta name=author content="magictomagic"><meta name=description content="基本功能 C++ 资源 自带：主机内通信。 1 2 3 4 5 # first, run server to listen ./tcp_server localhost 9999 # then, run client to establish connect ./tcp_client localhost 9999 server 固定公网 IP 阿里云: CentOS 7 server IP: 47.94.157.136 開放端口 1 2 3 4 5 6 7 8 9 10 11"><meta name=keywords content="Hugo,theme,even">
+<meta name=generator content="Hugo 0.86.1 with theme even">
+<link rel=canonical href=https://magictomagic.github.io/post/simple-chat-program/>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
+<link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
+<meta property="og:title" content="Simple chat program">
+<meta property="og:description" content="基本功能 C++ 资源 自带：主机内通信。 1 2 3 4 5 # first, run server to listen ./tcp_server localhost 9999 # then, run client to establish connect ./tcp_client localhost 9999 server 固定公网 IP 阿里云: CentOS 7 server IP: 47.94.157.136 開放端口 1 2 3 4 5 6 7 8 9 10 11">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://magictomagic.github.io/post/simple-chat-program/"><meta property="article:section" content="post">
+<meta property="article:published_time" content="2020-05-06T01:37:56+08:00">
+<meta property="article:modified_time" content="2020-05-06T01:37:56+08:00">
+<meta itemprop=name content="Simple chat program">
+<meta itemprop=description content="基本功能 C++ 资源 自带：主机内通信。 1 2 3 4 5 # first, run server to listen ./tcp_server localhost 9999 # then, run client to establish connect ./tcp_client localhost 9999 server 固定公网 IP 阿里云: CentOS 7 server IP: 47.94.157.136 開放端口 1 2 3 4 5 6 7 8 9 10 11"><meta itemprop=datePublished content="2020-05-06T01:37:56+08:00">
+<meta itemprop=dateModified content="2020-05-06T01:37:56+08:00">
+<meta itemprop=wordCount content="684">
+<meta itemprop=keywords content="project,experiment,"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="Simple chat program">
+<meta name=twitter:description content="基本功能 C++ 资源 自带：主机内通信。 1 2 3 4 5 # first, run server to listen ./tcp_server localhost 9999 # then, run client to establish connect ./tcp_client localhost 9999 server 固定公网 IP 阿里云: CentOS 7 server IP: 47.94.157.136 開放端口 1 2 3 4 5 6 7 8 9 10 11"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
+</head>
+<body>
+<div id=mobile-navbar class=mobile-navbar>
+<div class=mobile-header-logo>
+<a href=/ class=logo>Iron</a>
+</div>
+<div class=mobile-navbar-icon>
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+<nav id=mobile-menu class="mobile-menu slideout-menu">
+<ul class=mobile-menu-list>
+<a href=/>
+<li class=mobile-menu-item>Home</li>
+</a><a href=/post/>
+<li class=mobile-menu-item>Archives</li>
+</a><a href=/tags/>
+<li class=mobile-menu-item>Tags</li>
+</a><a href=/categories/>
+<li class=mobile-menu-item>Categories</li>
+</a>
+</ul>
+</nav>
+<div class=container id=mobile-panel>
+<header id=header class=header>
+<div class=logo-wrapper>
+<a href=/ class=logo>Iron</a>
+</div>
+<nav class=site-navbar>
+<ul id=menu class=menu>
+<li class=menu-item>
+<a class=menu-item-link href=/>Home</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/post/>Archives</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/tags/>Tags</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/categories/>Categories</a>
+</li>
+</ul>
+</nav>
+</header>
+<main id=main class=main>
+<div class=content-wrapper>
+<div id=content class=content>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>Simple chat program</h1>
+<div class=post-meta>
+<span class=post-time> 2020-05-06 </span>
+<div class=post-category>
+<a href=/categories/exp/> exp </a>
+</div>
+</div>
+</header>
+<div class=post-toc id=post-toc>
+<h2 class=post-toc-title>Contents</h2>
+<div class="post-toc-content always-active">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#基本功能>基本功能</a>
+<ul>
+<li><a href=#c-资源1><a href=https://blog.csdn.net/Hanani_Jia/article/details/83449090>C++ 资源</a></a></li>
+<li><a href=#传输文件>传输文件</a></li>
+<li><a href=#选择解决方案6><a href=http://www.52im.net/thread-2872-1-1.html>选择解决方案</a></a></li>
+<li><a href=#目标用-ice-框架实现文件的传输--communication>目标：用 ICE 框架实现文件的传输 \ communication</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#java>Java</a></li>
+</ul>
+</nav>
+</div>
+</div>
+<div class=post-content>
+<h2 id=基本功能>基本功能</h2>
+<h3 id=c-资源1><a href=https://blog.csdn.net/Hanani_Jia/article/details/83449090>C++ 资源</a></h3>
+<p><strong>自带：主机内通信。</strong></p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=c1># first, run server to listen</span>
+./tcp_server localhost <span class=m>9999</span>
+
+<span class=c1># then, run client to establish connect</span>
+./tcp_client localhost <span class=m>9999</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>server 固定公网 IP</strong></p>
+<blockquote>
+<p>阿里云: CentOS 7</p>
+</blockquote>
+<blockquote>
+<p>server IP: 47.94.157.136</p>
+</blockquote>
+<p>開放端口</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>systemctl start firewalld
+systemctl <span class=nb>enable</span> firewalld
+systemctl status firewalld
+<span class=c1># ...</span>
+<span class=c1># running</span>
+<span class=c1># ...</span>
+
+firewall-cmd --zone<span class=o>=</span>public --add-port<span class=o>=</span>9999/tcp --permanent
+
+firewall-cmd --reload
+<span class=c1># success</span>
+
+firewall-cmd --list-ports    <span class=c1># check</span>
+<span class=c1># 9999/tcp</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>server:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>./server1.o 0.0.0.0 <span class=m>9999</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>client:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>./client.o 47.94.157.136 <span class=m>9999</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>come out:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>connect error
+: Connection refused
+</code></pre></td></tr></table>
+</div>
+</div><p>ping 可以連接</p>
+<p><img src=/img/Snipaste_2020-05-05_22-32-46.png alt></p>
+<p>端口掃不到</p>
+<p><img src=/img/Snipaste_2020-05-05_22-31-53.png alt></p>
+<p>是因为阿里云外面又套了一層牆，而之前 <a href=https://github.com/magictomagic/magictomagic.github.io/blob/master/_posts/2020-05-04-CentOS-FFmpeg-%E6%B5%81%E5%AA%92%E4%BD%93%E6%92%AD%E6%94%BE.md#open-firewall>vultr</a> 就不存在这个问题。</p>
+<p>不得不感慨，墙国真是从里到外都是墙啊！</p>
+<p><img src=/img/Snipaste_2020-05-05_22-39-13.png alt></p>
+<p>端口放行</p>
+<p><img src=/img/Snipaste_2020-05-05_22-46-36.png alt>
+<img src=/img/Snipaste_2020-05-05_22-49-20.png alt></p>
+<p>reboot</p>
+<p>if you do not listen 9999 port on server, you will get Connection refused as well.</p>
+<p>run on server</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>./server1.o 0.0.0.0 <span class=m>9999</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>重新扫描，and Connection success.</p>
+<p><img src=../img/Snipaste_2020-05-05_22-51-50.png alt></p>
+<p>阿里云在外面建了一个墙，把里面的墙禁掉，看来是为了符合国人的使用习惯啊：图形化界面设置端口。</p>
+<p>implement</p>
+<p><img src=/img/Snipaste_2020-05-05_23-03-02.png alt></p>
+<h3 id=传输文件>传输文件</h3>
+<h4 id=函数说明>函数说明</h4>
+<p><a href=https://linux.die.net/man/3/ntohs>IP 地址格式转换</a>。</p>
+<h4 id=socket-类型>socket 类型</h4>
+<p>阻塞型：立即返回，更高效。
+非阻塞型：轮询方式。</p>
+<h4 id=nat-穿越-and-p2p5><a href=http://www.52im.net/thread-542-1-1.html>NAT 穿越 and P2P</a></h4>
+<p>NAT 不允许外网主机主动访问内网主机，破坏了端到端的网络通信。</p>
+<p>P2P 技术却要求通信双方都能主动发起访问。</p>
+<p><strong>解决方案：</strong>
+<a href=http://www.52im.net/thread-542-1-1.html>特殊场景</a></p>
+<p><img src=http://www.52im.net/data/attachment/forum/201903/13/110231szo3jg073l0onjvn.jpg alt></p>
+<p>基于 UDP 打洞。</p>
+<p><a href=http://www.52im.net/thread-542-1-1.html>典型场景</a></p>
+<p>单层 NAT</p>
+<p><img src=http://www.52im.net/data/attachment/forum/201610/10/134836i9jb3hccbq8cz33q.png alt></p>
+<p>多层 NAT</p>
+<p><img src=http://www.52im.net/data/attachment/forum/201912/16/122604d3xdqtyx0iotytxt.png alt></p>
+<h3 id=选择解决方案6><a href=http://www.52im.net/thread-2872-1-1.html>选择解决方案</a></h3>
+<blockquote>
+<p>原则：典型，普遍，通用，简单</p>
+</blockquote>
+<p><strong>参考<a href=https://www.jianshu.com/p/aee235c6d6d7>常见解决技术</a>。</strong></p>
+<p>ALG：适应性不强。</p>
+<p>中间件技术：需要网关、内部主机和应用程序都支持UPnP技术。</p>
+<p>打洞技术：STUN，对中间服务器轻依赖，不支持对防火墙和对称NAT的穿越；ICE，非对称NAT环境下首选的NAT穿越解决方案。</p>
+<p>Relay服务器中转技术：turn，对中间服务器强依赖，当数据量大时，服务器的并发和处理能力成为瓶颈。</p>
+<p><strong>选择方案 ICE</strong>
+可以参考<a href="https://www.7lez.com/?p=120">教程</a>选择<a href=https://www.natfrp.com/>免费商品类</a>，注册一个账号，在服务器上搭建。</p>
+<p>但出于对这个专业的尊重，还是用 ICE 框架实现吧。</p>
+<p><strong><a href=http://www.52im.net/thread-609-1-1.html>测试 NAT 类型</a></strong></p>
+<h3 id=目标用-ice-框架实现文件的传输--communication>目标：用 ICE 框架实现文件的传输 \ communication</h3>
+<p><strong><a href=https://www.jianshu.com/p/aee235c6d6d7>ICE 原理</a></strong></p>
+<h4 id=ice-实现方案>ICE 实现方案</h4>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo apt install gtk-doc-tools
+wget https://libnice.freedesktop.org/releases/libnice-0.1.16.tar.gz
+<span class=c1># 解压到合适位置</span>
+ ./configure <span class=o>&amp;&amp;</span> make <span class=o>&amp;&amp;</span> sudo make install
+</code></pre></td></tr></table>
+</div>
+</div><p>经过</p>
+<h1 id=java>Java</h1>
+<p><a href=https://juejin.im/post/5d69e0c65188257ec84732c1>貌似现成的</a></p>
+</div>
+<div class=post-copyright>
+<p class=copyright-item>
+<span class=item-title>Author</span>
+<span class=item-content>magictomagic</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>LastMod</span>
+<span class=item-content>
+2020-05-06
+</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>License</span>
+<span class=item-content><a rel="license noopener" href=https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License target=_blank>Creative Commons Attribution-ShareAlike License</a></span>
+</p>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/project/>project</a>
+<a href=/tags/experiment/>experiment</a>
+</div>
+<nav class=post-nav>
+<a class=prev href=/post/database-experiment/>
+<i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">Database experiment</span>
+<span class="prev-text nav-mobile">Prev</span>
+</a>
+<a class=next href=/post/myfirstandroidapp-process/>
+<span class="next-text nav-default">My First Android Application</span>
+<span class="next-text nav-mobile">Next</span>
+<i class="iconfont icon-right"></i>
+</a>
+</nav>
+</footer>
+</article>
+</div>
+</div>
+</main>
+<footer id=footer class=footer>
+<div class=social-links>
+<a href=mailto:your@email.com class="iconfont icon-email" title=email></a>
+<a href=http://localhost:1313 class="iconfont icon-stack-overflow" title=stack-overflow></a>
+<a href=http://localhost:1313 class="iconfont icon-twitter" title=twitter></a>
+<a href=http://localhost:1313 class="iconfont icon-facebook" title=facebook></a>
+<a href=http://localhost:1313 class="iconfont icon-linkedin" title=linkedin></a>
+<a href=http://localhost:1313 class="iconfont icon-google" title=google></a>
+<a href=http://localhost:1313 class="iconfont icon-github" title=github></a>
+<a href=http://localhost:1313 class="iconfont icon-weibo" title=weibo></a>
+<a href=http://localhost:1313 class="iconfont icon-zhihu" title=zhihu></a>
+<a href=http://localhost:1313 class="iconfont icon-douban" title=douban></a>
+<a href=http://localhost:1313 class="iconfont icon-pocket" title=pocket></a>
+<a href=http://localhost:1313 class="iconfont icon-tumblr" title=tumblr></a>
+<a href=http://localhost:1313 class="iconfont icon-instagram" title=instagram></a>
+<a href=http://localhost:1313 class="iconfont icon-gitlab" title=gitlab></a>
+<a href=http://localhost:1313 class="iconfont icon-bilibili" title=bilibili></a>
+<a href=https://magictomagic.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
+</div>
+<div class=copyright>
+<span class=power-by>
+Powered by <a class=hexo-link href=https://gohugo.io>Hugo</a>
+</span>
+<span class=division>|</span>
+<span class=theme-info>
+Theme -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a>
+</span>
+<span class=copyright-year>
+&copy;
+2017 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+</span>
+</div>
+</footer>
+<div class=back-to-top id=back-to-top>
+<i class="iconfont icon-up"></i>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
+</body>
+</html>

@@ -1,0 +1,370 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<title>使用CUDA实现并行奇偶排序并使用性能分析工具分析 - Iron Age</title>
+<meta name=renderer content="webkit">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta http-equiv=cache-control content="no-transform">
+<meta http-equiv=cache-control content="no-siteapp">
+<meta name=theme-color content="#f8f5ec">
+<meta name=msapplication-navbutton-color content="#f8f5ec">
+<meta name=apple-mobile-web-app-capable content="yes">
+<meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
+<meta name=author content="magictomagic"><meta name=description content="配置目标环境 由于基于 VMware 的虚拟机不支持调用 Host 的 GPU 卡，除非装双系统。因为网上已经有在真机上配置环境的教程了，又因为有大量的同学使用的是白嫖百度 GPU"><meta name=keywords content="Hugo,theme,even">
+<meta name=generator content="Hugo 0.86.1 with theme even">
+<link rel=canonical href=https://magictomagic.github.io/post/windows10-cuda-install/>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
+<link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
+<meta property="og:title" content="使用CUDA实现并行奇偶排序并使用性能分析工具分析">
+<meta property="og:description" content="配置目标环境 由于基于 VMware 的虚拟机不支持调用 Host 的 GPU 卡，除非装双系统。因为网上已经有在真机上配置环境的教程了，又因为有大量的同学使用的是白嫖百度 GPU">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://magictomagic.github.io/post/windows10-cuda-install/"><meta property="article:section" content="post">
+<meta property="article:published_time" content="2020-04-03T01:37:56+08:00">
+<meta property="article:modified_time" content="2020-04-03T01:37:56+08:00">
+<meta itemprop=name content="使用CUDA实现并行奇偶排序并使用性能分析工具分析">
+<meta itemprop=description content="配置目标环境 由于基于 VMware 的虚拟机不支持调用 Host 的 GPU 卡，除非装双系统。因为网上已经有在真机上配置环境的教程了，又因为有大量的同学使用的是白嫖百度 GPU"><meta itemprop=datePublished content="2020-04-03T01:37:56+08:00">
+<meta itemprop=dateModified content="2020-04-03T01:37:56+08:00">
+<meta itemprop=wordCount content="1704">
+<meta itemprop=keywords content="CUDA,experiment,"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="使用CUDA实现并行奇偶排序并使用性能分析工具分析">
+<meta name=twitter:description content="配置目标环境 由于基于 VMware 的虚拟机不支持调用 Host 的 GPU 卡，除非装双系统。因为网上已经有在真机上配置环境的教程了，又因为有大量的同学使用的是白嫖百度 GPU"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
+</head>
+<body>
+<div id=mobile-navbar class=mobile-navbar>
+<div class=mobile-header-logo>
+<a href=/ class=logo>Iron</a>
+</div>
+<div class=mobile-navbar-icon>
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+<nav id=mobile-menu class="mobile-menu slideout-menu">
+<ul class=mobile-menu-list>
+<a href=/>
+<li class=mobile-menu-item>Home</li>
+</a><a href=/post/>
+<li class=mobile-menu-item>Archives</li>
+</a><a href=/tags/>
+<li class=mobile-menu-item>Tags</li>
+</a><a href=/categories/>
+<li class=mobile-menu-item>Categories</li>
+</a>
+</ul>
+</nav>
+<div class=container id=mobile-panel>
+<header id=header class=header>
+<div class=logo-wrapper>
+<a href=/ class=logo>Iron</a>
+</div>
+<nav class=site-navbar>
+<ul id=menu class=menu>
+<li class=menu-item>
+<a class=menu-item-link href=/>Home</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/post/>Archives</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/tags/>Tags</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/categories/>Categories</a>
+</li>
+</ul>
+</nav>
+</header>
+<main id=main class=main>
+<div class=content-wrapper>
+<div id=content class=content>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>使用CUDA实现并行奇偶排序并使用性能分析工具分析</h1>
+<div class=post-meta>
+<span class=post-time> 2020-04-03 </span>
+<div class=post-category>
+<a href=/categories/exp/> exp </a>
+</div>
+</div>
+</header>
+<div class=post-toc id=post-toc>
+<h2 class=post-toc-title>Contents</h2>
+<div class="post-toc-content always-active">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#配置目标环境>配置目标环境</a></li>
+<li><a href=#性能分析工具>性能分析工具</a></li>
+<li><a href=#并行奇偶排序>并行奇偶排序</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+<div class=post-content>
+<h2 id=配置目标环境>配置目标环境</h2>
+<blockquote>
+<p>由于基于 VMware 的虚拟机不支持调用 Host 的 GPU 卡，除非装双系统。因为网上已经有在真机上配置环境的教程了，又因为有大量的同学使用的是白嫖百度 GPU 的方法，为了增加文化的多样性，俺先考虑在 windows 下配置 CUDA 环境。</p>
+</blockquote>
+<p>到<a href="https://developer.nvidia.com/cuda-downloads?target_os=Windows&target_arch=x86_64&target_version=10&target_type=exelocal">官网</a>下载安装包,慢慢安装。
+<img src=/img/photo/cuda-win-1.png alt=如图>
+一路按照默认的安装来，最终安装程序很贴心地显示了哪些是安装的，哪些没安装。俺的偏好是在 Mingw-w64 下用 Atom 编辑器写代码。偏好其它环境的，可以参考<a href=https://zhuanlan.zhihu.com/p/85231502>这篇文章</a>
+<img src=/img/photo/installed-1.png alt></p>
+<blockquote>
+<p>由于之前 Visual Stdio 耗尽了俺系统盘的存储空间，而且卸载残留严重，因为怕影响系统，有些组件都不敢卸载，就一直处于给系统盘瘦身的操作中，终于下定决心重装。总之，是很不愉快的体验。因此，俺是抵制安装 VS 所有产品的。</p>
+</blockquote>
+<p>然而,用 nvcc 编译源代码，报错如下：
+<img src=/img/photo/error1.png alt>
+解决报错的方法根据 <a href=https://stackoverflow.com/questions/8125826/error-compiling-cuda-from-command-prompt>stackoverflow</a> 或 <a href=https://docs.nvidia.com/cuda/cuda-quick-start-guide/index.html#windows-local>官网教程</a>只有安装恶心的 VS :(
+俺用的是 VS 2019，从<strong>工作负载</strong>标签下选择【使用C++的桌面开发】
+mlgj安装还要重启，中途如果遇到 NVIDIA 需要更新就更新一下，俺的原则是凡是只要有最新的，就更新到最新，和 Ubuntu 的原则差不多，默认最新就是最好的。然后找到 cl.exe 将它添加到环境变量中去。另外，基于我对 VS 的偏见，推荐大家备份环境变量，可以用此<a href=https://raw.githubusercontent.com/magictomagic/hotchpotch-bat/master/environment-backup.bat>脚本</a>。
+编译：
+<img src=/img/photo/bianyi1.png alt>
+运行：
+<img src=/img/photo/yunxing1.png alt>
+看来环境是勉强配好了。
+总结一下，对于 VS 我只是用到了它的 cl.exe，这个 exe 文件可能用到了 VS 的其它文件，所以我建议还是把 VS 装上比较好。先决条件是安装了 Mingw 的 C/C++ 运行环境，当然，NVIDIA 的 GPU 卡肯定要有，可以 win + r 后输入 dxdiag 查看卡的型号。</p>
+<blockquote>
+<p>接下来还需解决两个问题：一个是自动化运行，一个是解决warning。</p>
+</blockquote>
+<p><strong>解决 warning:</strong>
+虽然说 warning 没事，但俺有强迫症啊~
+要去除 warning，就要将报错所在文件的 Unicode 变成带签名的，详见<a href=https://www.zhaokeli.com/article/8276.html>这里</a>,首先要取得文件的完全控制权限，参考
+<img src=/img/photo/quanxian1.png alt>
+我一共修改了两个文件的编码类型，然后运行之前的命令，warning 消失
+<img src=/img/photo/warning-success.png alt>
+之后别忘了将文件夹的权限改回来。</p>
+<p><strong>自动化运行:</strong></p>
+<blockquote>
+<p>优先寻找：根据文件后缀名的差异执行不同的命令的插件。
+其次寻找：快捷键执行批处理等脚本的插件。</p>
+</blockquote>
+<p>战略放弃。</p>
+<h2 id=性能分析工具>性能分析工具</h2>
+<blockquote>
+<p>之前装 VS 已经让俺的节操碎了一地。这次，根据<a href=http://s0docs0nvidia0com.icopy.site/cuda/profiler-users-guide/index.html>官网指示</a>：Visual Profiler 和 nvprof 将在以后的 CUDA 版本中弃用.建议使用下一代工具 NVIDIA Nsight Compute 进行 GPU 配置，使用 NVIDIA Nsight Systems 进行 GPU 和 CPU 采样和跟踪。我就坚定地开始了装 NVIDIA Nsight Compute 的征程。</p>
+</blockquote>
+<p>进入<a href=https://developer.nvidia.com/gameworksdownload>下载界面</a>，发现还要<a href=https://developer.nvidia.com/rdp/assets/nsight-compute-2019_5_1-Win64-installer>注册</a>,注册界面卡得雅匹，我只能开了全局，再不断尝试下载各个版本的 Nsight Compute，终于试出一个不用注册的，还下载得非常慢。
+<img src=/img/photo/2019-4-available.png alt>
+经过无数次下载失败，结合最近上外网有时很卡，再结合最近的朝鲜化趋势，我怀疑我的 V2Ray + tls + ws 的翻墙流量被干扰得太严重了。尝试用tg群里别人推荐的 rixcloud，说是一直很稳。当然，我是买不起 richcloud, 只能用它的原理：<a href=https://github.com/Alvin9999/new-pac/wiki/%E8%87%AA%E5%BB%BAss%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%95%99%E7%A8%8B>ssr</a>，也是之前我为了装B而弃用的方法。费了很长时间才找到一个不在黑名单里的 IP,搭建完成后，继续使用 IDM 下载。之前用 V2Ray 不能断点续传的文件居然可以多线程下载了！
+<img src=/img/photo/ssr-IDM.png alt></p>
+<blockquote>
+<p>看来还是 ssr 的功能强大，开销小啊，虽然带来的是它的不安全。看来以后的主力就是 ssr，V2Ray 作为备用。ssr 的流畅让我明白了技术是为了适应生产场景而变化的，不是为了装B的。这里给出一个对 ssr 讨论比较专业的<a href=https://ssr.tools/82>网站</a>。</p>
+</blockquote>
+<p>安装 Nsight Compute 这个包时，系统显示我已经安装了。这时就没必要再安装一遍了，因为如果安装的版本不是最新的系统会推荐你装最新的。参考<a href=https://docs.nvidia.com/nsight-compute/NsightComputeCli/index.html>官网教程</a>中的命令</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-bat data-lang=bat> nv-nsight-cu-cli -o profile CuVectorAddMulti.exe
+</code></pre></td></tr></table>
+</div>
+</div><p>以管理员的身份运行 nv-nsight-cu-cli 命令，得
+<img src=/img/photo/nv-nsight-cu-cli-1.png alt></p>
+<blockquote>
+<p>略去中间的输出</p>
+</blockquote>
+<p><img src=/img/photo/nv-nsight-cu-cli-2.png alt>
+之后用 nv-nsight-cu &lt;MyReport.nsight-cuprof-report>，得出
+<img src=/img/photo/nv-nsight-cu-1.png alt>
+至此，性能分析部分任务完成。</p>
+<blockquote>
+<p>如果喜欢用图形化界面，可以参考<a href=https://s0docs0nvidia0com.icopy.site/nsight-compute/NsightCompute/index.html#abstract>这篇教程</a>，命令行输入 nv-nsight-cu 后直接 Enter，即可启动。
+如果追寻更加高级的可视化的性能分析结果，可以参考<a href=https://docs.nvidia.com/drive/drive_os_5.1.12.0L/nsight-graphics/user-interface-reference/index.html#app_configuration_and_activity_selection_ui>这个文档</a>。</p>
+</blockquote>
+<p>下面用 CLI 和相应的图形化界面进行性能分析。</p>
+<h2 id=并行奇偶排序>并行奇偶排序</h2>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-c++ data-lang=c++><span class=cp>#include</span><span class=cpf>&lt;stdio.h&gt;</span><span class=cp>
+</span><span class=cp>#include</span><span class=cpf>&lt;cuda.h&gt;</span><span class=cp>
+</span><span class=cp>#include</span><span class=cpf>&lt;fstream&gt;</span><span class=cp>
+</span><span class=cp>#include</span><span class=cpf>&lt;iostream&gt;</span><span class=cp>
+</span><span class=cp></span><span class=k>using</span> <span class=k>namespace</span> <span class=n>std</span><span class=p>;</span>
+<span class=n>__global__</span> <span class=kt>void</span> <span class=nf>oddeven</span><span class=p>(</span><span class=kt>int</span><span class=o>*</span> <span class=n>x</span><span class=p>,</span><span class=kt>int</span> <span class=n>I</span><span class=p>,</span><span class=kt>int</span> <span class=n>n</span><span class=p>){</span>
+	<span class=kt>int</span> <span class=n>id</span><span class=o>=</span><span class=n>blockIdx</span><span class=p>.</span><span class=n>x</span><span class=p>;</span>
+	<span class=k>if</span><span class=p>(</span><span class=n>I</span><span class=o>==</span><span class=mi>0</span> <span class=o>&amp;&amp;</span> <span class=p>((</span><span class=n>id</span><span class=o>*</span><span class=mi>2</span><span class=o>+</span><span class=mi>1</span><span class=p>)</span><span class=o>&lt;</span> <span class=n>n</span><span class=p>)){</span>
+		<span class=k>if</span><span class=p>(</span><span class=n>x</span><span class=p>[</span><span class=n>id</span><span class=o>*</span><span class=mi>2</span><span class=p>]</span><span class=o>&gt;</span><span class=n>x</span><span class=p>[</span><span class=n>id</span><span class=o>*</span><span class=mi>2</span><span class=o>+</span><span class=mi>1</span><span class=p>]){</span>
+			<span class=kt>int</span> <span class=n>X</span><span class=o>=</span><span class=n>x</span><span class=p>[</span><span class=n>id</span><span class=o>*</span><span class=mi>2</span><span class=p>];</span>
+			<span class=n>x</span><span class=p>[</span><span class=n>id</span><span class=o>*</span><span class=mi>2</span><span class=p>]</span><span class=o>=</span><span class=n>x</span><span class=p>[</span><span class=n>id</span><span class=o>*</span><span class=mi>2</span><span class=o>+</span><span class=mi>1</span><span class=p>];</span>
+			<span class=n>x</span><span class=p>[</span><span class=n>id</span><span class=o>*</span><span class=mi>2</span><span class=o>+</span><span class=mi>1</span><span class=p>]</span><span class=o>=</span><span class=n>X</span><span class=p>;</span>
+		<span class=p>}</span>
+	<span class=p>}</span>
+	<span class=k>if</span><span class=p>(</span><span class=n>I</span><span class=o>==</span><span class=mi>1</span> <span class=o>&amp;&amp;</span> <span class=p>((</span><span class=n>id</span><span class=o>*</span><span class=mi>2</span><span class=o>+</span><span class=mi>2</span><span class=p>)</span><span class=o>&lt;</span> <span class=n>n</span><span class=p>)){</span>
+		<span class=k>if</span><span class=p>(</span><span class=n>x</span><span class=p>[</span><span class=n>id</span><span class=o>*</span><span class=mi>2</span><span class=o>+</span><span class=mi>1</span><span class=p>]</span><span class=o>&gt;</span><span class=n>x</span><span class=p>[</span><span class=n>id</span><span class=o>*</span><span class=mi>2</span><span class=o>+</span><span class=mi>2</span><span class=p>]){</span>
+			<span class=kt>int</span> <span class=n>X</span><span class=o>=</span><span class=n>x</span><span class=p>[</span><span class=n>id</span><span class=o>*</span><span class=mi>2</span><span class=o>+</span><span class=mi>1</span><span class=p>];</span>
+			<span class=n>x</span><span class=p>[</span><span class=n>id</span><span class=o>*</span><span class=mi>2</span><span class=o>+</span><span class=mi>1</span><span class=p>]</span><span class=o>=</span><span class=n>x</span><span class=p>[</span><span class=n>id</span><span class=o>*</span><span class=mi>2</span><span class=o>+</span><span class=mi>2</span><span class=p>];</span>
+			<span class=n>x</span><span class=p>[</span><span class=n>id</span><span class=o>*</span><span class=mi>2</span><span class=o>+</span><span class=mi>2</span><span class=p>]</span><span class=o>=</span><span class=n>X</span><span class=p>;</span>
+		<span class=p>}</span>
+	<span class=p>}</span>
+<span class=p>}</span>
+<span class=kt>int</span> <span class=nf>main</span><span class=p>(){</span>
+	<span class=kt>int</span> <span class=n>a</span><span class=p>[</span><span class=mi>100</span><span class=p>],</span><span class=n>n</span><span class=p>,</span><span class=n>c</span><span class=p>[</span><span class=mi>100</span><span class=p>],</span><span class=n>i</span><span class=p>;</span>
+	<span class=kt>int</span> <span class=o>*</span><span class=n>d</span><span class=p>;</span>
+  <span class=n>ifstream</span> <span class=n>infile</span><span class=p>(</span><span class=s>&#34;input1.txt&#34;</span><span class=p>);</span>
+  <span class=n>infile</span> <span class=o>&gt;&gt;</span> <span class=n>n</span><span class=p>;</span>
+  <span class=k>for</span> <span class=p>(</span><span class=n>size_t</span> <span class=n>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;</span> <span class=n>n</span><span class=p>;</span> <span class=n>i</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+    <span class=n>infile</span> <span class=o>&gt;&gt;</span> <span class=n>a</span><span class=p>[</span><span class=n>i</span><span class=p>];</span>
+  <span class=p>}</span>
+	<span class=n>cudaMalloc</span><span class=p>((</span><span class=kt>void</span><span class=o>**</span><span class=p>)</span><span class=o>&amp;</span><span class=n>d</span><span class=p>,</span> <span class=n>n</span><span class=o>*</span><span class=k>sizeof</span><span class=p>(</span><span class=kt>int</span><span class=p>));</span>
+	<span class=n>cudaMemcpy</span><span class=p>(</span><span class=n>d</span><span class=p>,</span><span class=n>a</span><span class=p>,</span><span class=n>n</span><span class=o>*</span><span class=k>sizeof</span><span class=p>(</span><span class=kt>int</span><span class=p>),</span><span class=n>cudaMemcpyHostToDevice</span><span class=p>);</span>
+	<span class=k>for</span><span class=p>(</span><span class=n>i</span><span class=o>=</span><span class=mi>0</span><span class=p>;</span><span class=n>i</span><span class=o>&lt;</span><span class=n>n</span><span class=p>;</span><span class=n>i</span><span class=o>++</span><span class=p>){</span>
+		<span class=n>oddeven</span><span class=o>&lt;&lt;&lt;</span><span class=n>n</span><span class=o>/</span><span class=mi>2</span><span class=p>,</span><span class=mi>1</span><span class=o>&gt;&gt;&gt;</span><span class=p>(</span><span class=n>d</span><span class=p>,</span><span class=n>i</span><span class=o>%</span><span class=mi>2</span><span class=p>,</span><span class=n>n</span><span class=p>);</span>
+	<span class=p>}</span>
+	<span class=n>printf</span><span class=p>(</span><span class=s>&#34;</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>);</span>
+  <span class=n>cudaMemcpy</span><span class=p>(</span><span class=n>c</span><span class=p>,</span><span class=n>d</span><span class=p>,</span><span class=n>n</span><span class=o>*</span><span class=k>sizeof</span><span class=p>(</span><span class=kt>int</span><span class=p>),</span> <span class=n>cudaMemcpyDeviceToHost</span><span class=p>);</span>
+	<span class=n>printf</span><span class=p>(</span><span class=s>&#34;Sorted Array is:</span><span class=se>\t</span><span class=s>&#34;</span><span class=p>);</span>
+	<span class=k>for</span><span class=p>(</span><span class=n>i</span><span class=o>=</span><span class=mi>0</span><span class=p>;</span> <span class=n>i</span><span class=o>&lt;</span><span class=n>n</span><span class=p>;</span> <span class=n>i</span><span class=o>++</span><span class=p>){</span>
+		<span class=n>printf</span><span class=p>(</span><span class=s>&#34;%d</span><span class=se>\t</span><span class=s>&#34;</span><span class=p>,</span><span class=n>c</span><span class=p>[</span><span class=n>i</span><span class=p>]);</span>
+	<span class=p>}</span>
+
+	<span class=n>cudaFree</span><span class=p>(</span><span class=n>d</span><span class=p>);</span>
+	<span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src=/img/photo/INPUT1.png alt>
+CLI 性能分析
+<img src=/img/photo/20200404120233.png alt>
+图形化界面
+<img src=/img/photo/Gresult2.png alt>
+显然，图形化界面不但直观，还有许多控件，可以选择不同层次的视图类型，甚至可以把结果保存成PDF、图片等多种类型，功能强大。</p>
+</div>
+<div class=post-copyright>
+<p class=copyright-item>
+<span class=item-title>Author</span>
+<span class=item-content>magictomagic</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>LastMod</span>
+<span class=item-content>
+2020-04-03
+</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>License</span>
+<span class=item-content><a rel="license noopener" href=https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License target=_blank>Creative Commons Attribution-ShareAlike License</a></span>
+</p>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/cuda/>CUDA</a>
+<a href=/tags/experiment/>experiment</a>
+</div>
+<nav class=post-nav>
+<a class=prev href=/post/mpi-experiment/>
+<i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">MPI experiment</span>
+<span class="prev-text nav-mobile">Prev</span>
+</a>
+<a class=next href=/post/sdn-mininet-fattree/>
+<span class="next-text nav-default">SDN mininet fattree creat</span>
+<span class="next-text nav-mobile">Next</span>
+<i class="iconfont icon-right"></i>
+</a>
+</nav>
+</footer>
+</article>
+</div>
+</div>
+</main>
+<footer id=footer class=footer>
+<div class=social-links>
+<a href=mailto:your@email.com class="iconfont icon-email" title=email></a>
+<a href=http://localhost:1313 class="iconfont icon-stack-overflow" title=stack-overflow></a>
+<a href=http://localhost:1313 class="iconfont icon-twitter" title=twitter></a>
+<a href=http://localhost:1313 class="iconfont icon-facebook" title=facebook></a>
+<a href=http://localhost:1313 class="iconfont icon-linkedin" title=linkedin></a>
+<a href=http://localhost:1313 class="iconfont icon-google" title=google></a>
+<a href=http://localhost:1313 class="iconfont icon-github" title=github></a>
+<a href=http://localhost:1313 class="iconfont icon-weibo" title=weibo></a>
+<a href=http://localhost:1313 class="iconfont icon-zhihu" title=zhihu></a>
+<a href=http://localhost:1313 class="iconfont icon-douban" title=douban></a>
+<a href=http://localhost:1313 class="iconfont icon-pocket" title=pocket></a>
+<a href=http://localhost:1313 class="iconfont icon-tumblr" title=tumblr></a>
+<a href=http://localhost:1313 class="iconfont icon-instagram" title=instagram></a>
+<a href=http://localhost:1313 class="iconfont icon-gitlab" title=gitlab></a>
+<a href=http://localhost:1313 class="iconfont icon-bilibili" title=bilibili></a>
+<a href=https://magictomagic.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
+</div>
+<div class=copyright>
+<span class=power-by>
+Powered by <a class=hexo-link href=https://gohugo.io>Hugo</a>
+</span>
+<span class=division>|</span>
+<span class=theme-info>
+Theme -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a>
+</span>
+<span class=copyright-year>
+&copy;
+2017 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+</span>
+</div>
+</footer>
+<div class=back-to-top id=back-to-top>
+<i class="iconfont icon-up"></i>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
+</body>
+</html>

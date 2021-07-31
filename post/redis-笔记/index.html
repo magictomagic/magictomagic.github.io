@@ -1,0 +1,785 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<title>Redis 笔记 - Iron Age</title>
+<meta name=renderer content="webkit">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta http-equiv=cache-control content="no-transform">
+<meta http-equiv=cache-control content="no-siteapp">
+<meta name=theme-color content="#f8f5ec">
+<meta name=msapplication-navbutton-color content="#f8f5ec">
+<meta name=apple-mobile-web-app-capable content="yes">
+<meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
+<meta name=author content="magictomagic"><meta name=description content="基础 操作 Redis.conf 1 2 3 4 5 6 7 8 9 10 11 12 13 daemonize no # 默认不以守护进程方式运行 # 变为 daemonize yes bind 127.0.0.1 # 绑定的IP # 注释掉 让其它主机来访问 requirepass # 设置密码 登录 &amp;gt; auth yourpassword pidfile"><meta name=keywords content="Hugo,theme,even">
+<meta name=generator content="Hugo 0.86.1 with theme even">
+<link rel=canonical href=https://magictomagic.github.io/post/redis-%E7%AC%94%E8%AE%B0/>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
+<link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
+<meta property="og:title" content="Redis 笔记">
+<meta property="og:description" content="基础 操作 Redis.conf 1 2 3 4 5 6 7 8 9 10 11 12 13 daemonize no # 默认不以守护进程方式运行 # 变为 daemonize yes bind 127.0.0.1 # 绑定的IP # 注释掉 让其它主机来访问 requirepass # 设置密码 登录 > auth yourpassword pidfile">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://magictomagic.github.io/post/redis-%E7%AC%94%E8%AE%B0/"><meta property="article:section" content="post">
+<meta property="article:published_time" content="2021-02-07T01:37:56+08:00">
+<meta property="article:modified_time" content="2021-02-07T01:37:56+08:00">
+<meta itemprop=name content="Redis 笔记">
+<meta itemprop=description content="基础 操作 Redis.conf 1 2 3 4 5 6 7 8 9 10 11 12 13 daemonize no # 默认不以守护进程方式运行 # 变为 daemonize yes bind 127.0.0.1 # 绑定的IP # 注释掉 让其它主机来访问 requirepass # 设置密码 登录 > auth yourpassword pidfile"><meta itemprop=datePublished content="2021-02-07T01:37:56+08:00">
+<meta itemprop=dateModified content="2021-02-07T01:37:56+08:00">
+<meta itemprop=wordCount content="3284">
+<meta itemprop=keywords content="Redis,"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="Redis 笔记">
+<meta name=twitter:description content="基础 操作 Redis.conf 1 2 3 4 5 6 7 8 9 10 11 12 13 daemonize no # 默认不以守护进程方式运行 # 变为 daemonize yes bind 127.0.0.1 # 绑定的IP # 注释掉 让其它主机来访问 requirepass # 设置密码 登录 > auth yourpassword pidfile"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
+</head>
+<body>
+<div id=mobile-navbar class=mobile-navbar>
+<div class=mobile-header-logo>
+<a href=/ class=logo>Iron</a>
+</div>
+<div class=mobile-navbar-icon>
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+<nav id=mobile-menu class="mobile-menu slideout-menu">
+<ul class=mobile-menu-list>
+<a href=/>
+<li class=mobile-menu-item>Home</li>
+</a><a href=/post/>
+<li class=mobile-menu-item>Archives</li>
+</a><a href=/tags/>
+<li class=mobile-menu-item>Tags</li>
+</a><a href=/categories/>
+<li class=mobile-menu-item>Categories</li>
+</a>
+</ul>
+</nav>
+<div class=container id=mobile-panel>
+<header id=header class=header>
+<div class=logo-wrapper>
+<a href=/ class=logo>Iron</a>
+</div>
+<nav class=site-navbar>
+<ul id=menu class=menu>
+<li class=menu-item>
+<a class=menu-item-link href=/>Home</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/post/>Archives</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/tags/>Tags</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/categories/>Categories</a>
+</li>
+</ul>
+</nav>
+</header>
+<main id=main class=main>
+<div class=content-wrapper>
+<div id=content class=content>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>Redis 笔记</h1>
+<div class=post-meta>
+<span class=post-time> 2021-02-07 </span>
+<div class=post-category>
+<a href=/categories/notes/> notes </a>
+</div>
+</div>
+</header>
+<div class=post-toc id=post-toc>
+<h2 class=post-toc-title>Contents</h2>
+<div class="post-toc-content always-active">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#基础>基础</a>
+<ul>
+<li><a href=#操作>操作</a></li>
+<li><a href=#概念>概念</a></li>
+</ul>
+</li>
+<li><a href=#基本数据类型>基本数据类型</a>
+<ul>
+<li><a href=#string>String</a></li>
+<li><a href=#list>List</a></li>
+<li><a href=#set>Set</a></li>
+<li><a href=#hash>Hash</a></li>
+<li><a href=#zset>Zset</a></li>
+</ul>
+</li>
+<li><a href=#特殊数据类型>特殊数据类型</a>
+<ul>
+<li><a href=#geospatial>geospatial</a></li>
+<li><a href=#hyperloglog>Hyperloglog</a></li>
+<li><a href=#bitmap>Bitmap</a></li>
+</ul>
+</li>
+<li><a href=#锁>锁</a>
+<ul>
+<li><a href=#悲观锁>悲观锁</a></li>
+<li><a href=#乐观锁>乐观锁</a></li>
+</ul>
+</li>
+<li><a href=#springboot-整合->SpringBoot 整合 ？？？</a></li>
+<li><a href=#持久化>持久化</a>
+<ul>
+<li><a href=#限制-clients>限制 CLIENTS</a></li>
+<li><a href=#rdb-持久化>RDB 持久化</a>
+<ul>
+<li><a href=#恢复rdb文件>恢复rdb文件</a></li>
+<li><a href=#rdb优点>RDB优点</a></li>
+</ul>
+</li>
+<li><a href=#aof-配置>AOF 配置</a></li>
+</ul>
+</li>
+<li><a href=#发布订阅>发布订阅</a></li>
+<li><a href=#主从复制>主从复制</a>
+<ul>
+<li><a href=#集群搭建>集群搭建</a></li>
+<li><a href=#哨兵模式>哨兵模式</a></li>
+</ul>
+</li>
+<li><a href=#redis-缓存穿透与雪崩>Redis 缓存穿透与雪崩</a>
+<ul>
+<li><a href=#缓存穿透>缓存穿透</a>
+<ul>
+<li><a href=#解决方案>解决方案</a></li>
+</ul>
+</li>
+<li><a href=#缓存击穿>缓存击穿</a>
+<ul>
+<li><a href=#解决方案-1>解决方案</a></li>
+</ul>
+</li>
+<li><a href=#缓存雪崩>缓存雪崩</a>
+<ul>
+<li><a href=#解决方案-2>解决方案</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+<div class=post-content>
+<h1 id=基础>基础</h1>
+<h2 id=操作>操作</h2>
+<blockquote>
+<p>Redis.conf</p>
+</blockquote>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>daemonize no <span class=c1># 默认不以守护进程方式运行 # 变为 daemonize yes</span>
+<span class=nb>bind</span> 127.0.0.1 <span class=c1># 绑定的IP # 注释掉 让其它主机来访问</span>
+requirepass <span class=c1># 设置密码 登录 &gt; auth yourpassword</span>
+pidfile /var/run/redis_6379.pid <span class=c1># 如果以后台方式运行，需要指定pid文件</span>
+logfile <span class=s2>&#34;xxx&#34;</span> <span class=c1># 日志的文件名，若为空，则为标准输出</span>
+
+save <span class=m>900</span> <span class=m>1</span> <span class=c1># 900s内，如果至少1个key进行了修改，进行持久化操作</span>
+save <span class=m>60</span> <span class=m>10000</span> <span class=c1># 60s内，如果至少10000个key进行了修改，进行持久化操作</span>
+
+stop-writes-on-bgsave-error yes <span class=c1># 持久化如果出错，是否继续工作</span>
+rdbcompression yes <span class=c1># 是否压缩rdb文件，需要消耗一些cpu资源</span>
+rdbchecksum yes <span class=c1># 保存rdb文件时，进行错误检查校验</span>
+dir ./ <span class=c1># rdb 文件保存目录</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>登录（客户端访问）</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>redis-cli -h IP地址 -p 端口 -a 密码
+</code></pre></td></tr></table>
+</div>
+</div><div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=k>select</span> <span class=m>3</span> <span class=c1># 切换编号为3的数据库（默认16个数据库）</span>
+dbsize <span class=c1># 当前数据库大小（键的数量）</span>
+flushdb <span class=c1># 清除当前数据库</span>
+flushall <span class=c1># 清空全部数据库</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=概念>概念</h2>
+<ul>
+<li>没有什么是加一层解决不了的</li>
+<li>数据一直新增，内存很快占满：1.为数据设置超时时间。2.设置内存空间。3.6-8种LRU</li>
+</ul>
+<p>基于内存，CPU不是性能瓶颈，瓶颈是机器的内存和网络带宽。</p>
+<p>Redis作用：数据库、缓存、消息中间件</p>
+<ul>
+<li>Redis 单条命令是原子性的，但事务（一组命令的集合，所有命令都会被序列化，按顺序执行）不保证原子性（不被打断，同时成功|同时失败）的。</li>
+<li>没有隔离级别的概念？？？</li>
+<li>Redis
+<ul>
+<li>开启事务(multi)</li>
+<li>命令入队(一系列的命令)</li>
+<li>执行事务(exec) | 放弃事务(discard)</li>
+</ul>
+</li>
+</ul>
+<h1 id=基本数据类型>基本数据类型</h1>
+<blockquote>
+<p>记动词，后面就看提自动示了</p>
+<p>key 为你自己的键名</p>
+<p>下标都从0开始（区别于显示的下标（要-1））</p>
+</blockquote>
+<h2 id=string>String</h2>
+<ul>
+<li>计数器</li>
+<li>统计多单位的数量 like:23:counts:44:nums:13</li>
+</ul>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=nb>set</span> key xxx 
+get key 
+exists key
+move key <span class=m>1</span> <span class=c1># 移除 当前数据库(用1来代表)key</span>
+getset key xxxx <span class=c1># 返回本来存储的值(或nil)，设置新值为xxxx</span>
+
+<span class=c1># 缓存：热点数据自动过期</span>
+expire key <span class=m>10</span> <span class=c1># 设置key过期时间为10秒</span>
+ttl key <span class=c1># 查看还有多长时间过期，若返回-2，则get不到，说明已经过期了</span>
+
+append key xxx <span class=c1># 在原key上追加为xxx的字符串，返回追加后字符串的总长度；若当前key不存在，相当于创建（set）</span>
+
+<span class=c1># set key 2</span>
+incr key <span class=c1># +1</span>
+decr key <span class=c1># -1</span>
+incrby key <span class=m>13</span> <span class=c1># +13</span>
+decrby key <span class=m>34</span> <span class=c1># -34</span>
+
+getrange key <span class=m>0</span> <span class=m>3</span> <span class=c1># 取[0,3]字符</span>
+getrange key <span class=m>0</span> -1 <span class=c1># 取所有</span>
+setrange key <span class=m>2</span> xx <span class=c1># 从下标为2的地方开始替换</span>
+
+setex key <span class=m>34</span> dfas <span class=c1># 设置key的值为dfas，34秒后过期</span>
+setnx key asd <span class=c1># 如果key不存在，创建key。在分布式锁中经常使用。</span>
+
+mset key1 value1 key2 value2 ... <span class=c1># 同时设置多个值</span>
+mget key1 key2 ... <span class=c1># 同时获取多个值</span>
+
+msetnx key1 value1 key2 value2 <span class=c1># 原子性操作</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=list>List</h2>
+<ul>
+<li>栈、队列，阻塞队列，消息队列</li>
+<li>实际上是个链表</li>
+</ul>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>lpush key xxx
+rpush key xxx
+lpop key
+rpop key
+lrange key <span class=m>0</span> -1
+lindex key <span class=m>2</span> <span class=c1># 获取下为2的元素</span>
+llen key <span class=c1># 获取长度</span>
+lrem key <span class=m>2</span> xxx <span class=c1># 删除2个值为xxx的元素（若数字为0，则是所有）</span>
+ltrim key <span class=m>3</span> <span class=m>5</span> <span class=c1># 截取[3,5]</span>
+rpoplpush src dst <span class=c1># 移除列表中最后一个元素，将他添加到新的列表中</span>
+lset key <span class=m>2</span> xxx <span class=c1># 更新下标为2的值为xxx。如果不存在则报错。</span>
+
+<span class=c1># 插入值</span>
+linsert key <span class=o>[</span>before<span class=p>|</span>after<span class=o>]</span> value xxx <span class=c1># 在 value 前|后 插入 xxx </span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=set>Set</h2>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sadd key xxx
+smembers key
+scard key
+sismember key xxx <span class=c1># 看key中xxx是否存在</span>
+srem key xxx <span class=c1># 删除为xxx的元素</span>
+srandmember key <span class=c1># 随机取一个</span>
+srandmember key <span class=m>2</span> <span class=c1># 随机取两个</span>
+spop key <span class=c1># 随机移除元素</span>
+smove src dst xxx <span class=c1># 移动元素</span>
+
+sdiff key1 key2 <span class=c1># 差集 key1 - key2</span>
+sinter key1 key2 <span class=c1># 交集</span>
+sunion key1 key2 <span class=c1># 并集</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=hash>Hash</h2>
+<p>适合存储经常变更的数据、对象的存储</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>hset key hashkey hashvalue
+hget key hashkey 
+hmset key hashkey1 hashvalue1 hashkey2 hashvalue2 ...
+hmget key hashkey1 hashkey2 ...
+hdel key hashkey1
+hlen key
+hexists key hashkey
+
+hgetall key
+hkeys hashkey <span class=c1># 获取所有key</span>
+hvals hashvalue <span class=c1># 获取所有value</span>
+
+hincrby key hashkey <span class=m>2</span> <span class=c1># 增2</span>
+hsetnx key hashkey hashvalue <span class=c1># 若不存在则set，否则失败</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=zset>Zset</h2>
+<p>排行榜</p>
+<p>带权重消息</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>zadd key score value <span class=c1># 以score排</span>
+zrangebyscore key -inf +inf <span class=c1># 升序排列</span>
+zrangebyscore key -inf +inf withscores <span class=c1># 显示score</span>
+zrangebyscore key -inf <span class=m>400</span> <span class=c1># 圈定范围</span>
+zrevrangebyscore key +inf -inf <span class=c1># 降序排列</span>
+zrange key <span class=m>0</span> -1
+zrem key value <span class=c1># 删除元素</span>
+zcard key <span class=c1># 统计总数量</span>
+zcount key <span class=m>3</span> <span class=m>5</span> <span class=c1># 统计score在3到5之间的元素数量</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h1 id=特殊数据类型>特殊数据类型</h1>
+<h2 id=geospatial>geospatial</h2>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>geoadd key 120.34 <span class=m>30</span> <span class=m>24</span> hangzhou <span class=c1># 键值 经度 纬度(到85) 城市</span>
+geopos key hangzhou <span class=c1># get 值</span>
+geodist key value1 value2 <span class=o>[</span>km<span class=o>]</span> <span class=c1># 两地距离（默认m，可设置为km等）mi英里 ft英尺</span>
+georadius key x y radius <span class=o>[</span>km<span class=o>]</span> <span class=o>[</span>withdist<span class=o>]</span><span class=p>|</span><span class=o>[</span>withcoord<span class=o>]</span> <span class=o>[</span>count 1<span class=o>]</span> <span class=c1># x y 经纬度；半径；显示距离|显示坐标；筛选出指定的结果（数量）</span>
+georadiusbymember key hangzhou <span class=m>200</span> km <span class=c1># 根据城市找附近城市</span>
+
+zrange key <span class=m>0</span> -1 <span class=c1># list all</span>
+zrem key hangzhou <span class=c1># delete</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=hyperloglog>Hyperloglog</h2>
+<p>固定内存，统计用户数量，0.81%错误率。</p>
+<p>网页UA（同一个用户不重复统计）</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>pfadd key a s d f g
+pfcount key <span class=c1># 统计数量</span>
+pfmerge dst src1 src2 ... <span class=c1># 合并，去重</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=bitmap>Bitmap</h2>
+<p>位存储：登录|未登录，是否打卡，活跃</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>setbit key num 0<span class=p>|</span><span class=m>1</span> <span class=c1># num 为整数，后面跟0或1</span>
+getbit key num
+bitcount key <span class=c1># 统计</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id=锁>锁</h1>
+<h2 id=悲观锁>悲观锁</h2>
+<p>无论做什么都加锁</p>
+<h2 id=乐观锁>乐观锁</h2>
+<p>更新数据时去判断一下，期间是否有人去修改过数据，若修改，则提交失败</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>watch key 
+multi
+...
+<span class=nb>exec</span> <span class=c1># 若执行前另一个线程使key改动，则ecec返回(nil)，则提交失败</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id=springboot-整合->SpringBoot 整合 ？？？</h1>
+<p>jedis: 直连，线程不安全。若要安全，jedis pool。像BIO</p>
+<p>lettuce: 采用netty，线程安全。像NIO</p>
+<h1 id=持久化>持久化</h1>
+<blockquote>
+<p>Redis.conf</p>
+</blockquote>
+<h2 id=限制-clients>限制 CLIENTS</h2>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>maxclinets <span class=m>10000</span> <span class=c1># 设置能连接上redis的最大客户端数量</span>
+maxmemory &lt;bytes&gt; <span class=c1># redis 配置最大的内存容量</span>
+maxmemory-policy noeviction <span class=c1># 内存达到上限之后的处理策略</span>
+ 1. volatile-lru: 只对设置了过期时间的key进行LRU（默认值）
+ 2. allkeys-lru: 删除lru算法的key
+ 3. volatile-random: 随机删除即将过期的key
+ 4. allkeys-random 随机删除
+ 5. volatile-ttl: 删除即将过期的key
+ 6. noeviction: 用不过期，返回错误
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=rdb-持久化>RDB 持久化</h2>
+<p>单独fork一个子进程进行持久化，临时生成RDB替换正式RDB文件，占用一定空间，若最后一次持久化宕机，则无法保存数据</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>dbfilename dump.rdb
+</code></pre></td></tr></table>
+</div>
+</div><p>触发机制：（生成RDB文件）</p>
+<ol>
+<li>save规则满足</li>
+<li>执行flushall</li>
+<li>退出</li>
+</ol>
+<h3 id=恢复rdb文件>恢复rdb文件</h3>
+<p>将rdb文件放在启动目录即可，redis启动自动检查dump.rdb</p>
+<p><code>config get dir # 查看需要存在的位置</code></p>
+<p><code>bgsave</code> 保存快照rdb</p>
+<h3 id=rdb优点>RDB优点</h3>
+<p>适合大规模数据恢复
+对数据完整性要求不高</p>
+<h2 id=aof-配置>AOF 配置</h2>
+<p>以日志的形式记录每一个写的操作。数据文件大，性能低</p>
+<blockquote>
+<p>配置</p>
+</blockquote>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>appendonly on <span class=c1># 默认以rdb方式持久化，不开启aof。开启要设置成yes。</span>
+
+<span class=c1># 后面常常保持默认</span>
+appendfilename <span class=s2>&#34;appendonly.aof&#34;</span> <span class=c1># 持久化文件的名字(记录写操作)</span>
+
+appendfsync always <span class=c1># 每次修改都会同步，消耗性能</span>
+appendfsync everysec <span class=c1># 每秒执行一次sync，可能会丢失这1秒的数据</span>
+appendfsync on <span class=c1># 不执行sync，自己同步，速度最快</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id=发布订阅>发布订阅</h1>
+<p>消息通信模式</p>
+<p>实时消息系统，实时聊天</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>subscribe channel <span class=c1># 接收端：订阅</span>
+publish channel message <span class=c1># 发送端：向channel发布消息message</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>底层：频道存于字典键值，订阅者由此键值牵头组成链表。</p>
+<h1 id=主从复制>主从复制</h1>
+<p>主：写 从：只能读</p>
+<p>数据冗余、故障恢复、负载均衡、高可用基石</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>info replication <span class=c1># 查看当前库的信息</span>
+slaveof ip_address port <span class=c1># 认老大，e.g. slaveof 127.0.0.1 6379</span>
+slaveof no one <span class=c1># 自己当老大</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=集群搭建>集群搭建</h2>
+<p>复制多个redis.conf，修改 port、pidfile、logfile、dbfilename (防止冲突)</p>
+<p>启动 <code>redis-server path/redis.conf</code> 后，若对应的 .log 文件生成，则说明启动成功。</p>
+<ul>
+<li>若命令行使从机关了又开，则从机变为主机，再次执行slaveof，则同步主机的内容（slave发一个sync同步命令，全量复制）。</li>
+</ul>
+<h2 id=哨兵模式>哨兵模式</h2>
+<blockquote>
+<p>自动选举老大. 自动化主从模式.</p>
+<p>哨兵，监控所有主机是否是活着的，若master宕机，则将slave切换成master，然后通过<strong>发布订阅模式</strong>通知其他的slave，修改配置，使它们变成主机</p>
+</blockquote>
+<p>多哨兵模式：哨兵之间互相监控。仅哨兵自己认为服务器不可用,为主观下线,认为的多了,客观下线,然后进行投票(投票算法),有结果后,进行故障转移(failover)操作,然后通过订阅发布模式&mldr;</p>
+<p><code>redis-sentinel kconfig/sentinel.conf</code> 启动哨兵. 配置文件如下:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=c1># sentinel moniter 被监控的名称 hostIP port 1(代表主机挂了)</span>
+sentinel moniter myredis 127.0.0.1 <span class=m>6379</span> <span class=m>1</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>flaws: 1. Redis 不好在线扩容 2. 配置麻烦(选择很多)</p>
+<h1 id=redis-缓存穿透与雪崩>Redis 缓存穿透与雪崩</h1>
+<h2 id=缓存穿透>缓存穿透</h2>
+<p>查询没有命中缓存,直接去mysql去查,给持久层造成很大的压力</p>
+<h3 id=解决方案>解决方案</h3>
+<p>布隆过滤器: 对所有可能查询的参数以hash存储,在控制层进行校验,不符合则丢弃.</p>
+<p>缓存空对象: 存储层没命中,返回空对象,缓存起来,设置一个过期时间. flaw: 缓存空值的键占空间; 缓存层与数据层有一段时间数据不一致, 对需要保持一致性的业务会有影响</p>
+<h2 id=缓存击穿>缓存击穿</h2>
+<p>一个热点key失效的瞬间大并发直接请求数据库,就像在屏障上早开了一个洞.</p>
+<h3 id=解决方案-1>解决方案</h3>
+<ul>
+<li>
+<p>设置热点数据永不过期</p>
+</li>
+<li>
+<p>加互斥锁: 分布式锁. 加锁,只保证有一个线程能够进Mysql, 将高并发压力转移到了分布式锁.</p>
+</li>
+</ul>
+<h2 id=缓存雪崩>缓存雪崩</h2>
+<p>某一时间段,缓存集中过期, Redis 宕机</p>
+<h3 id=解决方案-2>解决方案</h3>
+<ul>
+<li>
+<p>异地多活</p>
+</li>
+<li>
+<p>限流降级</p>
+</li>
+<li>
+<p>数据预热: 部署前把所有可能的数据都先访问一遍. 不同的key设置不同的过期时间,使缓存失效的时间尽量均匀.</p>
+</li>
+</ul>
+<p><a href="https://www.bilibili.com/video/BV1S54y1R7SB?p=1">https://www.bilibili.com/video/BV1S54y1R7SB?p=1</a></p>
+</div>
+<div class=post-copyright>
+<p class=copyright-item>
+<span class=item-title>Author</span>
+<span class=item-content>magictomagic</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>LastMod</span>
+<span class=item-content>
+2021-02-07
+</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>License</span>
+<span class=item-content><a rel="license noopener" href=https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License target=_blank>Creative Commons Attribution-ShareAlike License</a></span>
+</p>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/redis/>Redis</a>
+</div>
+<nav class=post-nav>
+<a class=prev href=/post/typescript-%E7%AC%94%E8%AE%B0/>
+<i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">typescript 笔记</span>
+<span class="prev-text nav-mobile">Prev</span>
+</a>
+<a class=next href=/post/python-%E7%88%AC%E8%99%AB%E7%AC%94%E8%AE%B0/>
+<span class="next-text nav-default">Python 爬虫笔记</span>
+<span class="next-text nav-mobile">Next</span>
+<i class="iconfont icon-right"></i>
+</a>
+</nav>
+</footer>
+</article>
+</div>
+</div>
+</main>
+<footer id=footer class=footer>
+<div class=social-links>
+<a href=mailto:your@email.com class="iconfont icon-email" title=email></a>
+<a href=http://localhost:1313 class="iconfont icon-stack-overflow" title=stack-overflow></a>
+<a href=http://localhost:1313 class="iconfont icon-twitter" title=twitter></a>
+<a href=http://localhost:1313 class="iconfont icon-facebook" title=facebook></a>
+<a href=http://localhost:1313 class="iconfont icon-linkedin" title=linkedin></a>
+<a href=http://localhost:1313 class="iconfont icon-google" title=google></a>
+<a href=http://localhost:1313 class="iconfont icon-github" title=github></a>
+<a href=http://localhost:1313 class="iconfont icon-weibo" title=weibo></a>
+<a href=http://localhost:1313 class="iconfont icon-zhihu" title=zhihu></a>
+<a href=http://localhost:1313 class="iconfont icon-douban" title=douban></a>
+<a href=http://localhost:1313 class="iconfont icon-pocket" title=pocket></a>
+<a href=http://localhost:1313 class="iconfont icon-tumblr" title=tumblr></a>
+<a href=http://localhost:1313 class="iconfont icon-instagram" title=instagram></a>
+<a href=http://localhost:1313 class="iconfont icon-gitlab" title=gitlab></a>
+<a href=http://localhost:1313 class="iconfont icon-bilibili" title=bilibili></a>
+<a href=https://magictomagic.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
+</div>
+<div class=copyright>
+<span class=power-by>
+Powered by <a class=hexo-link href=https://gohugo.io>Hugo</a>
+</span>
+<span class=division>|</span>
+<span class=theme-info>
+Theme -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a>
+</span>
+<span class=copyright-year>
+&copy;
+2017 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+</span>
+</div>
+</footer>
+<div class=back-to-top id=back-to-top>
+<i class="iconfont icon-up"></i>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
+</body>
+</html>

@@ -1,0 +1,670 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<title>Python 爬虫笔记 - Iron Age</title>
+<meta name=renderer content="webkit">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta http-equiv=cache-control content="no-transform">
+<meta http-equiv=cache-control content="no-siteapp">
+<meta name=theme-color content="#f8f5ec">
+<meta name=msapplication-navbutton-color content="#f8f5ec">
+<meta name=apple-mobile-web-app-capable content="yes">
+<meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
+<meta name=author content="magictomagic"><meta name=description content="conda 天坑 有依赖无法删除导致其它包无法安装：conda clean --all 慎用conda update conda 和 conda update --force conda，虽然它可能解决上述问题，但依然出现跑12个小时，"><meta name=keywords content="Hugo,theme,even">
+<meta name=generator content="Hugo 0.86.1 with theme even">
+<link rel=canonical href=https://magictomagic.github.io/post/python-%E7%88%AC%E8%99%AB%E7%AC%94%E8%AE%B0/>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
+<link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
+<meta property="og:title" content="Python 爬虫笔记">
+<meta property="og:description" content="conda 天坑 有依赖无法删除导致其它包无法安装：conda clean --all 慎用conda update conda 和 conda update --force conda，虽然它可能解决上述问题，但依然出现跑12个小时，">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://magictomagic.github.io/post/python-%E7%88%AC%E8%99%AB%E7%AC%94%E8%AE%B0/"><meta property="article:section" content="post">
+<meta property="article:published_time" content="2021-01-16T01:37:56+08:00">
+<meta property="article:modified_time" content="2021-01-16T01:37:56+08:00">
+<meta itemprop=name content="Python 爬虫笔记">
+<meta itemprop=description content="conda 天坑 有依赖无法删除导致其它包无法安装：conda clean --all 慎用conda update conda 和 conda update --force conda，虽然它可能解决上述问题，但依然出现跑12个小时，"><meta itemprop=datePublished content="2021-01-16T01:37:56+08:00">
+<meta itemprop=dateModified content="2021-01-16T01:37:56+08:00">
+<meta itemprop=wordCount content="2826">
+<meta itemprop=keywords content="爬虫,Python,"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="Python 爬虫笔记">
+<meta name=twitter:description content="conda 天坑 有依赖无法删除导致其它包无法安装：conda clean --all 慎用conda update conda 和 conda update --force conda，虽然它可能解决上述问题，但依然出现跑12个小时，"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
+</head>
+<body>
+<div id=mobile-navbar class=mobile-navbar>
+<div class=mobile-header-logo>
+<a href=/ class=logo>Iron</a>
+</div>
+<div class=mobile-navbar-icon>
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+<nav id=mobile-menu class="mobile-menu slideout-menu">
+<ul class=mobile-menu-list>
+<a href=/>
+<li class=mobile-menu-item>Home</li>
+</a><a href=/post/>
+<li class=mobile-menu-item>Archives</li>
+</a><a href=/tags/>
+<li class=mobile-menu-item>Tags</li>
+</a><a href=/categories/>
+<li class=mobile-menu-item>Categories</li>
+</a>
+</ul>
+</nav>
+<div class=container id=mobile-panel>
+<header id=header class=header>
+<div class=logo-wrapper>
+<a href=/ class=logo>Iron</a>
+</div>
+<nav class=site-navbar>
+<ul id=menu class=menu>
+<li class=menu-item>
+<a class=menu-item-link href=/>Home</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/post/>Archives</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/tags/>Tags</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/categories/>Categories</a>
+</li>
+</ul>
+</nav>
+</header>
+<main id=main class=main>
+<div class=content-wrapper>
+<div id=content class=content>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>Python 爬虫笔记</h1>
+<div class=post-meta>
+<span class=post-time> 2021-01-16 </span>
+<div class=post-category>
+<a href=/categories/notes/> notes </a>
+</div>
+</div>
+</header>
+<div class=post-toc id=post-toc>
+<h2 class=post-toc-title>Contents</h2>
+<div class="post-toc-content always-active">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#conda-天坑>conda 天坑</a>
+<ul>
+<li><a href=#conda-其它命令>conda 其它命令</a></li>
+</ul>
+</li>
+<li><a href=#request>request</a></li>
+<li><a href=#selenium>selenium</a></li>
+<li><a href=#xpath>Xpath</a></li>
+<li><a href=#scrapy>scrapy</a>
+<ul>
+<li><a href=#scrapy-基础模块文件>scrapy 基础模块（文件）</a>
+<ul>
+<li><a href=#spider-模块文件>Spider 模块（文件）</a></li>
+<li><a href=#items-模块文件>items 模块（文件）</a></li>
+<li><a href=#piplines-模块文件>piplines 模块（文件）</a></li>
+<li><a href=#setting-模块文件>setting 模块（文件）</a></li>
+<li><a href=#middlewares-模块文件>middlewares 模块（文件）</a></li>
+<li><a href=#下载中间件>下载中间件</a></li>
+</ul>
+</li>
+<li><a href=#图片下载>图片下载</a></li>
+<li><a href=#crawlspider>CrawlSpider</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+<div class=post-content>
+<h1 id=conda-天坑>conda 天坑</h1>
+<ul>
+<li>有依赖无法删除导致其它包无法安装：<code>conda clean --all</code></li>
+<li>慎用<code>conda update conda</code> 和 <code>conda update --force conda</code>，虽然它可能解决上述问题，但依然出现跑12个小时，然后依然是同一个报错的情况。</li>
+<li>其它尝试：
+<ul>
+<li>更新所有包：<code>conda update --all</code></li>
+<li>更新conda：<code>conda install anaconda</code></li>
+</ul>
+</li>
+<li>conda 虚拟环境的使用</li>
+</ul>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-bat data-lang=bat>conda env list # 列出所有conda的虚拟环境
+activate xxx # 进入虚拟环境xxx
+conda install xxx # 常用安装命令
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>安装第三方包，优先通过conda装，再通过pip装，定制性|场景性 强的，包多且用的少的，项目大的，会污染全局环境变量的，通过虚拟环境装，虚拟环境高于工程几个层级，便于多个相同类型的工程共用同一份虚拟的环境变量 | 系统专门搞了一个存多个虚拟环境的文件夹，所以**对所有工程的父类（即虚拟环境）命名要做到能清楚的表示情境，**以后用到什么工作栈就调哪个虚拟环境。</li>
+<li>Pycharm 的作用分割：创建虚拟环境，命令行安装，运行程序，方便编辑，管理项目</li>
+</ul>
+<h2 id=conda-其它命令>conda 其它命令</h2>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-txt data-lang=txt>如果想要导出当前环境的包信息可以用
+conda env export &gt; environment.yaml
+
+将包信息存入yaml文件中.
+当需要重新创建一个相同的虚拟环境时可以用
+conda env create -f environment.yaml
+
+其实命令很简单对不对, 我把一些常用的在下面给出来, 相信自己多打两次就能记住
+activate // 切换到base环境
+
+activate learn // 切换到learn环境
+
+conda create -n learn python=3 // 创建一个名为learn的环境并指定python版本为3(的最新版本)
+
+conda env list // 列出conda管理的所有环境
+
+conda list // 列出当前环境的所有包
+
+conda install requests 安装requests包
+
+conda remove requests 卸载requets包
+
+conda remove -n learn --all // 删除learn环境及下属所有包
+
+conda update requests 更新requests包
+
+conda env export &gt; environment.yaml // 导出当前环境的包信息
+
+conda env create -f environment.yaml // 用配置文件创建新的虚拟环境
+</code></pre></td></tr></table>
+</div>
+</div><h1 id=request>request</h1>
+<p>动态加载的页面，若是 ajax 的，可以用 post 获取，例如百度翻译。数据以json格式作为<code>request.post</code>的<code>data=</code>参数传入。</p>
+<h1 id=selenium>selenium</h1>
+<p>element.text 获取元素里面的文本</p>
+<p>send_keys(&lsquo;xxx&rsquo;) 发送文本（针对输入框等可输入东西的）</p>
+<p>python for in 遍历 elements 可遍历完嵌套 ？</p>
+<p>webdriver（整个web页面） 和 element 对象 选择元素的方法是一样的</p>
+<p>wd.implicitly_wait(10) 每隔半秒去界面上查看一次元素是否存在，直到找到该元素，或者超过了10秒，抛出异常</p>
+<p>wd.quit() 关闭浏览器和驱动</p>
+<p>element.get_attribute(&lsquo;outerHTML&rsquo;) 获取整个页面（场景：网页出错判断，爬虫）</p>
+<p>element.text 获取元素展示在页面上的内容</p>
+<p>element.get_attribute(&lsquo;innerText&rsquo;) 或 textContent 获取没有展示在界面上的文本内容</p>
+<p>find_element_by_css_selector(CSS Selector 参数) // 相当于querySelector // 可在浏览器 console ctrl+f 测试</p>
+<blockquote>
+<p>span:nth-child(2) 父元素<span>的第二个子节点 | <code>even</code> <code>odd</code>
+span:nth-last-child(2) 父元素<span>的倒数第二个子节点
+span:nth-of-type(2) 父元素（随便）第二个span类型的元素 | <code>nth-last-of-type</code>
+p:nth-of-type(2) 限制p类型的偶数
+h3 + span <code>紧跟着</code>h3的span兄弟结点 | <code>~</code> <code>所有的</code></p>
+</blockquote>
+<p>wd.switch_to.frame(&lsquo;frame1&rsquo;) 根据i<code>d='frame1'</code>切换frame | wd 也可以是 element
+wd.switch_to.default_content() 切换回原来的主html</p>
+<p>wd.switch_to.window(handle) // for [标题栏 wd.title | 地址栏 ?? 的名字] in</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>mainWindow</span> <span class=o>=</span> <span class=n>wd</span><span class=o>.</span><span class=n>current_window_handle</span> <span class=c1># 先保存当前handle</span>
+
+<span class=k>for</span> <span class=n>handle</span> <span class=ow>in</span> <span class=n>wd</span><span class=o>.</span><span class=n>windwow_handles</span><span class=p>:</span>
+	<span class=n>wd</span><span class=o>.</span><span class=n>switch_to</span><span class=o>.</span><span class=n>window</span><span class=p>(</span><span class=n>handle</span><span class=p>)</span>
+	<span class=k>if</span> <span class=s1>&#39;Bing&#39;</span> <span class=ow>in</span> <span class=n>wd</span><span class=o>.</span><span class=n>title</span><span class=p>:</span>
+		<span class=k>break</span>
+		
+<span class=nb>print</span><span class=p>(</span><span class=n>wd</span><span class=o>.</span><span class=n>title</span><span class=p>)</span>
+
+<span class=n>wd</span><span class=o>.</span><span class=n>switch_to</span><span class=o>.</span><span class=n>window</span><span class=p>(</span><span class=n>mainWindow</span><span class=p>)</span> <span class=c1># 回来</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>wd.title 当前窗口的标题栏</p>
+<p><code>ActionChains</code>特殊动作模拟 e.g. 拖拽，右键点击&mldr;</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=kn>from</span> <span class=nn>selenium.webdriver.common.action_chains</span> <span class=kn>import</span> <span class=n>ActionChains</span>
+<span class=n>ac</span> <span class=o>=</span> <span class=n>ActionChains</span><span class=p>(</span><span class=n>wd</span><span class=p>)</span>
+<span class=n>ac</span><span class=o>.</span><span class=n>move_to_element</span><span class=p>(</span>
+	<span class=n>wd</span><span class=o>.</span><span class=n>find_element_by_css_selector</span><span class=p>(</span><span class=s1>&#39;[name=&#34;asdasd&#34;]&#39;</span><span class=p>)</span> <span class=c1># element对象</span>
+<span class=p>)</span><span class=o>.</span><span class=n>perform</span><span class=p>()</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id=xpath>Xpath</h1>
+<p>console 调试
+tag名@属性名=&lsquo;属性值&rsquo;
+<code>//</code>表示多层级
+不得有标签<code>tbody</code></p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-python data-lang=python> <span class=o>//*</span><span class=p>[</span><span class=nd>@id</span><span class=o>=</span><span class=s1>&#39;west&#39;</span><span class=p>]</span>
+ <span class=o>//</span><span class=n>div</span><span class=p>[</span><span class=nd>@class</span><span class=o>=</span><span class=s1>&#39;single_choice&#39;</span><span class=p>]</span> <span class=c1># class值 必须全部相符</span>
+ <span class=o>//*</span><span class=p>[</span><span class=nd>@multiple</span><span class=p>]</span> <span class=c1># 所有含 multiple 属性的</span>
+ 
+ <span class=n>a</span><span class=p>[</span><span class=n>href</span><span class=o>*=</span><span class=s1>&#39;daasd&#39;</span><span class=p>]</span> <span class=c1># 包含</span>
+ <span class=n>a</span><span class=p>[</span><span class=n>href</span><span class=o>^=</span><span class=s1>&#39;http&#39;</span><span class=p>]</span> <span class=c1># 开头</span>
+ <span class=n>a</span><span class=p>[</span><span class=n>href</span><span class=err>$</span><span class=o>=</span><span class=s1>&#39;.com&#39;</span><span class=p>]</span> <span class=c1># 结尾</span>
+ 
+<span class=o>//*</span><span class=p>[</span><span class=n>contains</span><span class=p>(</span><span class=nd>@style</span><span class=p>,</span><span class=s1>&#39;color&#39;</span><span class=p>)]</span> <span class=c1># 包含</span>
+<span class=o>//*</span><span class=p>[</span><span class=n>starts</span><span class=o>-</span><span class=k>with</span><span class=p>(</span><span class=nd>@style</span><span class=p>,</span> <span class=s1>&#39;color&#39;</span><span class=p>)]</span> <span class=c1># 开头</span>
+<span class=o>//*</span><span class=p>[</span><span class=n>ends</span><span class=o>-</span><span class=k>with</span><span class=p>(</span><span class=n>style</span><span class=p>,</span> <span class=s1>&#39;color&#39;</span><span class=p>)]</span> <span class=c1># 结尾 xpath 2.0 的语法</span>
+ 
+<span class=o>//</span><span class=n>p</span><span class=p>[</span><span class=mi>2</span><span class=p>]</span> <span class=c1># p类型的第二个</span>
+<span class=n>p</span><span class=p>:</span><span class=n>nth</span><span class=o>-</span><span class=n>of</span><span class=o>-</span><span class=nb>type</span><span class=p>(</span><span class=mi>2</span><span class=p>)</span> 
+
+<span class=o>//</span><span class=n>p</span><span class=p>[</span><span class=n>last</span><span class=p>()]</span> <span class=c1># p类型的最后一个元素</span>
+ 
+<span class=o>//</span><span class=n>div</span><span class=o>/</span><span class=n>p</span><span class=p>[</span><span class=mi>2</span><span class=p>]</span> <span class=c1># div下p类型的第二个</span>
+<span class=o>//</span><span class=n>div</span><span class=o>/*</span><span class=p>[</span><span class=mi>2</span><span class=p>]</span> <span class=c1># div下随便类型的第二个</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>通过 xpath 选择 element 中的元素，要加<code>.</code>。e.g. <code>ele.find_elements_by_xpath('.//p')</code></p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=c1># 范围选择</span>
+<span class=o>//</span><span class=n>option</span><span class=p>[</span><span class=n>position</span><span class=p>()</span><span class=o>&lt;=</span><span class=mi>2</span><span class=p>]</span> <span class=c1># 选取为&lt;option&gt;的第1到2个元素 position() 指代元素位置</span>
+<span class=o>//*</span><span class=p>[</span><span class=nd>@class</span><span class=o>=</span><span class=s1>&#39;asdf&#39;</span><span class=p>]</span><span class=o>/</span><span class=n>option</span><span class=p>[</span><span class=n>position</span><span class=p>()</span><span class=o>&lt;=</span><span class=mi>2</span><span class=p>]</span>
+
+<span class=n>option</span><span class=p>,</span> <span class=n>h4</span>
+<span class=o>//</span><span class=n>option</span> <span class=o>|</span> <span class=o>//</span><span class=n>h4</span>
+
+<span class=c1># 选择父节点 /..</span>
+<span class=o>//*</span><span class=p>[</span><span class=nd>@id</span><span class=o>=</span><span class=s1>&#39;china&#39;</span><span class=p>]</span><span class=o>/..</span>
+
+<span class=c1># 选择所有后续兄弟节点</span>
+<span class=n>following</span><span class=o>-</span><span class=n>sibiling</span><span class=p>::</span><span class=o>*</span> <span class=c1># preceding 前面的</span>
+
+<span class=c1># 提取 xpath 返回对象后的data值，若是列表，则全部提取出来，返回的还是列表</span>
+<span class=o>.</span><span class=n>extract</span><span class=p>()</span> 
+
+</code></pre></td></tr></table>
+</div>
+</div><h1 id=scrapy>scrapy</h1>
+<h2 id=scrapy-基础模块文件>scrapy 基础模块（文件）</h2>
+<h3 id=spider-模块文件>Spider 模块（文件）</h3>
+<p>负责处理响应，响应可能经过中间件(middlewares.py)，处理响应的入口是parse函数，之后若要新解析一个页面，则通过<code>yield scrapy.Request(new_url, callback=your_function, meta={'item': item})</code>回调函数发起请求，<code>meta</code>用作传 <code>item</code>对象，使不同页面的内容存于同一个对象中。最后通过 <code>yield item</code> 将<code>item</code>对象提交给管道用于持久化存储。要持久化存储，先要实例化<code>items.py</code>文件中的对象，即 <code>from xxx.items import xxxx</code>了之后，<code>item = xxxx()</code>。同时在<code>items.py</code>中确定哪些变量是<code>item</code>对象中的。</p>
+<h3 id=items-模块文件>items 模块（文件）</h3>
+<p>持久化存储的时候用。<code>items.py</code>中一个<code>class</code>对应确定哪些变量是那个<code>class</code>对应的<code>item</code>对象中的。可以有多个<code>class</code>对应多个<code>item</code>。</p>
+<h3 id=piplines-模块文件>piplines 模块（文件）</h3>
+<p>管道，流经的数据给数据库，用于持久化存储。也可以将数据存储在文件中，为了避免多次打开关闭 文件|数据库 造成的性能损耗，要重写 <code>open_spider(self, spider)</code> 和 <code>close_spider(self, spider)</code> 方法。<code>process_item</code> 用于保存数据，最后返回一个<code>item</code> 用作给下一个即将被执行的优先级较低的管道类。之后还需在<code>setting.py</code>中开启相应的管道。将数据写入文件的示例：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=k>class</span> <span class=nc>FirstsPipeline</span><span class=p>:</span> 
+    <span class=n>fp</span> <span class=o>=</span> <span class=kc>None</span>
+    <span class=k>def</span> <span class=nf>open_spider</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>spider</span><span class=p>):</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>fp</span> <span class=o>=</span> <span class=nb>open</span><span class=p>(</span><span class=s1>&#39;./hello.txt&#39;</span><span class=p>,</span> <span class=s1>&#39;w&#39;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=s1>&#39;utf-8&#39;</span><span class=p>)</span>
+    <span class=k>def</span> <span class=nf>process_item</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>item</span><span class=p>,</span> <span class=n>spider</span><span class=p>):</span>
+        <span class=n>content</span> <span class=o>=</span> <span class=n>item</span><span class=p>[</span><span class=s1>&#39;content&#39;</span><span class=p>]</span>
+        <span class=n>next_page</span> <span class=o>=</span> <span class=n>item</span><span class=p>[</span><span class=s1>&#39;next_page&#39;</span><span class=p>]</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>fp</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>content</span> <span class=o>+</span> <span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span> <span class=o>+</span> <span class=n>next_page</span> <span class=o>+</span> <span class=s1>&#39;</span><span class=se>\n\n</span><span class=s1>&#39;</span><span class=p>)</span>
+        <span class=k>return</span> <span class=n>item</span> 
+    <span class=k>def</span> <span class=nf>close_spider</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>spider</span><span class=p>):</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>fp</span><span class=o>.</span><span class=n>close</span><span class=p>()</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=setting-模块文件>setting 模块（文件）</h3>
+<p>配置 <code>User-Agent</code>,<code>cookie</code>等<code>DEFAULT_REQUEST_HEADERS</code>参数。打开管道，下载中间件，设置反爬规则，日志等级，下载图片时指定目录，</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>DEFAULT_REQUEST_HEADERS</span> <span class=o>=</span> <span class=p>{</span>
+  <span class=s1>&#39;Accept&#39;</span><span class=p>:</span> <span class=s1>&#39;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#39;</span><span class=p>,</span>
+  <span class=s1>&#39;Accept-Language&#39;</span><span class=p>:</span> <span class=s1>&#39;en&#39;</span><span class=p>,</span>
+  <span class=s1>&#39;User-Agent&#39;</span><span class=p>:</span> <span class=s1>&#39;Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:61.0) Gecko/20100101 Firefox/61.0&#39;</span><span class=p>,</span>
+    <span class=s1>&#39;Cookie&#39;</span><span class=p>:</span> <span class=s1>&#39;HMACCOUNT_BFESS=2A84B6741779FE1C; BAIDUID_BFESS=FD4FBB71A5C5836ED9F95191F50FE5C1:FG=1; BDUSS_BFESS=3NncEdJTXBqcHhOTGNMSFR2MHdnTnhVc3ZkaGN5SzZFaEt5UENaeHd3VjJJakpnRUFBQUFBJCQAAAAAAAAAAAEAAADMXIZtOLLdMMTgMMLtOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHaVCmB2lQpgM&#39;</span><span class=p>,</span>
+<span class=p>}</span>
+<span class=n>LOG_LEVEL</span> <span class=o>=</span> <span class=s1>&#39;WARNING&#39;</span>
+<span class=n>IMAGES_STORE</span><span class=o>=</span> <span class=s1>&#39;./img&#39;</span>
+<span class=n>ROBOTSTXT_OBEY</span> <span class=o>=</span> <span class=kc>False</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=middlewares-模块文件>middlewares 模块（文件）</h3>
+<h3 id=下载中间件>下载中间件</h3>
+<p>引擎和下载器之间，批量拦截整个工程中所有的请求和响应</p>
+<h4 id=拦截请求>拦截请求</h4>
+<p>UA伪装：<code>process_request</code>模块，代理ip：<code>process_exception</code>模块</p>
+<h4 id=拦截响应>拦截响应</h4>
+<p>篡改响应数据，例如动态加载的内容，通过<code>selenium</code> 来访问。</p>
+<h2 id=图片下载>图片下载</h2>
+<p><strong>setting</strong>中添加图片下在目录，在下载中间件<strong>middlewares</strong>上挂随机UA请求头和代理ip（需要购买），用于拦截请求。对于正常请求，在<code>process_request</code>中开启UA伪装，对于异常，在<code>process_exception</code>中用代理ip，例如：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-python data-lang=python>    <span class=n>user_agent_list</span> <span class=o>=</span> <span class=p>[</span>
+        <span class=s2>&#34;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 &#34;</span>
+        <span class=s2>&#34;(KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1&#34;</span><span class=p>,</span>
+        <span class=s2>&#34;Mozilla/5.0 (X11; CrOS i686 2268.111.0) AppleWebKit/536.11 &#34;</span>
+        <span class=s2>&#34;(KHTML, like Gecko) Chrome/20.0.1132.57 Safari/536.11&#34;</span><span class=p>,</span>
+        <span class=s2>&#34;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 &#34;</span>
+        <span class=s2>&#34;(KHTML, like Gecko) Chrome/20.0.1092.0 Safari/536.6&#34;</span><span class=p>,</span>
+        <span class=s2>&#34;Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.6 &#34;</span>
+        <span class=s2>&#34;(KHTML, like Gecko) Chrome/20.0.1090.0 Safari/536.6&#34;</span><span class=p>,</span>
+        <span class=s2>&#34;Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.1 &#34;</span>
+        <span class=s2>&#34;(KHTML, like Gecko) Chrome/19.77.34.5 Safari/537.1&#34;</span><span class=p>,</span>
+        <span class=s2>&#34;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.5 &#34;</span>
+        <span class=s2>&#34;(KHTML, like Gecko) Chrome/19.0.1084.9 Safari/536.5&#34;</span><span class=p>,</span>
+        <span class=s2>&#34;Mozilla/5.0 (Windows NT 6.0) AppleWebKit/536.5 &#34;</span>
+        <span class=s2>&#34;(KHTML, like Gecko) Chrome/19.0.1084.36 Safari/536.5&#34;</span><span class=p>,</span>
+        <span class=s2>&#34;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 &#34;</span>
+        <span class=s2>&#34;(KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3&#34;</span><span class=p>,</span>
+        <span class=s2>&#34;Mozilla/5.0 (Windows NT 5.1) AppleWebKit/536.3 &#34;</span>
+        <span class=s2>&#34;(KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3&#34;</span><span class=p>,</span>
+        <span class=s2>&#34;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_0) AppleWebKit/536.3 &#34;</span>
+        <span class=s2>&#34;(KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3&#34;</span><span class=p>,</span>
+        <span class=s2>&#34;Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 &#34;</span>
+        <span class=s2>&#34;(KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3&#34;</span><span class=p>,</span>
+        <span class=s2>&#34;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 &#34;</span>
+        <span class=s2>&#34;(KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3&#34;</span><span class=p>,</span>
+        <span class=s2>&#34;Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 &#34;</span>
+        <span class=s2>&#34;(KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3&#34;</span><span class=p>,</span>
+        <span class=s2>&#34;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 &#34;</span>
+        <span class=s2>&#34;(KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3&#34;</span><span class=p>,</span>
+        <span class=s2>&#34;Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.3 &#34;</span>
+        <span class=s2>&#34;(KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3&#34;</span><span class=p>,</span>
+        <span class=s2>&#34;Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 &#34;</span>
+        <span class=s2>&#34;(KHTML, like Gecko) Chrome/19.0.1061.0 Safari/536.3&#34;</span><span class=p>,</span>
+        <span class=s2>&#34;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.24 &#34;</span>
+        <span class=s2>&#34;(KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24&#34;</span><span class=p>,</span>
+        <span class=s2>&#34;Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/535.24 &#34;</span>
+        <span class=s2>&#34;(KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24&#34;</span>
+    <span class=p>]</span>
+    <span class=n>PROXY_http</span> <span class=o>=</span> <span class=p>[</span>
+        <span class=s1>&#39;153.180.102.104:80&#39;</span><span class=p>,</span>
+        <span class=s1>&#39;195.208.131.189:56055&#39;</span><span class=p>,</span>
+    <span class=p>]</span>
+    <span class=n>PROXY_https</span> <span class=o>=</span> <span class=p>[</span>
+        <span class=s1>&#39;120.83.49.90:9000&#39;</span><span class=p>,</span>
+        <span class=s1>&#39;95.189.112.214:35508&#39;</span><span class=p>,</span>
+    <span class=p>]</span>
+        <span class=k>def</span> <span class=nf>process_request</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>request</span><span class=p>,</span> <span class=n>spider</span><span class=p>):</span>
+        <span class=c1># UA 伪装</span>
+        <span class=n>request</span><span class=o>.</span><span class=n>headers</span><span class=p>[</span><span class=s1>&#39;User-Agent&#39;</span><span class=p>]</span> <span class=o>=</span> <span class=n>random</span><span class=o>.</span><span class=n>choice</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>user_agent_list</span><span class=p>)</span>
+        <span class=c1># request.meta[&#39;proxy&#39;] = &#39;http://175.43.156.8:9999&#39;</span>
+        <span class=k>return</span> <span class=kc>None</span>
+        
+        <span class=k>def</span> <span class=nf>process_exception</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>request</span><span class=p>,</span> <span class=n>exception</span><span class=p>,</span> <span class=n>spider</span><span class=p>):</span>
+        <span class=c1># ip 被禁掉了的话，用代理 ip</span>
+        <span class=k>if</span> <span class=n>request</span><span class=o>.</span><span class=n>url</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s1>&#39;:&#39;</span><span class=p>)[</span><span class=mi>0</span><span class=p>]</span> <span class=o>==</span> <span class=s1>&#39;http&#39;</span><span class=p>:</span>
+            <span class=n>request</span><span class=o>.</span><span class=n>meta</span><span class=p>[</span><span class=s1>&#39;proxy&#39;</span><span class=p>]</span> <span class=o>=</span> <span class=s1>&#39;http://&#39;</span> <span class=o>+</span> <span class=n>random</span><span class=o>.</span><span class=n>choice</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>PROXY_http</span><span class=p>)</span>
+        <span class=k>else</span><span class=p>:</span>
+            <span class=n>request</span><span class=o>.</span><span class=n>meta</span><span class=p>[</span><span class=s1>&#39;proxy&#39;</span><span class=p>]</span> <span class=o>=</span> <span class=s1>&#39;http://&#39;</span> <span class=o>+</span> <span class=n>random</span><span class=o>.</span><span class=n>choice</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>PROXY_https</span><span class=p>)</span>
+
+        <span class=k>return</span> <span class=n>request</span> <span class=c1># 将修正之后的请求进行重新的请求发送</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=crawlspider>CrawlSpider</h2>
+<blockquote>
+<p>爬取全站数据，Spider的一个子类</p>
+</blockquote>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-bat data-lang=bat>scrapy genspider -t crawl sun www.xxx.com
+</code></pre></td></tr></table>
+</div>
+</div>
+</div>
+<div class=post-copyright>
+<p class=copyright-item>
+<span class=item-title>Author</span>
+<span class=item-content>magictomagic</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>LastMod</span>
+<span class=item-content>
+2021-01-16
+</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>License</span>
+<span class=item-content><a rel="license noopener" href=https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License target=_blank>Creative Commons Attribution-ShareAlike License</a></span>
+</p>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/%E7%88%AC%E8%99%AB/>爬虫</a>
+<a href=/tags/python/>Python</a>
+</div>
+<nav class=post-nav>
+<a class=prev href=/post/redis-%E7%AC%94%E8%AE%B0/>
+<i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">Redis 笔记</span>
+<span class="prev-text nav-mobile">Prev</span>
+</a>
+<a class=next href=/post/nodejs-%E7%AC%94%E8%AE%B0/>
+<span class="next-text nav-default">Nodejs 笔记</span>
+<span class="next-text nav-mobile">Next</span>
+<i class="iconfont icon-right"></i>
+</a>
+</nav>
+</footer>
+</article>
+</div>
+</div>
+</main>
+<footer id=footer class=footer>
+<div class=social-links>
+<a href=mailto:your@email.com class="iconfont icon-email" title=email></a>
+<a href=http://localhost:1313 class="iconfont icon-stack-overflow" title=stack-overflow></a>
+<a href=http://localhost:1313 class="iconfont icon-twitter" title=twitter></a>
+<a href=http://localhost:1313 class="iconfont icon-facebook" title=facebook></a>
+<a href=http://localhost:1313 class="iconfont icon-linkedin" title=linkedin></a>
+<a href=http://localhost:1313 class="iconfont icon-google" title=google></a>
+<a href=http://localhost:1313 class="iconfont icon-github" title=github></a>
+<a href=http://localhost:1313 class="iconfont icon-weibo" title=weibo></a>
+<a href=http://localhost:1313 class="iconfont icon-zhihu" title=zhihu></a>
+<a href=http://localhost:1313 class="iconfont icon-douban" title=douban></a>
+<a href=http://localhost:1313 class="iconfont icon-pocket" title=pocket></a>
+<a href=http://localhost:1313 class="iconfont icon-tumblr" title=tumblr></a>
+<a href=http://localhost:1313 class="iconfont icon-instagram" title=instagram></a>
+<a href=http://localhost:1313 class="iconfont icon-gitlab" title=gitlab></a>
+<a href=http://localhost:1313 class="iconfont icon-bilibili" title=bilibili></a>
+<a href=https://magictomagic.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
+</div>
+<div class=copyright>
+<span class=power-by>
+Powered by <a class=hexo-link href=https://gohugo.io>Hugo</a>
+</span>
+<span class=division>|</span>
+<span class=theme-info>
+Theme -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a>
+</span>
+<span class=copyright-year>
+&copy;
+2017 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+</span>
+</div>
+</footer>
+<div class=back-to-top id=back-to-top>
+<i class="iconfont icon-up"></i>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
+</body>
+</html>

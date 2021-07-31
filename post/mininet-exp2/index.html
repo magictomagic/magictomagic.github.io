@@ -1,0 +1,348 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<title>Mininet-exp2 - Iron Age</title>
+<meta name=renderer content="webkit">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta http-equiv=cache-control content="no-transform">
+<meta http-equiv=cache-control content="no-siteapp">
+<meta name=theme-color content="#f8f5ec">
+<meta name=msapplication-navbutton-color content="#f8f5ec">
+<meta name=apple-mobile-web-app-capable content="yes">
+<meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
+<meta name=author content="magictomagic"><meta name=description content="通过控制器的逻辑解决ARP包的洪泛问题 通过Ryu的API可以发现全局的拓扑信息，将交换机的端⼝信息记录下来，当控制器收到⼀个未学习的Arp R"><meta name=keywords content="Hugo,theme,even">
+<meta name=generator content="Hugo 0.86.1 with theme even">
+<link rel=canonical href=https://magictomagic.github.io/post/mininet-exp2/>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
+<link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
+<meta property="og:title" content="Mininet-exp2">
+<meta property="og:description" content="通过控制器的逻辑解决ARP包的洪泛问题 通过Ryu的API可以发现全局的拓扑信息，将交换机的端⼝信息记录下来，当控制器收到⼀个未学习的Arp R">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://magictomagic.github.io/post/mininet-exp2/"><meta property="article:section" content="post">
+<meta property="article:published_time" content="2020-04-25T01:37:56+08:00">
+<meta property="article:modified_time" content="2020-04-25T01:37:56+08:00">
+<meta itemprop=name content="Mininet-exp2">
+<meta itemprop=description content="通过控制器的逻辑解决ARP包的洪泛问题 通过Ryu的API可以发现全局的拓扑信息，将交换机的端⼝信息记录下来，当控制器收到⼀个未学习的Arp R"><meta itemprop=datePublished content="2020-04-25T01:37:56+08:00">
+<meta itemprop=dateModified content="2020-04-25T01:37:56+08:00">
+<meta itemprop=wordCount content="496">
+<meta itemprop=keywords content="Mininet,experiment,"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="Mininet-exp2">
+<meta name=twitter:description content="通过控制器的逻辑解决ARP包的洪泛问题 通过Ryu的API可以发现全局的拓扑信息，将交换机的端⼝信息记录下来，当控制器收到⼀个未学习的Arp R"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
+</head>
+<body>
+<div id=mobile-navbar class=mobile-navbar>
+<div class=mobile-header-logo>
+<a href=/ class=logo>Iron</a>
+</div>
+<div class=mobile-navbar-icon>
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+<nav id=mobile-menu class="mobile-menu slideout-menu">
+<ul class=mobile-menu-list>
+<a href=/>
+<li class=mobile-menu-item>Home</li>
+</a><a href=/post/>
+<li class=mobile-menu-item>Archives</li>
+</a><a href=/tags/>
+<li class=mobile-menu-item>Tags</li>
+</a><a href=/categories/>
+<li class=mobile-menu-item>Categories</li>
+</a>
+</ul>
+</nav>
+<div class=container id=mobile-panel>
+<header id=header class=header>
+<div class=logo-wrapper>
+<a href=/ class=logo>Iron</a>
+</div>
+<nav class=site-navbar>
+<ul id=menu class=menu>
+<li class=menu-item>
+<a class=menu-item-link href=/>Home</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/post/>Archives</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/tags/>Tags</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/categories/>Categories</a>
+</li>
+</ul>
+</nav>
+</header>
+<main id=main class=main>
+<div class=content-wrapper>
+<div id=content class=content>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>Mininet-exp2</h1>
+<div class=post-meta>
+<span class=post-time> 2020-04-25 </span>
+<div class=post-category>
+<a href=/categories/exp/> exp </a>
+</div>
+</div>
+</header>
+<div class=post-toc id=post-toc>
+<h2 class=post-toc-title>Contents</h2>
+<div class="post-toc-content always-active">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#通过控制器的逻辑解决arp包的洪泛问题>通过控制器的逻辑解决ARP包的洪泛问题</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+<div class=post-content>
+<h2 id=通过控制器的逻辑解决arp包的洪泛问题>通过控制器的逻辑解决ARP包的洪泛问题</h2>
+<blockquote>
+<p>通过Ryu的API可以发现全局的拓扑信息，将交换机的端⼝信息记录下来，当控制器收到⼀个未学习的Arp Request时，直接发给所有交换机连接主机的那些端⼝。</p>
+</blockquote>
+<p>重写 ryu.controller.handler.set_ev_cls(ev_cls, dispatchers=None) 的内建类，<a href=https://ryu.readthedocs.io/en/latest/ryu_app_api.html#ryu-controller-handler-set-ev-cls>官网</a>对第二个参数的解释是 <strong>dispatchers argument specifies one of the following negotiation phases (or a list of them) for which events should be generated for this handler.</strong>
+参考官网 <a href=https://github.com/osrg/ryu/blob/master/ryu/app/simple_switch_stp_13.py>stp</a> 的实现。
+learn a mac address to avoid FLOOD next time.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=c1># @set_ev_cls(stplib.EventPacketIn, MAIN_DISPATCHER)</span>
+
+<span class=c1># dpid = ev.msg.datapath.id</span>
+
+<span class=c1># dst = ryu.lib.packet.Packet(msg.data).get_protocols(ethernet.ethernet)[0]</span>
+
+<span class=bp>self</span><span class=o>.</span><span class=n>mac_to_port</span><span class=p>[</span><span class=n>dpid</span><span class=p>][</span><span class=n>src</span><span class=p>]</span> <span class=o>=</span> <span class=n>in_port</span>
+
+        <span class=k>if</span> <span class=n>dst</span> <span class=ow>in</span> <span class=bp>self</span><span class=o>.</span><span class=n>mac_to_port</span><span class=p>[</span><span class=n>dpid</span><span class=p>]:</span>
+            <span class=n>out_port</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>mac_to_port</span><span class=p>[</span><span class=n>dpid</span><span class=p>][</span><span class=n>dst</span><span class=p>]</span>
+        <span class=k>else</span><span class=p>:</span>
+            <span class=n>out_port</span> <span class=o>=</span> <span class=n>ofproto</span><span class=o>.</span><span class=n>OFPP_FLOOD</span>
+
+        <span class=n>actions</span> <span class=o>=</span> <span class=p>[</span><span class=n>parser</span><span class=o>.</span><span class=n>OFPActionOutput</span><span class=p>(</span><span class=n>out_port</span><span class=p>)]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>install a flow to avoid packet_in next time</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=k>if</span> <span class=n>out_port</span> <span class=o>!=</span> <span class=n>ofproto</span><span class=o>.</span><span class=n>OFPP_FLOOD</span><span class=p>:</span>
+            <span class=n>match</span> <span class=o>=</span> <span class=n>parser</span><span class=o>.</span><span class=n>OFPMatch</span><span class=p>(</span><span class=n>in_port</span><span class=o>=</span><span class=n>in_port</span><span class=p>,</span> <span class=n>eth_dst</span><span class=o>=</span><span class=n>dst</span><span class=p>)</span>
+            <span class=bp>self</span><span class=o>.</span><span class=n>add_flow</span><span class=p>(</span><span class=n>datapath</span><span class=p>,</span> <span class=mi>1</span><span class=p>,</span> <span class=n>match</span><span class=p>,</span> <span class=n>actions</span><span class=p>)</span>
+
+        <span class=n>data</span> <span class=o>=</span> <span class=kc>None</span>
+        <span class=k>if</span> <span class=n>msg</span><span class=o>.</span><span class=n>buffer_id</span> <span class=o>==</span> <span class=n>ofproto</span><span class=o>.</span><span class=n>OFP_NO_BUFFER</span><span class=p>:</span>
+            <span class=n>data</span> <span class=o>=</span> <span class=n>msg</span><span class=o>.</span><span class=n>data</span>
+
+        <span class=n>out</span> <span class=o>=</span> <span class=n>parser</span><span class=o>.</span><span class=n>OFPPacketOut</span><span class=p>(</span><span class=n>datapath</span><span class=o>=</span><span class=n>datapath</span><span class=p>,</span> <span class=n>buffer_id</span><span class=o>=</span><span class=n>msg</span><span class=o>.</span><span class=n>buffer_id</span><span class=p>,</span>
+                                  <span class=n>in_port</span><span class=o>=</span><span class=n>in_port</span><span class=p>,</span> <span class=n>actions</span><span class=o>=</span><span class=n>actions</span><span class=p>,</span> <span class=n>data</span><span class=o>=</span><span class=n>data</span><span class=p>)</span>
+        <span class=n>datapath</span><span class=o>.</span><span class=n>send_msg</span><span class=p>(</span><span class=n>out</span><span class=p>)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>得到</p>
+<p><img src=/img/Snipaste_2020-04-24_20-54-08.png alt></p>
+<p>根据讲义，前面两个包不到是因为沉默主机的原因，Ryu 还在学习，为正常现象。
+参考 networkx <a href=https://www.grotto-networking.com/SDNfun.html#programming-switches-with-ryu>使用</a><a href=https://sdn-lab.com/2014/12/25/shortest-path-forwarding-with-openflow-on-ryu/>教程</a>，使用最短路径算法</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-python data-lang=python> <span class=nd>@set_ev_cls</span><span class=p>(</span><span class=n>event</span><span class=o>.</span><span class=n>EventSwitchEnter</span><span class=p>,[</span><span class=n>CONFIG_DISPATCHER</span><span class=p>,</span><span class=n>MAIN_DISPATCHER</span><span class=p>])</span>    
+    <span class=k>def</span> <span class=nf>get_topology</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span><span class=n>ev</span><span class=p>):</span>
+        <span class=c1>#store nodes info into the Graph</span>
+        <span class=n>switch_list</span> <span class=o>=</span> <span class=n>get_switch</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>topology_api_app</span><span class=p>,</span><span class=kc>None</span><span class=p>)</span>
+        <span class=n>switches</span> <span class=o>=</span> <span class=p>[</span><span class=n>switch</span><span class=o>.</span><span class=n>dp</span><span class=o>.</span><span class=n>id</span> <span class=k>for</span> <span class=n>switch</span> <span class=ow>in</span> <span class=n>switch_list</span><span class=p>]</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>network</span><span class=o>.</span><span class=n>add_nodes_from</span><span class=p>(</span><span class=n>switches</span><span class=p>)</span>
+        <span class=n>link_list</span> <span class=o>=</span> <span class=n>get_link</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>topology_api_app</span><span class=p>,</span><span class=kc>None</span><span class=p>)</span>
+        <span class=n>links</span> <span class=o>=</span> <span class=p>[(</span><span class=n>link</span><span class=o>.</span><span class=n>src</span><span class=o>.</span><span class=n>dpid</span><span class=p>,</span><span class=n>link</span><span class=o>.</span><span class=n>dst</span><span class=o>.</span><span class=n>dpid</span><span class=p>,{</span><span class=s1>&#39;attr_dict&#39;</span><span class=p>:{</span><span class=s1>&#39;port&#39;</span><span class=p>:</span><span class=n>link</span><span class=o>.</span><span class=n>dst</span><span class=o>.</span><span class=n>port_no</span><span class=p>}})</span> <span class=k>for</span> <span class=n>link</span> <span class=ow>in</span> <span class=n>link_list</span><span class=p>]</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>network</span><span class=o>.</span><span class=n>add_edges_from</span><span class=p>(</span><span class=n>links</span><span class=p>)</span>
+        <span class=n>links</span>  <span class=o>=</span> <span class=p>[(</span><span class=n>link</span><span class=o>.</span><span class=n>dst</span><span class=o>.</span><span class=n>dpid</span><span class=p>,</span><span class=n>link</span><span class=o>.</span><span class=n>src</span><span class=o>.</span><span class=n>dpid</span><span class=p>,{</span><span class=s1>&#39;attr_dict&#39;</span><span class=p>:{</span><span class=s1>&#39;port&#39;</span><span class=p>:</span><span class=n>link</span><span class=o>.</span><span class=n>dst</span><span class=o>.</span><span class=n>port_no</span><span class=p>}})</span> <span class=k>for</span> <span class=n>link</span> <span class=ow>in</span> <span class=n>link_list</span><span class=p>]</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>network</span><span class=o>.</span><span class=n>add_edges_from</span><span class=p>(</span><span class=n>links</span><span class=p>)</span>
+
+    <span class=k>def</span> <span class=nf>get_out_port</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span><span class=n>datapath</span><span class=p>,</span><span class=n>src</span><span class=p>,</span><span class=n>dst</span><span class=p>,</span><span class=n>in_port</span><span class=p>):</span>
+        <span class=n>dpid</span> <span class=o>=</span> <span class=n>datapath</span><span class=o>.</span><span class=n>id</span>
+        <span class=k>if</span> <span class=n>src</span> <span class=ow>not</span> <span class=ow>in</span> <span class=bp>self</span><span class=o>.</span><span class=n>network</span><span class=p>:</span>
+            <span class=bp>self</span><span class=o>.</span><span class=n>network</span><span class=o>.</span><span class=n>add_node</span><span class=p>(</span><span class=n>src</span><span class=p>)</span>
+            <span class=bp>self</span><span class=o>.</span><span class=n>network</span><span class=o>.</span><span class=n>add_edge</span><span class=p>(</span><span class=n>dpid</span><span class=p>,</span> <span class=n>src</span><span class=p>,</span> <span class=n>attr_dict</span><span class=o>=</span><span class=p>{</span><span class=s1>&#39;port&#39;</span><span class=p>:</span><span class=n>in_port</span><span class=p>})</span>
+            <span class=bp>self</span><span class=o>.</span><span class=n>network</span><span class=o>.</span><span class=n>add_edge</span><span class=p>(</span><span class=n>src</span><span class=p>,</span> <span class=n>dpid</span><span class=p>)</span>
+            <span class=bp>self</span><span class=o>.</span><span class=n>paths</span><span class=o>.</span><span class=n>setdefault</span><span class=p>(</span><span class=n>src</span><span class=p>,</span> <span class=p>{})</span>
+        <span class=k>if</span> <span class=n>dst</span> <span class=ow>in</span> <span class=bp>self</span><span class=o>.</span><span class=n>network</span><span class=p>:</span>
+            <span class=k>if</span> <span class=n>dst</span> <span class=ow>not</span> <span class=ow>in</span> <span class=bp>self</span><span class=o>.</span><span class=n>paths</span><span class=p>[</span><span class=n>src</span><span class=p>]:</span>    
+                <span class=n>path</span> <span class=o>=</span> <span class=n>nx</span><span class=o>.</span><span class=n>shortest_path</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>network</span><span class=p>,</span><span class=n>src</span><span class=p>,</span><span class=n>dst</span><span class=p>)</span>
+                <span class=bp>self</span><span class=o>.</span><span class=n>paths</span><span class=p>[</span><span class=n>src</span><span class=p>][</span><span class=n>dst</span><span class=p>]</span><span class=o>=</span><span class=n>path</span>
+            <span class=n>path</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>paths</span><span class=p>[</span><span class=n>src</span><span class=p>][</span><span class=n>dst</span><span class=p>]</span>
+            <span class=n>next_hop</span> <span class=o>=</span> <span class=n>path</span><span class=p>[</span><span class=n>path</span><span class=o>.</span><span class=n>index</span><span class=p>(</span><span class=n>dpid</span><span class=p>)</span><span class=o>+</span><span class=mi>1</span><span class=p>]</span>
+            <span class=n>out_port</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>network</span><span class=p>[</span><span class=n>dpid</span><span class=p>][</span><span class=n>next_hop</span><span class=p>][</span><span class=s1>&#39;attr_dict&#39;</span><span class=p>][</span><span class=s1>&#39;port&#39;</span><span class=p>]</span>
+            <span class=nb>print</span><span class=p>(</span><span class=n>path</span><span class=p>)</span>
+        <span class=k>else</span><span class=p>:</span>
+            <span class=n>out_port</span> <span class=o>=</span> <span class=n>datapath</span><span class=o>.</span><span class=n>ofproto</span><span class=o>.</span><span class=n>OFPP_FLOOD</span>   
+        <span class=k>return</span> <span class=n>out_port</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>pingall 结果仍然一样，查看 UCLA 对应控制器的流表</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo ovs-ofctl dump-flows s20
+</code></pre></td></tr></table>
+</div>
+</div><p>随着主机间的不断 ping，可以发现所有的流表都在不断增长，最终，s20 稳定在</p>
+<p><img src=/img/Snipaste_2020-04-25_00-51-29.png alt></p>
+<p>s25(MIT 对应的控制器)稳定在</p>
+<p><img src=/img/Snipaste_2020-04-25_00-50-34.png alt><img src=/img/Snipaste_2020-04-25_00-51-00.png alt></p>
+<p>输出</p>
+<p><img src=/img/Snipaste_2020-04-30_22-24-57.png alt></p>
+</div>
+<div class=post-copyright>
+<p class=copyright-item>
+<span class=item-title>Author</span>
+<span class=item-content>magictomagic</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>LastMod</span>
+<span class=item-content>
+2020-04-25
+</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>License</span>
+<span class=item-content><a rel="license noopener" href=https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License target=_blank>Creative Commons Attribution-ShareAlike License</a></span>
+</p>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/mininet/>Mininet</a>
+<a href=/tags/experiment/>experiment</a>
+</div>
+<nav class=post-nav>
+<a class=prev href=/post/deploy-django-on-vps/>
+<i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">Deploy Django on VPS</span>
+<span class="prev-text nav-mobile">Prev</span>
+</a>
+<a class=next href=/post/pycharm%E4%B8%ADanaconda%E4%B8%8Eopencv%E5%86%B2%E7%AA%81%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/>
+<span class="next-text nav-default">pycharm中anaconda与opencv冲突的解决办法</span>
+<span class="next-text nav-mobile">Next</span>
+<i class="iconfont icon-right"></i>
+</a>
+</nav>
+</footer>
+</article>
+</div>
+</div>
+</main>
+<footer id=footer class=footer>
+<div class=social-links>
+<a href=mailto:your@email.com class="iconfont icon-email" title=email></a>
+<a href=http://localhost:1313 class="iconfont icon-stack-overflow" title=stack-overflow></a>
+<a href=http://localhost:1313 class="iconfont icon-twitter" title=twitter></a>
+<a href=http://localhost:1313 class="iconfont icon-facebook" title=facebook></a>
+<a href=http://localhost:1313 class="iconfont icon-linkedin" title=linkedin></a>
+<a href=http://localhost:1313 class="iconfont icon-google" title=google></a>
+<a href=http://localhost:1313 class="iconfont icon-github" title=github></a>
+<a href=http://localhost:1313 class="iconfont icon-weibo" title=weibo></a>
+<a href=http://localhost:1313 class="iconfont icon-zhihu" title=zhihu></a>
+<a href=http://localhost:1313 class="iconfont icon-douban" title=douban></a>
+<a href=http://localhost:1313 class="iconfont icon-pocket" title=pocket></a>
+<a href=http://localhost:1313 class="iconfont icon-tumblr" title=tumblr></a>
+<a href=http://localhost:1313 class="iconfont icon-instagram" title=instagram></a>
+<a href=http://localhost:1313 class="iconfont icon-gitlab" title=gitlab></a>
+<a href=http://localhost:1313 class="iconfont icon-bilibili" title=bilibili></a>
+<a href=https://magictomagic.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
+</div>
+<div class=copyright>
+<span class=power-by>
+Powered by <a class=hexo-link href=https://gohugo.io>Hugo</a>
+</span>
+<span class=division>|</span>
+<span class=theme-info>
+Theme -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a>
+</span>
+<span class=copyright-year>
+&copy;
+2017 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+</span>
+</div>
+</footer>
+<div class=back-to-top id=back-to-top>
+<i class="iconfont icon-up"></i>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
+</body>
+</html>

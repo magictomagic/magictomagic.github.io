@@ -1,0 +1,40 @@
+.promo-ad {
+    padding-top: 0
+}
+
+.promo-ad .ad-pic_ch {
+    width: 100%;
+    height: 0;
+    background: #f7f8fa;
+    position: relative
+}
+
+.promo-ad .ad-pic_ch .ad-wrap img {
+    position: absolute;
+    width: 0;
+    height: 0;
+    display: inline-block
+}
+
+.promo-ad .ad-pic_ch .ad-wrap div.right p {
+    display: block;
+    color: #333;
+    font-size: 0;
+    line-height: 0;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis
+}
+
+.promo-ad .ad-pic_ch .ad-wrap div.right span {
+    display: inline-block;
+    margin-top: -4px;
+    padding: 0 18px;
+    font-size: 0;
+    color: #999;
+    -webkit-transform: scale(.8);
+    -ms-transform: scale(.8);
+    transform: scale(.8)
+}
+

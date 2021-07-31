@@ -1,0 +1,377 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<title>SDN 实验环境配置 - Iron Age</title>
+<meta name=renderer content="webkit">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta http-equiv=cache-control content="no-transform">
+<meta http-equiv=cache-control content="no-siteapp">
+<meta name=theme-color content="#f8f5ec">
+<meta name=msapplication-navbutton-color content="#f8f5ec">
+<meta name=apple-mobile-web-app-capable content="yes">
+<meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
+<meta name=author content="magictomagic"><meta name=description content="Mininet 见前一个实验。 Ryu 可以选择从源码编译或直接安装，详见官网。 下面是厉害国专属的的简单安装方式 1 pip3 install ryu -i https://pypi.doubanio.com/simple 下载完一个包后，会卡一段时间，不要以为"><meta name=keywords content="Hugo,theme,even">
+<meta name=generator content="Hugo 0.86.1 with theme even">
+<link rel=canonical href=https://magictomagic.github.io/post/sdn-ex1/>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
+<link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
+<meta property="og:title" content="SDN 实验环境配置">
+<meta property="og:description" content="Mininet 见前一个实验。 Ryu 可以选择从源码编译或直接安装，详见官网。 下面是厉害国专属的的简单安装方式 1 pip3 install ryu -i https://pypi.doubanio.com/simple 下载完一个包后，会卡一段时间，不要以为">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://magictomagic.github.io/post/sdn-ex1/"><meta property="article:section" content="post">
+<meta property="article:published_time" content="2020-04-18T01:37:56+08:00">
+<meta property="article:modified_time" content="2020-04-18T01:37:56+08:00">
+<meta itemprop=name content="SDN 实验环境配置">
+<meta itemprop=description content="Mininet 见前一个实验。 Ryu 可以选择从源码编译或直接安装，详见官网。 下面是厉害国专属的的简单安装方式 1 pip3 install ryu -i https://pypi.doubanio.com/simple 下载完一个包后，会卡一段时间，不要以为"><meta itemprop=datePublished content="2020-04-18T01:37:56+08:00">
+<meta itemprop=dateModified content="2020-04-18T01:37:56+08:00">
+<meta itemprop=wordCount content="729">
+<meta itemprop=keywords content="SDN,experiment,"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="SDN 实验环境配置">
+<meta name=twitter:description content="Mininet 见前一个实验。 Ryu 可以选择从源码编译或直接安装，详见官网。 下面是厉害国专属的的简单安装方式 1 pip3 install ryu -i https://pypi.doubanio.com/simple 下载完一个包后，会卡一段时间，不要以为"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
+</head>
+<body>
+<div id=mobile-navbar class=mobile-navbar>
+<div class=mobile-header-logo>
+<a href=/ class=logo>Iron</a>
+</div>
+<div class=mobile-navbar-icon>
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+<nav id=mobile-menu class="mobile-menu slideout-menu">
+<ul class=mobile-menu-list>
+<a href=/>
+<li class=mobile-menu-item>Home</li>
+</a><a href=/post/>
+<li class=mobile-menu-item>Archives</li>
+</a><a href=/tags/>
+<li class=mobile-menu-item>Tags</li>
+</a><a href=/categories/>
+<li class=mobile-menu-item>Categories</li>
+</a>
+</ul>
+</nav>
+<div class=container id=mobile-panel>
+<header id=header class=header>
+<div class=logo-wrapper>
+<a href=/ class=logo>Iron</a>
+</div>
+<nav class=site-navbar>
+<ul id=menu class=menu>
+<li class=menu-item>
+<a class=menu-item-link href=/>Home</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/post/>Archives</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/tags/>Tags</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/categories/>Categories</a>
+</li>
+</ul>
+</nav>
+</header>
+<main id=main class=main>
+<div class=content-wrapper>
+<div id=content class=content>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>SDN 实验环境配置</h1>
+<div class=post-meta>
+<span class=post-time> 2020-04-18 </span>
+<div class=post-category>
+<a href=/categories/exp/> exp </a>
+</div>
+</div>
+</header>
+<div class=post-toc id=post-toc>
+<h2 class=post-toc-title>Contents</h2>
+<div class="post-toc-content always-active">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#a-brief-analysis-of-openflow-protocol>A brief analysis of OpenFlow protocol</a>
+<ul>
+<li><a href=#what-is-openflow4>What is <a href=https://en.wikipedia.org/wiki/OpenFlow>OpenFlow</a></a></li>
+<li><a href=#protocol-content>Protocol content</a></li>
+<li><a href=#flow-table-analysis>Flow table analysis</a></li>
+</ul>
+</li>
+<li><a href=#避免数据包的洪泛的层学习交换机>避免数据包的洪泛的⼆层⾃学习交换机</a></li>
+</ul>
+</nav>
+</div>
+</div>
+<div class=post-content>
+<h4 id=mininet>Mininet</h4>
+<p>见<a href=2020-03-30-SDN-mininet-fattree.md>前一个实验</a>。</p>
+<h4 id=ryu>Ryu</h4>
+<p><strong>可以选择从源码编译或直接安装，详见<a href=https://ryu.readthedocs.io/en/latest/getting_started.html>官网</a>。</strong></p>
+<p>下面是厉害国专属的的简单安装方式</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>pip3 install ryu -i https://pypi.doubanio.com/simple
+</code></pre></td></tr></table>
+</div>
+</div><p>下载完一个包后，会卡一段时间，不要以为是真的卡了，它是在安装其它依赖项，等待即可</p>
+<p><strong>安装完成后，就可以查看流表了</strong></p>
+<p>首先，生成流表</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo mn
+...
+mininet&gt; h1 ping h2
+</code></pre></td></tr></table>
+</div>
+</div><p>其次，查看流表。you can use Ctrl + Shift + t to create another tab.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo ovs-ofctl dump-flows s1
+</code></pre></td></tr></table>
+</div>
+</div><p>其中，参数 dump-flows 表示 dump 所有流表。And you will get Flow table like that</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=nv>cookie</span><span class=o>=</span>0x0, <span class=nv>duration</span><span class=o>=</span>3.621s, <span class=nv>table</span><span class=o>=</span>0, <span class=nv>n_packets</span><span class=o>=</span>0, <span class=nv>n_bytes</span><span class=o>=</span>0, <span class=nv>idle_timeout</span><span class=o>=</span>60, <span class=nv>priority</span><span class=o>=</span>65535,arp,in_port<span class=o>=</span><span class=s2>&#34;s1-eth2&#34;</span>,vlan_tci<span class=o>=</span>0x0000,dl_src<span class=o>=</span>0a:a3:dc:b0:c3:0c,dl_dst<span class=o>=</span>ea:1f:63:88:8c:ec,arp_spa<span class=o>=</span>10.0.0.2,arp_tpa<span class=o>=</span>10.0.0.1,arp_op<span class=o>=</span><span class=m>2</span> <span class=nv>actions</span><span class=o>=</span>output:<span class=s2>&#34;s1-eth1&#34;</span>
+<span class=nv>cookie</span><span class=o>=</span>0x0, <span class=nv>duration</span><span class=o>=</span>3.619s, <span class=nv>table</span><span class=o>=</span>0, <span class=nv>n_packets</span><span class=o>=</span>3, <span class=nv>n_bytes</span><span class=o>=</span>294, <span class=nv>idle_timeout</span><span class=o>=</span>60, <span class=nv>priority</span><span class=o>=</span>65535,icmp,in_port<span class=o>=</span><span class=s2>&#34;s1-eth1&#34;</span>,vlan_tci<span class=o>=</span>0x0000,dl_src<span class=o>=</span>ea:1f:63:88:8c:ec,dl_dst<span class=o>=</span>0a:a3:dc:b0:c3:0c,nw_src<span class=o>=</span>10.0.0.1,nw_dst<span class=o>=</span>10.0.0.2,nw_tos<span class=o>=</span>0,icmp_type<span class=o>=</span>8,icmp_code<span class=o>=</span><span class=m>0</span> <span class=nv>actions</span><span class=o>=</span>output:<span class=s2>&#34;s1-eth2&#34;</span>
+<span class=nv>cookie</span><span class=o>=</span>0x0, <span class=nv>duration</span><span class=o>=</span>3.616s, <span class=nv>table</span><span class=o>=</span>0, <span class=nv>n_packets</span><span class=o>=</span>3, <span class=nv>n_bytes</span><span class=o>=</span>294, <span class=nv>idle_timeout</span><span class=o>=</span>60, <span class=nv>priority</span><span class=o>=</span>65535,icmp,in_port<span class=o>=</span><span class=s2>&#34;s1-eth2&#34;</span>,vlan_tci<span class=o>=</span>0x0000,dl_src<span class=o>=</span>0a:a3:dc:b0:c3:0c,dl_dst<span class=o>=</span>ea:1f:63:88:8c:ec,nw_src<span class=o>=</span>10.0.0.2,nw_dst<span class=o>=</span>10.0.0.1,nw_tos<span class=o>=</span>0,icmp_type<span class=o>=</span>0,icmp_code<span class=o>=</span><span class=m>0</span> <span class=nv>actions</span><span class=o>=</span>output:<span class=s2>&#34;s1-eth1&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>then it&rsquo;s time to analyze OpenFlow protocol</p>
+<h1 id=a-brief-analysis-of-openflow-protocol>A brief analysis of OpenFlow protocol</h1>
+<h2 id=what-is-openflow4>What is <a href=https://en.wikipedia.org/wiki/OpenFlow>OpenFlow</a></h2>
+<p>OpenFlow is a communications protocol that gives access to the forwarding plane of a network switch or router over the network</p>
+<h2 id=protocol-content>Protocol content</h2>
+<p><img src=https://www.sdxcentral.com/wp-content/uploads/2013/08/manipulated-openflow-switch.jpg alt></p>
+<h2 id=flow-table-analysis>Flow table analysis</h2>
+<p><a href=https://zh.wikipedia.org/wiki/%E5%9C%B0%E5%9D%80%E8%A7%A3%E6%9E%90%E5%8D%8F%E8%AE%AE>ARP</a>将网络层的IP地址解析为数据链路层的物理地址(MAC地址)</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=c1># 匹配字段</span>
+arp                           <span class=c1># 指定数据包的类型是 arp (Address Resolution Protocol)</span>
+<span class=nv>in_port</span><span class=o>=</span><span class=s2>&#34;s1-eth2&#34;</span>             <span class=c1># switch Port (匹配域)</span>
+<span class=nv>vlan_tci</span><span class=o>=</span>0x0000               <span class=c1># VLAN ID</span>
+<span class=nv>dl_src</span><span class=o>=</span>0a:a3:dc:b0:c3:0c      <span class=c1># MAC Src (data link source (数据链路层的源地址))</span>
+<span class=nv>dl_dst</span><span class=o>=</span>ea:1f:63:88:8c:ec      <span class=c1># MAC Dsl (data link destination (数据链路层的目的地址)</span>
+<span class=nv>arp_spa</span><span class=o>=</span>10.0.0.2              <span class=c1># Source IP address of ARP</span>
+<span class=nv>arp_tpa</span><span class=o>=</span>10.0.0.1              <span class=c1># Target IP address of ARP</span>
+<span class=nv>arp_op</span><span class=o>=</span><span class=m>2</span>                      <span class=c1># Opcode of ARP</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>详细可见 <a href=https://osrg.github.io/ryu-book/en/html/openflow_protocol.html>OpenFlow Protocol —— Ryubook 1.0 documentation</a>
+ICMP是TCP/IP协议族的一个子协议，用于在IP主机、路由器之间传递控制消息。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>icmp                          <span class=c1># 协议类型 Internet Control Message Protocol</span>
+<span class=nv>nw_src</span><span class=o>=</span>10.0.0.1               <span class=c1># 源 IP 地址</span>
+<span class=nv>nw_dst</span><span class=o>=</span>10.0.0.2               <span class=c1># 目的 IP 地址</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>流表由流条目组成</p>
+<table>
+<thead>
+<tr>
+<th>Match Fields</th>
+<th>Priority</th>
+<th>Counters</th>
+<th>Instructions</th>
+<th>Timeouts</th>
+<th>Cookie</th>
+</tr>
+</thead>
+</table>
+<p>详细的 OpenFlow 介绍可以阅读 <a href=https://www.opennetworking.org/wp-content/uploads/2013/04/openflow-spec-v1.3.1.pdf>openflow-spec-v1.3.1</a></p>
+<h1 id=避免数据包的洪泛的层学习交换机>避免数据包的洪泛的⼆层⾃学习交换机</h1>
+<blockquote>
+<p>Ryu的基本教程需要阅读⽂档 <a href=https://ryu.readthedocs.io/en/latest/index.html>Ryu docs</a>，阅读前两个部分 Getting Started 和 Write Application 即可
+Python 编程需要理解 <a href=https://realpython.com/primer-on-python-decorators/#first-class-objects>decorator 的使用</a></p>
+</blockquote>
+<p>根据老师发的<a href=/files/sdn-exp/exp-1.pdf>实验指导说明书</a>和 github 上的 <a href=https://github.com/osrg/ryu/blob/master/ryu/app/example_switch_13.py>Ryu 项目</a>，完成实验
+运行 Ryu 控制器</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>ryu-manager yourapp.py
+</code></pre></td></tr></table>
+</div>
+</div><p>再创建 topo</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sudo mn --topo linear,3 --mac --controller remote
+</code></pre></td></tr></table>
+</div>
+</div><p><img src=/img/Snipaste_2020-04-20_00-58-28.png alt>
+在 &ldquo;mininet> " CLI 下打开 h1, h3 的 xtern，用 wireshark 抓 h1 ping h2 后它们两个的包。得到
+<img src=/img/Snipaste_2020-04-20_01-00-24.png alt>
+可以看到，此控制器避免了数据包的洪泛。
+核心代码</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-Python data-lang=Python><span class=c1># maybe you need a global data structure to save the mapping</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>mac_to_port</span> <span class=o>=</span> <span class=p>{}</span>
+<span class=o>...</span>
+<span class=c1># you need to code here to avoid the direct flooding</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>mac_to_port</span><span class=p>[</span><span class=n>dpid</span><span class=p>][</span><span class=n>src</span><span class=p>]</span> <span class=o>=</span> <span class=n>in_port</span>
+        <span class=k>if</span> <span class=n>dst</span> <span class=ow>in</span> <span class=bp>self</span><span class=o>.</span><span class=n>mac_to_port</span><span class=p>[</span><span class=n>dpid</span><span class=p>]:</span>
+            <span class=n>out_port</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>mac_to_port</span><span class=p>[</span><span class=n>dpid</span><span class=p>][</span><span class=n>dst</span><span class=p>]</span>
+        <span class=k>else</span><span class=p>:</span>
+            <span class=n>out_port</span> <span class=o>=</span> <span class=n>ofp</span><span class=o>.</span><span class=n>OFPP_FLOOD</span>
+        <span class=n>actions</span> <span class=o>=</span> <span class=p>[</span><span class=n>parser</span><span class=o>.</span><span class=n>OFPActionOutput</span><span class=p>(</span><span class=n>out_port</span><span class=p>)]</span>
+        <span class=k>if</span> <span class=n>out_port</span> <span class=o>!=</span> <span class=n>ofp</span><span class=o>.</span><span class=n>OFPP_FLOOD</span><span class=p>:</span>
+            <span class=n>match</span> <span class=o>=</span> <span class=n>parser</span><span class=o>.</span><span class=n>OFPMatch</span><span class=p>(</span><span class=n>in_port</span><span class=o>=</span><span class=n>in_port</span><span class=p>,</span> <span class=n>eth_dst</span><span class=o>=</span><span class=n>dst</span><span class=p>)</span>
+            <span class=bp>self</span><span class=o>.</span><span class=n>add_flow</span><span class=p>(</span><span class=n>datapath</span><span class=p>,</span> <span class=mi>1</span><span class=p>,</span> <span class=n>match</span><span class=p>,</span> <span class=n>actions</span><span class=p>)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>另外，可以参考 <a href=https://github.com/osrg/ryu/tree/master/ryu/app>Ryu app</a> 了解更多 Ryu 控件的实现。</p>
+</div>
+<div class=post-copyright>
+<p class=copyright-item>
+<span class=item-title>Author</span>
+<span class=item-content>magictomagic</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>LastMod</span>
+<span class=item-content>
+2020-04-18
+</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>License</span>
+<span class=item-content><a rel="license noopener" href=https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License target=_blank>Creative Commons Attribution-ShareAlike License</a></span>
+</p>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/sdn/>SDN</a>
+<a href=/tags/experiment/>experiment</a>
+</div>
+<nav class=post-nav>
+<a class=prev href=/post/sdn-mininet-analyze/>
+<i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">SDN Mininet</span>
+<span class="prev-text nav-mobile">Prev</span>
+</a>
+<a class=next href=/post/gauss-experiment/>
+<span class="next-text nav-default">使用 OpenMP Pthread 实现高斯消元法</span>
+<span class="next-text nav-mobile">Next</span>
+<i class="iconfont icon-right"></i>
+</a>
+</nav>
+</footer>
+</article>
+</div>
+</div>
+</main>
+<footer id=footer class=footer>
+<div class=social-links>
+<a href=mailto:your@email.com class="iconfont icon-email" title=email></a>
+<a href=http://localhost:1313 class="iconfont icon-stack-overflow" title=stack-overflow></a>
+<a href=http://localhost:1313 class="iconfont icon-twitter" title=twitter></a>
+<a href=http://localhost:1313 class="iconfont icon-facebook" title=facebook></a>
+<a href=http://localhost:1313 class="iconfont icon-linkedin" title=linkedin></a>
+<a href=http://localhost:1313 class="iconfont icon-google" title=google></a>
+<a href=http://localhost:1313 class="iconfont icon-github" title=github></a>
+<a href=http://localhost:1313 class="iconfont icon-weibo" title=weibo></a>
+<a href=http://localhost:1313 class="iconfont icon-zhihu" title=zhihu></a>
+<a href=http://localhost:1313 class="iconfont icon-douban" title=douban></a>
+<a href=http://localhost:1313 class="iconfont icon-pocket" title=pocket></a>
+<a href=http://localhost:1313 class="iconfont icon-tumblr" title=tumblr></a>
+<a href=http://localhost:1313 class="iconfont icon-instagram" title=instagram></a>
+<a href=http://localhost:1313 class="iconfont icon-gitlab" title=gitlab></a>
+<a href=http://localhost:1313 class="iconfont icon-bilibili" title=bilibili></a>
+<a href=https://magictomagic.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
+</div>
+<div class=copyright>
+<span class=power-by>
+Powered by <a class=hexo-link href=https://gohugo.io>Hugo</a>
+</span>
+<span class=division>|</span>
+<span class=theme-info>
+Theme -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a>
+</span>
+<span class=copyright-year>
+&copy;
+2017 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+</span>
+</div>
+</footer>
+<div class=back-to-top id=back-to-top>
+<i class="iconfont icon-up"></i>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
+</body>
+</html>

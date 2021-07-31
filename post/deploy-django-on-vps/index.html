@@ -1,0 +1,429 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<title>Deploy Django on VPS - Iron Age</title>
+<meta name=renderer content="webkit">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta http-equiv=cache-control content="no-transform">
+<meta http-equiv=cache-control content="no-siteapp">
+<meta name=theme-color content="#f8f5ec">
+<meta name=msapplication-navbutton-color content="#f8f5ec">
+<meta name=apple-mobile-web-app-capable content="yes">
+<meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
+<meta name=author content="magictomagic"><meta name=description content="在 CentOS 8 上部署基于 Django 和 Nginx 的用户注册登录系统 初識 Django 學習步驟 参考教程，搭建本地 Django server 使用 git 管理 Django，使之可衝用於服務器。 基础知识 Linux 基本命令 1"><meta name=keywords content="Hugo,theme,even">
+<meta name=generator content="Hugo 0.86.1 with theme even">
+<link rel=canonical href=https://magictomagic.github.io/post/deploy-django-on-vps/>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
+<link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
+<meta property="og:title" content="Deploy Django on VPS">
+<meta property="og:description" content="在 CentOS 8 上部署基于 Django 和 Nginx 的用户注册登录系统 初識 Django 學習步驟 参考教程，搭建本地 Django server 使用 git 管理 Django，使之可衝用於服務器。 基础知识 Linux 基本命令 1">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://magictomagic.github.io/post/deploy-django-on-vps/"><meta property="article:section" content="post">
+<meta property="article:published_time" content="2020-05-01T01:37:56+08:00">
+<meta property="article:modified_time" content="2020-05-01T01:37:56+08:00">
+<meta itemprop=name content="Deploy Django on VPS">
+<meta itemprop=description content="在 CentOS 8 上部署基于 Django 和 Nginx 的用户注册登录系统 初識 Django 學習步驟 参考教程，搭建本地 Django server 使用 git 管理 Django，使之可衝用於服務器。 基础知识 Linux 基本命令 1"><meta itemprop=datePublished content="2020-05-01T01:37:56+08:00">
+<meta itemprop=dateModified content="2020-05-01T01:37:56+08:00">
+<meta itemprop=wordCount content="1061">
+<meta itemprop=keywords content="Django,"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="Deploy Django on VPS">
+<meta name=twitter:description content="在 CentOS 8 上部署基于 Django 和 Nginx 的用户注册登录系统 初識 Django 學習步驟 参考教程，搭建本地 Django server 使用 git 管理 Django，使之可衝用於服務器。 基础知识 Linux 基本命令 1"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
+</head>
+<body>
+<div id=mobile-navbar class=mobile-navbar>
+<div class=mobile-header-logo>
+<a href=/ class=logo>Iron</a>
+</div>
+<div class=mobile-navbar-icon>
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+<nav id=mobile-menu class="mobile-menu slideout-menu">
+<ul class=mobile-menu-list>
+<a href=/>
+<li class=mobile-menu-item>Home</li>
+</a><a href=/post/>
+<li class=mobile-menu-item>Archives</li>
+</a><a href=/tags/>
+<li class=mobile-menu-item>Tags</li>
+</a><a href=/categories/>
+<li class=mobile-menu-item>Categories</li>
+</a>
+</ul>
+</nav>
+<div class=container id=mobile-panel>
+<header id=header class=header>
+<div class=logo-wrapper>
+<a href=/ class=logo>Iron</a>
+</div>
+<nav class=site-navbar>
+<ul id=menu class=menu>
+<li class=menu-item>
+<a class=menu-item-link href=/>Home</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/post/>Archives</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/tags/>Tags</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/categories/>Categories</a>
+</li>
+</ul>
+</nav>
+</header>
+<main id=main class=main>
+<div class=content-wrapper>
+<div id=content class=content>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>Deploy Django on VPS</h1>
+<div class=post-meta>
+<span class=post-time> 2020-05-01 </span>
+<div class=post-category>
+<a href=/categories/exp/> exp </a>
+</div>
+</div>
+</header>
+<div class=post-toc id=post-toc>
+<h2 class=post-toc-title>Contents</h2>
+<div class="post-toc-content always-active">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#在-centos-8-上部署基于-django-和-nginx-的用户注册登录系统>在 CentOS 8 上部署基于 Django 和 Nginx 的用户注册登录系统</a>
+<ul>
+<li><a href=#初識-django>初識 Django</a>
+<ul>
+<li><a href=#學習步驟>學習步驟</a></li>
+</ul>
+</li>
+<li><a href=#於-vps-上重新構建之前本地的-django-項目>於 VPS 上重新構建之前本地的 Django 項目</a>
+<ul>
+<li><a href=#setting-up-a-new-environment3><a href=https://www.django-rest-framework.org/tutorial/1-serialization/#setting-up-a-new-environment>Setting up a new environment</a></a></li>
+<li><a href=#getting-started4><a href=https://www.django-rest-framework.org/tutorial/1-serialization/#getting-started>Getting started</a></a></li>
+</ul>
+</li>
+<li><a href=#uwsgi-的安裝配置和啓動>uWSGI 的安裝、配置和啓動</a>
+<ul>
+<li><a href=#安裝>安裝</a></li>
+<li><a href=#配置>配置</a></li>
+<li><a href=#啓動>啓動</a></li>
+</ul>
+</li>
+<li><a href=#nginx-的安裝配置和管理>Nginx 的安裝、配置和管理</a>
+<ul>
+<li><a href=#安裝-1>安裝</a></li>
+<li><a href=#配置-1>配置</a></li>
+<li><a href=#管理>管理</a></li>
+</ul>
+</li>
+<li><a href=#待解决通过-uwsgi-连接-django-和-nginx>待解决：通过 uWSGI 连接 Django 和 Nginx</a></li>
+<li><a href=#supervisor-的掃盲安裝配置和管理>supervisor 的掃盲、安裝、配置和管理</a>
+<ul>
+<li><a href=#掃盲>掃盲</a></li>
+<li><a href=#安裝-2>安裝</a></li>
+<li><a href=#配置-2>配置</a></li>
+<li><a href=#管理-1>管理</a></li>
+</ul>
+</li>
+<li><a href=#常用管理命令匯總>常用管理命令匯總</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+<div class=post-content>
+<h1 id=在-centos-8-上部署基于-django-和-nginx-的用户注册登录系统>在 CentOS 8 上部署基于 Django 和 Nginx 的用户注册登录系统</h1>
+<h2 id=初識-django>初識 Django</h2>
+<h3 id=學習步驟>學習步驟</h3>
+<p>参考<a href=https://www.liujiangblog.com/course/django/2>教程</a>，搭建本地 Django server
+使用 git 管理 Django，使之可衝用於服務器。</p>
+<h4 id=基础知识2><a href=https://www.liujiangblog.com/blog/36/>基础知识</a></h4>
+<h5 id=linux-基本命令>Linux 基本命令</h5>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=nb>pwd</span>     <span class=c1># display current path</span>
+whereis <span class=o>[</span>file_name<span class=o>]</span> <span class=c1>#  [file_name] means file you want to find</span>
+</code></pre></td></tr></table>
+</div>
+</div><h5 id=centos-8-防火牆的管理>CentOS 8 防火牆的管理</h5>
+<p>在測試 Django 是否向外網提供服務時，要打開服務運行的端口。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>firewall-cmd --zone<span class=o>=</span>public --add-port<span class=o>=</span>8000/tcp --permanent
+</code></pre></td></tr></table>
+</div>
+</div><p><a href=https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-centos-8>安裝 nginx</a> 后，若要從外網通過 http 服務進入主機，需要在防火牆協議里添加 http 協議，然後 reload 使之 apply。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>firewall-cmd --permanent --add-service<span class=o>=</span>http <span class=c1># permanently enable HTTP connections on port 80</span>
+firewall-cmd --permanent --list-all         <span class=c1># verify that the http firewall service was added correctly</span>
+firewall-cmd --reload      <span class=c1># apply the changes</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>如果不加 &ndash;permanent，systemctl restart firewalld 后之前的配置會消失。</p>
+<h2 id=於-vps-上重新構建之前本地的-django-項目>於 VPS 上重新構建之前本地的 Django 項目</h2>
+<h3 id=setting-up-a-new-environment3><a href=https://www.django-rest-framework.org/tutorial/1-serialization/#setting-up-a-new-environment>Setting up a new environment</a></h3>
+<p>使用venv创建一个新的虚拟环境，确保我们的包配置与我们正在进行的任何其他项目保持良好的隔离。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>python3 -m venv ytbkiller  <span class=c1># ytbkiller is my virtual environment directory name</span>
+<span class=nb>source</span> ytbkiller/bin/activate  <span class=c1># activate virtual environment</span>
+<span class=c1>## all of your option should have (ytbkiller) before [root@vultrgues ... e.g.</span>
+<span class=c1># (ytbkiller) [root@vultrguest ~]#</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>从现在起，任何你使用pip安装的包将会放在 ytbkiller 文件夹中，与全局安装的 Python 隔绝开。</p>
+<h3 id=getting-started4><a href=https://www.django-rest-framework.org/tutorial/1-serialization/#getting-started>Getting started</a></h3>
+<p>文件的目录结构如下，其中灰色的是 .gitignore 中列出的项，clone 后是找不到这些文件的，因为这些文件包含隐私数据。</p>
+<p><img src=/img/20200501003050.png alt></p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>pip install --upgrade pip
+git clone https://github.com/magictomagic/login-register
+<span class=c1>###</span>
+<span class=c1># 省略 cd 文件夹的操作，文件位置见上图</span>
+<span class=c1>###</span>
+pip install -r requirements.txt <span class=c1># 使用pip安装第三方依赖</span>
+vi settings.example.py  <span class=c1># 编辑 settings.example.py 的邮箱、密码於密鑰，可以自己创建一个，组员见那个压缩包</span>
+mv settings.example.py settings.py <span class=c1># rename</span>
+python manage.py makemigrations <span class=c1># 在该app下建立 migrations 目录，并记录下你所有的关于modes.py的改动，比如0001_initial.py， 但是这个改动还没有作用到数据库文件</span>
+python manage.py migrate <span class=c1># 将该改动作用到数据库文件，比如产生table之类</span>
+python manage.py runserver <span class=c1># 启动项目，僅本機可訪問</span>
+python manage.py runserver 0.0.0.0:8000 <span class=c1># 外網可訪問，注意配置防火牆，開放端口</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=uwsgi-的安裝配置和啓動>uWSGI 的安裝、配置和啓動</h2>
+<blockquote>
+<p>環境：CentOS 8</p>
+</blockquote>
+<h3 id=安裝>安裝</h3>
+<p>先參考<a href=https://linuxize.com/post/how-to-install-anaconda-on-centos-8/>官方教程</a>安裝 Anaconda，注意隨着 Anaconda 的版本是不斷更新的(<a href=https://repo.anaconda.com/archive/>更新目錄</a>)，所以不能照搬我下面的命令</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>wget -P /tmp https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
+bash Anaconda3-2020.02-Linux-x86_64.sh
+<span class=c1># 遇到 [yes|no] 全部 yes，其它情況，全部 enter，詳情見上面的官網鏈接</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>再使用 conda 安裝 uWSGI，<a href=https://github.com/conda-forge/uwsgi-feedstock>uWSGI</a>在這裏充當連接 Nginx 和 Django 的橋樑。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>conda config --add channels conda-forge
+conda install uwsgi
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=配置>配置</h3>
+<h3 id=啓動>啓動</h3>
+<p>可能會遇到報錯：
+<strong>uwsgi: error while loading shared libraries: libiconv.so.2: cannot open shared object file: no such file or directory</strong>
+安裝依賴</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>conda install -c conda-forge libiconv
+</code></pre></td></tr></table>
+</div>
+</div><p>然後启动 uWSGI</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>uwsgi uwsgi_config.ini
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=nginx-的安裝配置和管理>Nginx 的安裝、配置和管理</h2>
+<h3 id=安裝-1>安裝</h3>
+<p>Centos 8 的包管理工具推薦使用 <a href=https://www.howtoforge.com/centos-8-package-management-with-dnf-on-the-command-line/>dnf</a>，不過用 yum 也可以。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>yum install nginx
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=配置-1>配置</h3>
+<p>/etc/nginx/conf.d</p>
+<h3 id=管理>管理</h3>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>systemctl <span class=nb>enable</span> nginx   <span class=c1># 开机自启</span>
+systemctl start nginx    <span class=c1># 启动 Nginx</span>
+systemctl stop nginx     <span class=c1># 关闭 Nginx</span>
+systemctl restart nginx  <span class=c1># 重启 Nginx</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>已解决:单独使用 Django 访问
+http://149.248.57.125:8000/
+admin/
+index/
+login/
+register/
+logout/
+confirm/</p>
+<h2 id=待解决通过-uwsgi-连接-django-和-nginx>待解决：通过 uWSGI 连接 Django 和 Nginx</h2>
+<h2 id=supervisor-的掃盲安裝配置和管理>supervisor 的掃盲、安裝、配置和管理</h2>
+<h3 id=掃盲>掃盲</h3>
+<h4 id=what15><a href=http://supervisord.org/introduction.html>What</a></h4>
+<p>Linux/Unix 进程监控工具。</p>
+<h4 id=why>Why</h4>
+<p>统一管理各进程的运行，避免编写大量实现进程功能的脚本。</p>
+<h3 id=安裝-2>安裝</h3>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>pip install supervisor
+
+vi /etc/supervisord.conf
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=配置-2>配置</h3>
+<h3 id=管理-1>管理</h3>
+<h2 id=常用管理命令匯總>常用管理命令匯總</h2>
+<p><img src=/img/Snipaste_2020-05-01_17-59-41.png alt></p>
+</div>
+<div class=post-copyright>
+<p class=copyright-item>
+<span class=item-title>Author</span>
+<span class=item-content>magictomagic</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>LastMod</span>
+<span class=item-content>
+2020-05-01
+</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>License</span>
+<span class=item-content><a rel="license noopener" href=https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License target=_blank>Creative Commons Attribution-ShareAlike License</a></span>
+</p>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/django/>Django</a>
+</div>
+<nav class=post-nav>
+<a class=prev href=/post/nginx-%E7%90%86%E8%A7%A3%E6%80%9D%E8%80%83%E9%85%8D%E7%BD%AE-%E9%8C%AF%E8%AA%A4%E5%8C%AF%E7%B8%BD/>
+<i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">Nginx 配置 錯誤匯總</span>
+<span class="prev-text nav-mobile">Prev</span>
+</a>
+<a class=next href=/post/mininet-exp2/>
+<span class="next-text nav-default">Mininet-exp2</span>
+<span class="next-text nav-mobile">Next</span>
+<i class="iconfont icon-right"></i>
+</a>
+</nav>
+</footer>
+</article>
+</div>
+</div>
+</main>
+<footer id=footer class=footer>
+<div class=social-links>
+<a href=mailto:your@email.com class="iconfont icon-email" title=email></a>
+<a href=http://localhost:1313 class="iconfont icon-stack-overflow" title=stack-overflow></a>
+<a href=http://localhost:1313 class="iconfont icon-twitter" title=twitter></a>
+<a href=http://localhost:1313 class="iconfont icon-facebook" title=facebook></a>
+<a href=http://localhost:1313 class="iconfont icon-linkedin" title=linkedin></a>
+<a href=http://localhost:1313 class="iconfont icon-google" title=google></a>
+<a href=http://localhost:1313 class="iconfont icon-github" title=github></a>
+<a href=http://localhost:1313 class="iconfont icon-weibo" title=weibo></a>
+<a href=http://localhost:1313 class="iconfont icon-zhihu" title=zhihu></a>
+<a href=http://localhost:1313 class="iconfont icon-douban" title=douban></a>
+<a href=http://localhost:1313 class="iconfont icon-pocket" title=pocket></a>
+<a href=http://localhost:1313 class="iconfont icon-tumblr" title=tumblr></a>
+<a href=http://localhost:1313 class="iconfont icon-instagram" title=instagram></a>
+<a href=http://localhost:1313 class="iconfont icon-gitlab" title=gitlab></a>
+<a href=http://localhost:1313 class="iconfont icon-bilibili" title=bilibili></a>
+<a href=https://magictomagic.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
+</div>
+<div class=copyright>
+<span class=power-by>
+Powered by <a class=hexo-link href=https://gohugo.io>Hugo</a>
+</span>
+<span class=division>|</span>
+<span class=theme-info>
+Theme -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a>
+</span>
+<span class=copyright-year>
+&copy;
+2017 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+</span>
+</div>
+</footer>
+<div class=back-to-top id=back-to-top>
+<i class="iconfont icon-up"></i>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
+</body>
+</html>

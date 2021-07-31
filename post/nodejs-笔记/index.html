@@ -1,0 +1,1965 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<title>Nodejs 笔记 - Iron Age</title>
+<meta name=renderer content="webkit">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta http-equiv=cache-control content="no-transform">
+<meta http-equiv=cache-control content="no-siteapp">
+<meta name=theme-color content="#f8f5ec">
+<meta name=msapplication-navbutton-color content="#f8f5ec">
+<meta name=apple-mobile-web-app-capable content="yes">
+<meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
+<meta name=author content="magictomagic"><meta name=description content="基础 Node.js 没有 BOM、DOM，使 JS 可不通过浏览器运行，是 JS 的运行时环境，构建于Chrome 的 v8 引擎(专门处理JS的虚拟机，一般附带在网页浏览器中"><meta name=keywords content="Hugo,theme,even">
+<meta name=generator content="Hugo 0.86.1 with theme even">
+<link rel=canonical href=https://magictomagic.github.io/post/nodejs-%E7%AC%94%E8%AE%B0/>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
+<link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
+<meta property="og:title" content="Nodejs 笔记">
+<meta property="og:description" content="基础 Node.js 没有 BOM、DOM，使 JS 可不通过浏览器运行，是 JS 的运行时环境，构建于Chrome 的 v8 引擎(专门处理JS的虚拟机，一般附带在网页浏览器中">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://magictomagic.github.io/post/nodejs-%E7%AC%94%E8%AE%B0/"><meta property="article:section" content="post">
+<meta property="article:published_time" content="2021-01-11T01:37:56+08:00">
+<meta property="article:modified_time" content="2021-01-11T01:37:56+08:00">
+<meta itemprop=name content="Nodejs 笔记">
+<meta itemprop=description content="基础 Node.js 没有 BOM、DOM，使 JS 可不通过浏览器运行，是 JS 的运行时环境，构建于Chrome 的 v8 引擎(专门处理JS的虚拟机，一般附带在网页浏览器中"><meta itemprop=datePublished content="2021-01-11T01:37:56+08:00">
+<meta itemprop=dateModified content="2021-01-11T01:37:56+08:00">
+<meta itemprop=wordCount content="5560">
+<meta itemprop=keywords content="node.js,"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="Nodejs 笔记">
+<meta name=twitter:description content="基础 Node.js 没有 BOM、DOM，使 JS 可不通过浏览器运行，是 JS 的运行时环境，构建于Chrome 的 v8 引擎(专门处理JS的虚拟机，一般附带在网页浏览器中"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
+</head>
+<body>
+<div id=mobile-navbar class=mobile-navbar>
+<div class=mobile-header-logo>
+<a href=/ class=logo>Iron</a>
+</div>
+<div class=mobile-navbar-icon>
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+<nav id=mobile-menu class="mobile-menu slideout-menu">
+<ul class=mobile-menu-list>
+<a href=/>
+<li class=mobile-menu-item>Home</li>
+</a><a href=/post/>
+<li class=mobile-menu-item>Archives</li>
+</a><a href=/tags/>
+<li class=mobile-menu-item>Tags</li>
+</a><a href=/categories/>
+<li class=mobile-menu-item>Categories</li>
+</a>
+</ul>
+</nav>
+<div class=container id=mobile-panel>
+<header id=header class=header>
+<div class=logo-wrapper>
+<a href=/ class=logo>Iron</a>
+</div>
+<nav class=site-navbar>
+<ul id=menu class=menu>
+<li class=menu-item>
+<a class=menu-item-link href=/>Home</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/post/>Archives</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/tags/>Tags</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/categories/>Categories</a>
+</li>
+</ul>
+</nav>
+</header>
+<main id=main class=main>
+<div class=content-wrapper>
+<div id=content class=content>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>Nodejs 笔记</h1>
+<div class=post-meta>
+<span class=post-time> 2021-01-11 </span>
+<div class=post-category>
+<a href=/categories/notes/> notes </a>
+</div>
+</div>
+</header>
+<div class=post-toc id=post-toc>
+<h2 class=post-toc-title>Contents</h2>
+<div class="post-toc-content always-active">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#基础>基础</a>
+<ul>
+<li><a href=#extend>extend</a></li>
+<li><a href=#方法>方法</a></li>
+<li><a href=#文件模块-路径>文件/模块 路径</a></li>
+<li><a href=#创建服务器>创建服务器</a></li>
+<li><a href=#模板引擎>模板引擎</a>
+<ul>
+<li><a href=#模板引擎只关心自己能认识的模板标记语法>模板引擎只关心自己能认识的模板标记语法</a></li>
+</ul>
+</li>
+<li><a href=#表单提交方法->表单提交方法 ？？？</a></li>
+<li><a href=#exports>exports</a></li>
+</ul>
+</li>
+<li><a href=#express-框架>express 框架</a>
+<ul>
+<li><a href=#模板引擎-art-template>模板引擎 art-template</a>
+<ul>
+<li><a href=#语法积累>语法积累</a></li>
+</ul>
+</li>
+<li><a href=#静态服务>静态服务</a></li>
+<li><a href=#post>post</a></li>
+<li><a href=#错误处理>错误处理</a></li>
+<li><a href=#经验积累>经验积累</a>
+<ul>
+<li><a href=#json-响应方法>json 响应方法</a></li>
+<li><a href=#内置中间件>内置中间件</a></li>
+<li><a href=#第三方中间件>第三方中间件</a></li>
+</ul>
+</li>
+<li><a href=#模块职责清晰而单一>模块职责清晰而单一</a>
+<ul>
+<li><a href=#提取路由>提取路由</a></li>
+<li><a href=#回调函数>回调函数</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#mongodb>MongoDB</a>
+<ul>
+<li><a href=#mongoose>mongoose</a></li>
+<li><a href=#使用>使用</a></li>
+<li><a href=#经验注意>经验&注意</a></li>
+</ul>
+</li>
+<li><a href=#promise>promise</a>
+<ul>
+<li><a href=#回调地狱>回调地狱</a></li>
+<li><a href=#用法>用法</a></li>
+<li><a href=#实战>实战</a></li>
+<li><a href=#async--await>async & await</a></li>
+<li><a href=#jquery--兼容-promise>jquery ??? 兼容 Promise</a></li>
+</ul>
+</li>
+<li><a href=#中间件>中间件</a>
+<ul>
+<li><a href=#消费规则与控制>消费规则与控制</a></li>
+<li><a href=#错误处理-1>错误处理</a></li>
+<li><a href=#第三方中间件-1>第三方中间件</a></li>
+<li><a href=#其他>其他</a></li>
+</ul>
+</li>
+<li><a href=#path-路径操作模块>path 路径操作模块</a>
+<ul>
+<li><a href=#文件操作同一转换为动态的绝对路径>文件操作同一转换为动态的绝对路径</a></li>
+</ul>
+</li>
+<li><a href=#cheerio>cheerio</a>
+<ul>
+<li><a href=#chrome-console-debug>chrome console debug</a></li>
+<li><a href=#jquary-学习笔记>jQuary 学习笔记</a>
+<ul>
+<li><a href=#特性>特性</a></li>
+<li><a href=#选择器>选择器</a></li>
+</ul>
+</li>
+<li><a href=#vue-学习笔记>Vue 学习笔记</a>
+<ul>
+<li><a href=#体验>体验</a></li>
+<li><a href=#前置知识>前置知识</a></li>
+</ul>
+</li>
+<li><a href=#vuepress>vuepress</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+<div class=post-content>
+<h1 id=基础>基础</h1>
+<ul>
+<li>
+<p>Node.js 没有 BOM、DOM，使 JS 可不通过浏览器运行，是 JS 的运行时环境，构建于Chrome 的 v8 引擎(专门处理JS的虚拟机，一般附带在网页浏览器中，解析执行JS代码)，</p>
+</li>
+<li>
+<p>REPL: Read–eval–print loop</p>
+</li>
+<li>
+<p>服务器重定向针对异步请求无效</p>
+</li>
+<li>
+<p>header(&lsquo;location&rsquo;)</p>
+<ul>
+<li>301 永久重定向，浏览器会记住</li>
+<li>302 临时重定向，浏览器不记忆</li>
+</ul>
+</li>
+<li>
+<p>同一个对象的两个引用若其中一个重新赋一个对象，则被赋对象的那个和另一个指的不是同一个，赋对象中的某个值没事，若重新 = 回来，则还是指同一个对象</p>
+</li>
+</ul>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=c1>// 模块中默认有一句代码：
+</span><span class=c1>// var exports = module.exports
+</span><span class=c1></span>
+<span class=c1>// 这里导致 exports !== module.exports
+</span><span class=c1></span><span class=nx>module</span><span class=p>.</span><span class=nx>exports</span> <span class=o>=</span> <span class=p>{</span>
+	<span class=nx>foo</span><span class=o>:</span> <span class=s1>&#39;bar&#39;</span>
+<span class=p>}</span>
+
+<span class=c1>// 这里重新建立两者的引用关系
+</span><span class=c1></span><span class=nx>exports</span> <span class=o>=</span> <span class=nx>module</span><span class=p>.</span><span class=nx>exports</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=nx>exports</span><span class=p>.</span><span class=nx>a</span> <span class=o>=</span> <span class=mi>123</span>
+<span class=nx>exports</span> <span class=o>=</span> <span class=p>{}</span>
+<span class=nx>exports</span><span class=p>.</span><span class=nx>foo</span> <span class=o>=</span> <span class=s1>&#39;bar&#39;</span>
+<span class=nx>module</span><span class=p>.</span><span class=nx>exports</span><span class=p>.</span><span class=nx>b</span> <span class=o>=</span> <span class=mi>456</span>
+<span class=c1>// result:
+</span><span class=c1>// a:123, b:456
+</span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>markdowm css 避免自动升级覆盖：github.css 复制，重命名 github.user.css</p>
+</li>
+<li>
+<p>npm install 加 &ndash;save 让 package.json（可通过 npm init 自动初始化出来） 中的 dependencies 选项保存第三方包的依赖信息。</p>
+<ul>
+<li>npm install ：自动把 package.json 中的 dependencies 中所有依赖项下载回来</li>
+<li>npm uninstall 包名 ：只删除，若有依赖仍然会保存</li>
+<li>npm uninstall &ndash;save 包名 ：删除的同时把依赖信息也去除</li>
+</ul>
+</li>
+<li>
+<p>package-lock.json 锁定版本号，防止自动升级新版</p>
+</li>
+<li>
+<p>对密码进行 md5 重复加密 <code>body.password = md5(md5(body.password))</code></p>
+</li>
+<li>
+<p>模块查找机制</p>
+<ul>
+<li>缓存(所以在循环加载时不会重新加载)</li>
+<li>核心模块</li>
+<li>路径形式的模块</li>
+<li>第三方模块(当前目录找不到则往上一个目录找)</li>
+</ul>
+</li>
+<li>
+<p>nodemon 修改完代码自动重启，npm &ndash;global 安装</p>
+</li>
+<li>
+<p>第三方模块下的 package.json 中的main属性记录了模块的入口模块，默认是 index.js</p>
+</li>
+<li>
+<p>代码风格(JavaScript Standard Style / Airbnb JavaScript Style(更严谨))若无“;”，则当一行代码以"("、"["、"<code>" 开头, 前面要加 ";"。 e.g. ;</code>hello`.toString()</p>
+</li>
+</ul>
+<p>` 是 EcmaScript 6 新增的字符串包裹方式，叫模板字符串。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=kd>var</span> <span class=nx>foo</span> <span class=o>=</span> <span class=sb>`
+</span><span class=sb>adasd       add
+</span><span class=sb>adads
+</span><span class=sb>`</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>路由
+<ul>
+<li>请求方法</li>
+<li>请求路径</li>
+<li>请求处理函数</li>
+</ul>
+</li>
+</ul>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=nx>app</span>
+  <span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=s1>&#39;/login&#39;</span><span class=p>,</span> <span class=nx>函数1</span><span class=p>)</span>
+  <span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=s1>&#39;/asdfaf&#39;</span><span class=p>,</span> <span class=nx>函数2</span><span class=p>)</span>
+  <span class=p>...</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=extend>extend</h2>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=nx>extend</span><span class=p>(</span><span class=nx>obj1</span><span class=p>,</span> <span class=nx>obj2</span><span class=p>)</span> <span class=c1>// obj2 有了 obj1 的所有成员了
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id=方法>方法</h2>
+<ul>
+<li>
+<p>$(&lsquo;div&rsquo;).each(function) 可用于遍历 jQuery 选择器选择到的伪数组(其原型链中无forEach)实例对象，此each在 jQuery 提供的原型链中</p>
+</li>
+<li>
+<p>splice(start, length)</p>
+</li>
+</ul>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=kd>var</span> <span class=nx>arr</span> <span class=o>=</span> <span class=p>[</span><span class=mi>10</span><span class=p>,</span> <span class=mi>5</span><span class=p>,</span> <span class=mi>20</span><span class=p>]</span> <span class=c1>// [5]
+</span><span class=c1></span><span class=nx>arr</span><span class=p>.</span><span class=nx>splice</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=mi>1</span><span class=p>)</span>
+<span class=c1>// arr = [10, 20]
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id=文件模块-路径>文件/模块 路径</h2>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=nx>require</span><span class=p>(</span><span class=s1>&#39;./b&#39;</span><span class=p>)</span> <span class=c1>// OK
+</span><span class=c1></span><span class=nx>require</span><span class=p>(</span><span class=s1>&#39;./b.js&#39;</span><span class=p>)</span> <span class=c1>// OK
+</span><span class=c1></span><span class=nx>require</span><span class=p>(</span><span class=s1>&#39;b&#39;</span><span class=p>)</span> <span class=c1>// error
+</span><span class=c1></span><span class=nx>require</span><span class=p>(</span><span class=s1>&#39;/afa/asf.js&#39;</span><span class=p>)</span> <span class=c1>// 磁盘根目录
+</span><span class=c1></span><span class=nx>require</span><span class=p>(</span><span class=nx>加载文件模块并执行里面的代码</span><span class=err>，</span><span class=nx>拿到被加载文件导出的接口对象</span><span class=p>)</span> <span class=nx>返回别的文件</span> <span class=nx>exports</span> <span class=nx>的对象</span><span class=err>，</span><span class=nx>若被</span> <span class=nx>require</span> <span class=nx>的文件无</span> <span class=nx>exports</span><span class=err>，</span><span class=nx>则默认返回空</span><span class=p>(</span><span class=mi>0</span><span class=p>)</span><span class=err>。</span><span class=nx>将所有需要被外部访问的成员对象</span> <span class=nx>exports</span>
+<span class=nx>exports</span><span class=p>.</span><span class=nx>add</span> <span class=o>=</span> <span class=kd>function</span><span class=p>(</span><span class=nx>x</span><span class=p>,</span> <span class=nx>y</span><span class=p>){</span> <span class=k>return</span> <span class=nx>x</span> <span class=o>+</span> <span class=nx>y</span> <span class=p>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=创建服务器>创建服务器</h2>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=kd>var</span> <span class=nx>server</span> <span class=o>=</span> <span class=nx>http</span><span class=p>.</span><span class=nx>createServer</span><span class=p>();</span>
+<span class=nx>server</span><span class=p>.</span><span class=nx>on</span><span class=p>(</span><span class=s1>&#39;request&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>){</span>
+	<span class=kd>var</span> <span class=nx>url</span> <span class=o>=</span> <span class=nx>req</span><span class=p>.</span><span class=nx>url</span><span class=p>;</span>
+	<span class=k>if</span><span class=p>(</span><span class=nx>url</span> <span class=o>===</span> <span class=s1>&#39;/&#39;</span><span class=p>){</span>
+	<span class=nx>fs</span><span class=p>.</span><span class=nx>readFile</span><span class=p>(</span><span class=s1>&#39;./a/index.html&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span><span class=nx>err</span><span class=p>,</span> <span class=nx>data</span><span class=p>){</span>
+		<span class=k>if</span><span class=p>(</span><span class=nx>err</span><span class=p>){</span>
+			<span class=nx>res</span><span class=p>.</span><span class=nx>setHeader</span><span class=p>(</span><span class=s1>&#39;Content-Type&#39;</span><span class=p>,</span> <span class=s1>&#39;text/plain; charset=utf-8&#39;</span><span class=p>);</span>
+			<span class=nx>res</span><span class=p>.</span><span class=nx>end</span><span class=p>(</span><span class=s1>&#39;file read error&#39;</span><span class=p>);</span>
+		<span class=p>}</span><span class=k>else</span><span class=p>{</span>
+			<span class=nx>res</span><span class=p>.</span><span class=nx>setHeader</span><span class=p>(</span><span class=s1>&#39;Content-Type&#39;</span><span class=p>,</span> <span class=s1>&#39;text/html; charset=utf-8&#39;</span><span class=p>);</span>
+			<span class=nx>res</span><span class=p>.</span><span class=nx>end</span><span class=p>(</span><span class=nx>data</span><span class=p>);</span>
+		<span class=p>}</span>
+	<span class=p>})</span>
+	<span class=p>}</span><span class=k>else</span> <span class=k>if</span><span class=p>(</span><span class=nx>url</span> <span class=o>===</span> <span class=s1>&#39;/hhy&#39;</span><span class=p>){</span>
+		<span class=nx>fs</span><span class=p>.</span><span class=nx>readFile</span><span class=p>(</span><span class=s1>&#39;./a/asd.jpg&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span><span class=nx>err</span><span class=p>,</span> <span class=nx>data</span><span class=p>){</span>
+			<span class=k>if</span><span class=p>(</span><span class=nx>err</span><span class=p>){</span>
+				<span class=nx>res</span><span class=p>.</span><span class=nx>setHeader</span><span class=p>(</span><span class=s1>&#39;Content-Type&#39;</span><span class=p>,</span> <span class=s1>&#39;text/plain; charset=utf-8&#39;</span><span class=p>);</span>
+				<span class=nx>res</span><span class=p>.</span><span class=nx>end</span><span class=p>(</span><span class=s1>&#39;file read error&#39;</span><span class=p>);</span>
+			<span class=p>}</span><span class=k>else</span><span class=p>{</span>
+			<span class=c1>// 也可以通过 &lt;meta charset=&#34;UTF-8&#34;&gt; 实现
+</span><span class=c1></span>				<span class=nx>res</span><span class=p>.</span><span class=nx>setHeader</span><span class=p>(</span><span class=s1>&#39;Content-Type&#39;</span><span class=p>,</span> <span class=s1>&#39;image/jpeg; charset=utf-8&#39;</span><span class=p>);</span>
+				<span class=nx>res</span><span class=p>.</span><span class=nx>end</span><span class=p>(</span><span class=nx>data</span><span class=p>);</span>
+			<span class=p>}</span>
+		<span class=p>})</span>
+	<span class=p>}</span>
+<span class=p>})</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=模板引擎>模板引擎</h2>
+<p>将得到的文件名和目录名替换到 template.html 中：模板引擎，或在template.html中预留一个特殊的标记；根据 files 生成需要的 html 内容 ；替换</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=p>&lt;</span><span class=nt>tbody</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;tbody&#34;</span><span class=p>&gt;</span>HHY<span class=p>&lt;/</span><span class=nt>tbody</span><span class=p>&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=c1>//server.on ...
+</span><span class=c1></span><span class=nx>fs</span><span class=p>.</span><span class=nx>readFile</span><span class=p>(</span><span class=s1>&#39;./template.html&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span><span class=nx>err</span><span class=p>,</span> <span class=nx>data</span><span class=p>){</span>
+	<span class=k>if</span><span class=p>(</span><span class=nx>err</span><span class=p>){</span>
+		<span class=k>return</span> <span class=nx>res</span><span class=p>.</span><span class=nx>end</span><span class=p>(</span><span class=s1>&#39;404 Not Found.&#39;</span><span class=p>)</span>
+	<span class=p>}</span>
+	<span class=c1>// 得到目录列表中的文件名和目录名： fs.readdir // 类似Apache FTP
+</span><span class=c1></span>	<span class=nx>fs</span><span class=p>.</span><span class=nx>readdir</span><span class=p>(</span><span class=nx>wwwDir</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span><span class=nx>err</span><span class=p>,</span> <span class=nx>files</span><span class=p>)){</span>
+	<span class=k>if</span><span class=p>(</span><span class=nx>err</span><span class=p>){</span>
+		<span class=k>return</span> <span class=nx>res</span><span class=p>.</span><span class=nx>end</span><span class=p>(</span><span class=s1>&#39;Can not find Dir&#39;</span><span class=p>)</span>
+	<span class=p>}</span>
+	<span class=kd>var</span> <span class=nx>content</span> <span class=o>=</span> <span class=s1>&#39;&#39;</span>
+	<span class=nx>files</span><span class=p>.</span><span class=nx>forEach</span><span class=p>(</span><span class=kd>function</span> <span class=p>(</span><span class=nx>item</span><span class=p>){</span>
+        <span class=nx>content</span> <span class=o>+=</span> <span class=sb>`
+</span><span class=sb>         &lt;tr&gt;
+</span><span class=sb>            &lt;td data-value=&#34;apple&#34;&gt;&lt;a&gt;</span><span class=si>${</span><span class=nx>item</span><span class=si>}</span><span class=sb>&lt;a&gt;&lt;/td&gt;
+</span><span class=sb>            &lt;td&gt;&lt;/td&gt;
+</span><span class=sb>            &lt;td&gt;&lt;/td&gt;
+</span><span class=sb>         &lt;/tr&gt;
+</span><span class=sb>        `</span>
+	<span class=p>})</span>
+<span class=p>})</span>
+    <span class=nx>data</span> <span class=o>=</span> <span class=nx>data</span><span class=p>.</span><span class=nx>toString</span><span class=p>()</span>
+    <span class=nx>data</span> <span class=o>=</span> <span class=nx>data</span><span class=p>.</span><span class=nx>replace</span><span class=p>(</span><span class=s1>&#39;HHY&#39;</span><span class=p>,</span> <span class=nx>content</span><span class=p>)</span>
+    <span class=nx>res</span><span class=p>.</span><span class=nx>end</span><span class=p>(</span><span class=nx>data</span><span class=p>)</span>
+<span class=p>})</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=模板引擎只关心自己能认识的模板标记语法>模板引擎只关心自己能认识的模板标记语法</h3>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=p>&lt;</span><span class=nt>script</span> <span class=na>type</span><span class=o>=</span><span class=s>&#34;text/template&#34;</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;tpl&#34;</span><span class=p>&gt;</span>
+  <span class=nx>大家好</span><span class=err>，</span><span class=nx>我叫</span><span class=p>{{</span> <span class=nx>name</span> <span class=p>}}</span>
+  <span class=nx>我喜欢</span> <span class=p>{{</span><span class=nx>each</span> <span class=nx>hobbies</span><span class=p>}}</span> <span class=p>{{</span> <span class=nx>$value</span> <span class=p>}}</span> <span class=p>{{</span><span class=err>/each}}</span>
+<span class=p>&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+<span class=p>&lt;</span><span class=nt>script</span><span class=p>&gt;</span>
+<span class=kd>var</span> <span class=nx>ret</span> <span class=o>=</span> <span class=nx>template</span><span class=p>(</span><span class=s1>&#39;tpl&#39;</span><span class=p>,{</span>
+	<span class=nx>name</span><span class=o>:</span> <span class=s1>&#39;HHY&#39;</span><span class=p>,</span>
+	<span class=nx>hobbies</span><span class=o>:</span><span class=p>[</span>
+		<span class=s1>&#39;唱&#39;</span><span class=p>,</span>
+		<span class=s1>&#39;跳&#39;</span><span class=p>,</span>
+		<span class=s1>&#39;Rap&#39;</span><span class=p>,</span>
+		<span class=s1>&#39;篮球&#39;</span>
+	<span class=p>]</span>
+<span class=p>})</span>
+<span class=p>&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>客户端渲染(ajax，异步)，至少两次请求。第一次，页面；第二次，动态数据。可尽早看到页面(用户体验好)。爬虫爬不到。</li>
+<li>服务端渲染，一次请求。增加服务端压力。SEO。</li>
+</ul>
+<h2 id=表单提交方法->表单提交方法 ？？？</h2>
+<p><code>action</code>是表单提交地址(请求的<code>url</code>地址)
+<code>method</code>请求方法
+post 数据放到请求体里
+get 数据放到 url 中</p>
+<ol>
+<li>默认</li>
+</ol>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=p>&lt;</span><span class=nt>form</span> <span class=na>action</span><span class=o>=</span><span class=s>&#34;asdf.php&#34;</span> <span class=na>method</span><span class=o>=</span><span class=s>&#34;get&#34;</span><span class=p>&gt;</span>
+
+<span class=p>&lt;/</span><span class=nt>form</span><span class=p>&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start=2>
+<li>异步</li>
+</ol>
+<h2 id=exports>exports</h2>
+<ul>
+<li>如果一个模块需要直接导出某个（单个）成员，而非挂载的方式，若多个，后面会覆盖前面的</li>
+</ul>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=c1>// 导出单个成员
+</span><span class=c1></span><span class=nx>module</span><span class=p>.</span><span class=nx>exports</span> <span class=o>=</span> <span class=nx>add</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>若导出为对象</li>
+</ul>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=c1>// 导出多个成员
+</span><span class=c1></span>  <span class=c1>// 方法1
+</span><span class=c1></span><span class=nx>exports</span><span class=p>.</span><span class=nx>add</span> <span class=o>=</span> <span class=nx>add</span> <span class=c1>// function
+</span><span class=c1></span><span class=nx>exports</span><span class=p>.</span><span class=nx>a</span> <span class=o>=</span> <span class=s2>&#34;asdas&#34;</span>
+
+  <span class=c1>// 方法2
+</span><span class=c1></span><span class=nx>module</span><span class=p>.</span><span class=nx>exports</span> <span class=o>=</span> <span class=p>{</span>
+<span class=p>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>默认在代码的最后一句有：<code>return module.exports</code></li>
+</ul>
+<h1 id=express-框架>express 框架</h1>
+<p>web 开发框架之一，提高开发效率</p>
+<ul>
+<li>
+<ul>
+<li>e.g.</li>
+</ul>
+</li>
+</ul>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=nx>res</span><span class=p>.</span><span class=nx>redirect</span><span class=p>(</span><span class=s1>&#39;/&#39;</span><span class=p>)</span>
+<span class=c1>// res.statusCode = 302
+</span><span class=c1>// res.setHeader(&#39;Location&#39;, &#39;/&#39;)
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id=模板引擎-art-template>模板引擎 art-template</h2>
+<ul>
+<li>详见官方文档</li>
+<li>install</li>
+</ul>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>npm install --save art-template
+npm install --save express-art-template
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>config
+<ul>
+<li>第一个参数表示当渲染以<code>.art</code>结尾的文件的时候，使用 art-template 模板引擎。</li>
+</ul>
+</li>
+</ul>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=nx>app</span><span class=p>.</span><span class=nx>engine</span><span class=p>(</span><span class=s1>&#39;art&#39;</span><span class=p>,</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;express-art-template&#39;</span><span class=p>))</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>usage
+<ul>
+<li>express 为 response 相应对象提供了方法：render。默认不可用，若配置模板引擎就可以用了。</li>
+<li><code>res.render('html 模板名', {模板数据})</code></li>
+</ul>
+</li>
+</ul>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=nx>app</span><span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=s1>&#39;/&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>){</span>
+	<span class=nx>res</span><span class=p>.</span><span class=nx>send</span><span class=p>(</span><span class=s1>&#39;hello world&#39;</span><span class=p>)</span> <span class=c1>// 相当于 write
+</span><span class=c1></span>
+	<span class=c1>// express 默认去 views 目录中找 index.html
+</span><span class=c1></span>	<span class=c1>// 开发人员默认所有把视图文件都放到 views 目录中
+</span><span class=c1></span>	<span class=nx>res</span><span class=p>.</span><span class=nx>render</span><span class=p>(</span><span class=s1>&#39;index.html&#39;</span><span class=p>,</span> <span class=p>{</span>
+		<span class=nx>title</span><span class=o>:</span> <span class=s1>&#39;hello world&#39;</span>
+	<span class=p>})</span>
+	
+	<span class=nx>res</span><span class=p>.</span><span class=nx>render</span><span class=p>(</span><span class=s1>&#39;index.html&#39;</span><span class=p>,{</span>
+		<span class=nx>fruit</span><span class=o>:</span><span class=p>[</span><span class=s1>&#39;苹果&#39;</span><span class=p>,</span><span class=s1>&#39;香蕉&#39;</span><span class=p>,</span> <span class=s1>&#39;橘子&#39;</span><span class=p>]</span>
+	<span class=p>})</span>
+	
+	<span class=nx>res</span><span class=p>.</span><span class=nx>render</span><span class=p>(</span><span class=s1>&#39;index.html&#39;</span><span class=p>,{</span>
+		<span class=c1>// 文件读到的是字符串，需要手动转成对象
+</span><span class=c1></span>		<span class=nx>students</span><span class=o>:</span> <span class=nx>JSON</span><span class=p>.</span><span class=nx>parse</span><span class=p>(</span><span class=nx>data</span><span class=p>).</span><span class=nx>students</span>
+	<span class=p>})</span>
+<span class=p>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=p>{</span>
+<span class=nt>&#34;students&#34;</span><span class=p>:[</span>
+	<span class=p>{</span><span class=nt>&#34;id&#34;</span><span class=p>:</span> <span class=mi>1</span><span class=p>,</span> <span class=nt>&#34;name&#34;</span><span class=p>:</span> <span class=s2>&#34;asd&#34;</span><span class=p>},</span>
+	<span class=p>{</span><span class=nt>&#34;id&#34;</span><span class=p>:</span> <span class=mi>2</span><span class=p>,</span> <span class=nt>&#34;name&#34;</span><span class=p>:</span> <span class=s2>&#34;adaasd&#34;</span><span class=p>}</span>
+<span class=p>]</span>
+<span class=p>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>如果希望修改默认的 <code>views</code> 视图渲染目录</li>
+</ul>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=c1>// 第一个参数 views 不要写错
+</span><span class=c1></span><span class=nx>app</span><span class=p>.</span><span class=nx>set</span><span class=p>(</span><span class=s1>&#39;views&#39;</span><span class=p>,</span> <span class=nx>render函数的默认目录路径</span><span class=p>)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=语法积累>语法积累</h3>
+<p>相同的页眉页脚</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>{{extend &#39;./layout.html&#39;}}
+{{block &#39;content&#39;}}
+&lt;div&gt;
+	&lt;h1&gt;页面默认显示这个内容&lt;/h1&gt;
+&lt;/div&gt;
+{{/block}}
+</code></pre></td></tr></table>
+</div>
+</div><div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>{{include &#39;./header.html&#39;}}
+&lt;h1&gt; hello {{name}}&lt;/h1&gt;
+{{include &#39;./footer.html&#39;}}
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=静态服务>静态服务</h2>
+<p>开放资源：公开指定目录</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=c1>// 去 ./public/ 目录中找对应的资源，推荐使用这种更易辨识的方式
+</span><span class=c1></span><span class=nx>app</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=s1>&#39;/public/&#39;</span><span class=p>,</span> <span class=nx>express</span><span class=p>.</span><span class=kr>static</span><span class=p>(</span><span class=s1>&#39;./public&#39;</span><span class=p>))</span>
+<span class=c1>// 可以直接通过 /public/xx 的方式访问 public 目录中的所有资源了
+</span><span class=c1></span>
+<span class=c1>// 省略 /public 的方式来访问
+</span><span class=c1></span><span class=nx>app</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=nx>express</span><span class=p>.</span><span class=kr>static</span><span class=p>(</span><span class=s1>&#39;./public/&#39;</span><span class=p>))</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=post>post</h2>
+<ul>
+<li>需要第三方包：<code>body-parser</code></li>
+</ul>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=kd>var</span> <span class=nx>express</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;express&#39;</span><span class=p>)</span>
+<span class=kd>var</span> <span class=nx>bodyParser</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;body-parser&#39;</span><span class=p>)</span>
+
+<span class=kd>var</span> <span class=nx>app</span> <span class=o>=</span> <span class=nx>express</span><span class=p>()</span>
+
+<span class=c1>// 配置 body-parser 中间件（插件，专门用来解析表单 POST 请求）要在 app.use(router) 挂载路由之前
+</span><span class=c1>// req 请求对象上会多出一个属性：body。即可通过req.body获取表单中的post请求体数据了
+</span><span class=c1>// parse application/xxx.form.urlencoded
+</span><span class=c1></span><span class=nx>app</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=nx>bodyParser</span><span class=p>.</span><span class=nx>urlencoded</span><span class=p>({</span> <span class=nx>extended</span><span class=o>:</span> <span class=kc>false</span> <span class=p>}))</span>
+<span class=c1>// parse application/json
+</span><span class=c1></span><span class=nx>app</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=nx>bodyParser</span><span class=p>.</span><span class=nx>json</span><span class=p>())</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>获得 post 的数据</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=nx>router</span><span class=p>.</span><span class=nx>post</span><span class=p>(</span><span class=s1>&#39;/students/new&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>){</span>
+	<span class=c1>// 1. 获取表单数据
+</span><span class=c1></span>	<span class=c1>// 2. 处理 (抽象出单独一个模块专门 CURD)
+</span><span class=c1></span>	<span class=c1>// 	   将数据保存到 db.json 中用以持久化
+</span><span class=c1></span>	<span class=c1>//		readFile，parse，push，stringify，writeFile
+</span><span class=c1></span>	<span class=c1>// 3. 发送响应
+</span><span class=c1></span>	<span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>req</span><span class=p>.</span><span class=nx>body</span><span class=p>)</span>
+<span class=p>})</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=错误处理>错误处理</h2>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=k>if</span><span class=p>(</span><span class=nx>err</span><span class=p>){</span>
+	<span class=k>return</span> <span class=nx>res</span><span class=p>.</span><span class=nx>status</span><span class=p>(</span><span class=mi>500</span><span class=p>).</span><span class=nx>send</span><span class=p>(</span><span class=s1>&#39;Server error&#39;</span><span class=p>)</span>
+<span class=p>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=经验积累>经验积累</h2>
+<h3 id=json-响应方法>json 响应方法</h3>
+<p>接收一个对象作为参数，自动把对象转为字符串再发送给浏览器</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=nx>res</span><span class=p>.</span><span class=nx>status</span><span class=p>(</span><span class=mi>200</span><span class=p>).</span><span class=nx>json</span><span class=p>({</span>
+	<span class=nx>success</span><span class=o>:</span> <span class=kc>true</span><span class=p>,</span>
+	<span class=nx>message</span><span class=o>:</span> <span class=s1>&#39;ok&#39;</span>
+<span class=p>})</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=内置中间件>内置中间件</h3>
+<p>express.static
+express.json
+<strong>express.urlencoded</strong> parses incoming requests with URL-encoded payloads</p>
+<h3 id=第三方中间件>第三方中间件</h3>
+<p>body-parser
+compression
+cookie-parser
+morgan
+response-time
+serve-static
+session</p>
+<h2 id=模块职责清晰而单一>模块职责清晰而单一</h2>
+<h3 id=提取路由>提取路由</h3>
+<p>将路由放在另一个文件中，exports；在 app.js 中 require</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=c1>// 传统
+</span><span class=c1></span><span class=nx>module</span><span class=p>.</span><span class=nx>exports</span> <span class=o>=</span> <span class=kd>function</span> <span class=p>(</span><span class=nx>app</span><span class=p>){</span>
+	<span class=nx>app</span><span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=s1>&#39;/adas&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>){})</span>
+	<span class=nx>app</span><span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=s1>&#39;/adsg&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>){})</span>
+	<span class=nx>app</span><span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=s1>&#39;/adas/sfdsd&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>){})</span>	
+<span class=p>}</span>
+
+<span class=c1>// express 提供：专门用来包装路由的方式
+</span><span class=c1>// 1. 创建一个路由容器
+</span><span class=c1></span><span class=kd>var</span> <span class=nx>router</span> <span class=o>=</span> <span class=nx>express</span><span class=p>.</span><span class=nx>Router</span><span class=p>()</span>
+
+<span class=c1>// 2. 把路由都挂载到 router 路由容器中
+</span><span class=c1></span><span class=nx>router</span><span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=s1>&#39;/adas&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>){})</span>
+<span class=nx>router</span><span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=s1>&#39;/adsg&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>){})</span>
+<span class=nx>router</span><span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=s1>&#39;/adas/sfdsd&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>){})</span>
+
+<span class=c1>// 3. 把 router 导出
+</span><span class=c1></span><span class=nx>module</span><span class=p>.</span><span class=nx>exports</span> <span class=o>=</span> <span class=nx>router</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=c1>// 把路由容器挂载到 app 服务中
+</span><span class=c1></span><span class=nx>app</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=nx>router</span><span class=p>)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=回调函数>回调函数</h3>
+<ul>
+<li>常规</li>
+</ul>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=kd>function</span> <span class=nx>myDisplayer</span><span class=p>(</span><span class=nx>some</span><span class=p>)</span> <span class=p>{</span>
+  <span class=nb>document</span><span class=p>.</span><span class=nx>getElementById</span><span class=p>(</span><span class=s2>&#34;demo&#34;</span><span class=p>).</span><span class=nx>innerHTML</span> <span class=o>=</span> <span class=nx>some</span><span class=p>;</span>
+<span class=p>}</span>
+
+<span class=kd>function</span> <span class=nx>myCalculator</span><span class=p>(</span><span class=nx>num1</span><span class=p>,</span> <span class=nx>num2</span><span class=p>,</span> <span class=nx>myCallback</span><span class=p>)</span> <span class=p>{</span>
+  <span class=kd>let</span> <span class=nx>sum</span> <span class=o>=</span> <span class=nx>num1</span> <span class=o>+</span> <span class=nx>num2</span><span class=p>;</span>
+  <span class=nx>myCallback</span><span class=p>(</span><span class=nx>sum</span><span class=p>);</span>
+<span class=p>}</span>
+
+<span class=nx>myCalculator</span><span class=p>(</span><span class=mi>5</span><span class=p>,</span> <span class=mi>5</span><span class=p>,</span> <span class=nx>myDisplayer</span><span class=p>);</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>模块化 | 异步
+使用 回调函数（获取异步操作结果）</li>
+</ul>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=nx>Student</span><span class=p>.</span><span class=nx>updateById</span><span class=p>(</span><span class=nx>req</span><span class=p>.</span><span class=nx>body</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span><span class=nx>err</span><span class=p>){</span>
+	<span class=k>if</span><span class=p>(</span><span class=nx>err</span><span class=p>){</span>
+		<span class=k>return</span> <span class=nx>res</span><span class=p>.</span><span class=nx>status</span><span class=p>(</span><span class=mi>500</span><span class=p>).</span><span class=nx>send</span><span class=p>(</span><span class=s1>&#39;Server error&#39;</span><span class=p>)</span>
+	<span class=p>}</span>
+	<span class=nx>res</span><span class=p>.</span><span class=nx>redirect</span><span class=p>(</span><span class=s1>&#39;/students&#39;</span><span class=p>)</span>
+<span class=p>})</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>定义回调函数</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=nx>exports</span><span class=p>.</span><span class=nx>updateById</span> <span class=o>=</span> <span class=kd>function</span><span class=p>(</span><span class=nx>student</span><span class=p>,</span> <span class=nx>callback</span><span class=p>){</span>
+	<span class=nx>fs</span><span class=p>.</span><span class=nx>readFile</span><span class=p>(</span><span class=nx>dbPath</span><span class=p>,</span> <span class=s1>&#39;utf8&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span><span class=nx>err</span><span class=p>,</span> <span class=nx>data</span><span class=p>){</span>
+    <span class=k>if</span><span class=p>(</span><span class=nx>err</span><span class=p>){</span>
+    	<span class=k>return</span> <span class=nx>callback</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
+    <span class=p>}</span>
+    <span class=kd>var</span> <span class=nx>students</span> <span class=o>=</span> <span class=nx>JSON</span><span class=p>.</span><span class=nx>parse</span><span class=p>(</span><span class=nx>data</span><span class=p>).</span><span class=nx>students</span>
+	
+	<span class=c1>// 需要修改谁，就把谁找出来，ES6 数组方法：find，当某项符合 item.id === students.id 的时候，find 终止遍历，同时返回遍历项。
+</span><span class=c1></span>	<span class=kd>var</span> <span class=nx>stu</span> <span class=o>=</span> <span class=nx>students</span><span class=p>.</span><span class=nx>find</span><span class=p>(</span><span class=kd>function</span><span class=p>(</span><span class=nx>item</span><span class=p>){</span>
+		<span class=k>return</span> <span class=nx>item</span><span class=p>.</span><span class=nx>id</span> <span class=o>===</span> <span class=nx>student</span><span class=p>.</span><span class=nx>id</span>
+	<span class=p>})</span>
+	<span class=p>})</span>
+<span class=p>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>获取学生列表</li>
+</ul>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=nx>exports</span><span class=p>.</span><span class=nx>find</span> <span class=o>=</span> <span class=kd>function</span><span class=p>(</span><span class=nx>callback</span><span class=p>){</span>
+	<span class=nx>fs</span><span class=p>.</span><span class=nx>readFile</span><span class=p>(</span><span class=nx>dbPath</span><span class=p>,</span> <span class=s1>&#39;utf8&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span><span class=nx>err</span><span class=p>,</span> <span class=nx>data</span><span class=p>){</span>
+		<span class=k>if</span><span class=p>(</span><span class=nx>err</span><span class=p>){</span>
+		<span class=c1>// 第一个参数，成功是 null，错误是 错误对象
+</span><span class=c1></span>			<span class=k>return</span> <span class=nx>callback</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
+		<span class=p>}</span>
+		<span class=c1>// 第二个参数，成功是 数组，错误是 undefined
+</span><span class=c1></span>		<span class=nx>callback</span><span class=p>(</span><span class=kc>null</span><span class=p>,</span> <span class=nx>JSON</span><span class=p>.</span><span class=nx>parse</span><span class=p>(</span><span class=nx>data</span><span class=p>).</span><span class=nx>students</span><span class=p>)</span>
+	<span class=p>})</span>
+<span class=p>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id=mongodb>MongoDB</h1>
+<p><code>show dbs</code> 显示所有数据的列表
+<code>db</code> 显示当前数据库对象或集合
+<code>use 指定要连接的数据库名</code> 若没有则创建
+<code>db.students.insertOne({"name": "Jack"})</code> 存的是一个对象
+<code>db.students.find()</code> list</p>
+<h2 id=mongoose>mongoose</h2>
+<p>基于 MongoDB，官方的包强大但用起来麻烦</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=kr>const</span> <span class=nx>mongoose</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;mongoose&#39;</span><span class=p>);</span>
+<span class=nx>mongoose</span><span class=p>.</span><span class=nx>connect</span><span class=p>(</span><span class=s1>&#39;mongodb://localhost:27017/test&#39;</span><span class=p>,</span> <span class=p>{</span><span class=nx>useNewUrlParser</span><span class=o>:</span> <span class=kc>true</span><span class=p>,</span> <span class=nx>useUnifiedTopology</span><span class=o>:</span> <span class=kc>true</span><span class=p>});</span>
+
+<span class=c1>// 创建一个模型：设计数据库
+</span><span class=c1></span><span class=kr>const</span> <span class=nx>Cat</span> <span class=o>=</span> <span class=nx>mongoose</span><span class=p>.</span><span class=nx>model</span><span class=p>(</span><span class=s1>&#39;Cat&#39;</span><span class=p>,</span> <span class=p>{</span> <span class=nx>name</span><span class=o>:</span> <span class=nb>String</span> <span class=p>});</span>
+
+<span class=c1>// 实例化 Cat
+</span><span class=c1></span><span class=kr>const</span> <span class=nx>kitty</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Cat</span><span class=p>({</span> <span class=nx>name</span><span class=o>:</span> <span class=s1>&#39;Zildjian&#39;</span> <span class=p>});</span>
+
+<span class=c1>// 持久化保存 kitty 实例
+</span><span class=c1></span><span class=nx>kitty</span><span class=p>.</span><span class=nx>save</span><span class=p>().</span><span class=nx>then</span><span class=p>(()</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;meow&#39;</span><span class=p>));</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=使用>使用</h2>
+<ul>
+<li></li>
+</ul>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=c1>// 设计 Schema，发布 model
+</span><span class=c1></span><span class=nx>mongoose</span><span class=p>.</span><span class=nx>connect</span><span class=p>(</span><span class=s1>&#39;mongodb://localhost/itcast&#39;</span><span class=p>)</span> <span class=c1>// 没有则创建
+</span><span class=c1></span>
+<span class=c1>// 设计集合结构（表结构），字段名称就是表结构中的属性名称
+</span><span class=c1>// 约束的目的是保证数据的完整性，不要有脏数据
+</span><span class=c1></span><span class=kd>var</span> <span class=nx>userSchema</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Schema</span><span class=p>({</span>
+	<span class=nx>title</span><span class=o>:</span> <span class=nb>String</span><span class=p>,</span>
+	<span class=nx>meta</span><span class=o>:</span> <span class=nb>Number</span><span class=p>,</span>
+	<span class=nx>comments</span><span class=o>:</span> <span class=p>[{</span><span class=nx>body</span><span class=o>:</span> <span class=nb>String</span><span class=p>,</span> <span class=nx>date</span><span class=o>:</span> <span class=nb>Date</span><span class=p>}],</span>
+	<span class=nx>date</span><span class=o>:</span> <span class=p>{</span><span class=nx>type</span><span class=o>:</span> <span class=nb>Date</span><span class=p>,</span> <span class=k>default</span><span class=o>:</span> <span class=nb>Date</span><span class=p>.</span><span class=nx>now</span><span class=p>},</span>
+    <span class=nx>name</span><span class=o>:</span><span class=p>{</span>
+        <span class=nx>type</span><span class=o>:</span> <span class=nb>String</span><span class=p>,</span>
+        <span class=nx>required</span><span class=o>:</span> <span class=kc>true</span> <span class=c1>// 约束
+</span><span class=c1></span>    <span class=p>},</span>
+    <span class=nx>gender</span><span class=o>:</span><span class=p>{</span>
+        <span class=kr>enum</span><span class=o>:</span> <span class=p>[</span><span class=mi>0</span><span class=p>,</span> <span class=mi>1</span><span class=p>],</span>
+        <span class=k>default</span><span class=o>:</span> <span class=mi>0</span>
+    <span class=p>}</span>
+<span class=p>})</span>
+
+<span class=c1>// 将文档结构发布为模型
+</span><span class=c1></span><span class=kd>var</span> <span class=nx>User</span> <span class=o>=</span> <span class=nx>mongoose</span><span class=p>.</span><span class=nx>model</span><span class=p>(</span><span class=s1>&#39;User&#39;</span><span class=p>,</span> <span class=nx>userSchema</span><span class=p>)</span>
+<span class=c1>// 第一个参数：首字母大写，表示数据库名称，mongoose 自动将其变为 users 集合名称
+</span><span class=c1></span>
+<span class=c1>// 使用模型构造函数对users集合中的数据进行操作
+</span><span class=c1></span><span class=kd>var</span> <span class=nx>admin</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>User</span><span class=p>({</span>
+	<span class=nx>username</span><span class=o>:</span> <span class=s1>&#39;admin&#39;</span><span class=p>,</span>
+	<span class=nx>password</span><span class=o>:</span> <span class=s1>&#39;123456&#39;</span>
+<span class=p>})</span>
+<span class=nx>admin</span><span class=p>.</span><span class=nx>save</span><span class=p>(</span><span class=kd>function</span><span class=p>(</span><span class=nx>err</span><span class=p>,</span> <span class=nx>ret</span><span class=p>){</span>
+    <span class=k>if</span><span class=p>(</span><span class=nx>err</span><span class=p>){</span>
+    	<span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;保存失败&#39;</span><span class=p>)</span>
+    <span class=p>}</span><span class=k>else</span><span class=p>{</span>
+    	<span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;保存成功&#39;</span><span class=p>)</span>
+    <span class=p>}</span>
+<span class=p>})</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>根据 id 删除数据</li>
+</ul>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=nx>User</span><span class=p>.</span><span class=nx>findByIdAndRemove</span><span class=p>(</span><span class=nx>id</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span><span class=nx>err</span><span class=p>){</span>
+    <span class=k>if</span><span class=p>(</span><span class=nx>err</span><span class=p>){</span>
+        <span class=k>return</span> <span class=nx>res</span><span class=p>.</span><span class=nx>status</span><span class=p>(</span><span class=mi>500</span><span class=p>).</span><span class=nx>send</span><span class=p>(</span><span class=s1>&#39;Server error&#39;</span><span class=p>)</span>
+    <span class=p>}</span>
+    <span class=nx>res</span><span class=p>.</span><span class=nx>redirect</span><span class=p>(</span><span class=s1>&#39;/users&#39;</span><span class=p>)</span>
+<span class=p>})</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>查询数据</li>
+</ul>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=nx>User</span><span class=p>.</span><span class=nx>findOne</span><span class=p>({</span> <span class=c1>// 还有 find，返回的文档可能不止一个
+</span><span class=c1></span>    		<span class=c1>// 查到&amp;删除数据：User.remove({...})
+</span><span class=c1></span>    <span class=nx>username</span><span class=o>:</span> <span class=s1>&#39;zs&#39;</span>
+<span class=p>},</span> <span class=kd>function</span><span class=p>(</span><span class=nx>err</span><span class=p>,</span> <span class=nx>ret</span><span class=p>){</span>
+    <span class=k>if</span><span class=p>(</span><span class=nx>err</span><span class=p>){</span>
+        <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;查询失败&#39;</span><span class=p>)</span>
+    <span class=p>}</span><span class=k>else</span><span class=p>{</span>
+        <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;查询成功&#39;</span><span class=p>)</span>
+    <span class=p>}</span>
+<span class=p>})</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>更新数据
+根据条件更新：</li>
+</ul>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=nx>Model</span><span class=p>.</span><span class=nx>update</span><span class=p>(</span><span class=nx>conditions</span><span class=p>,</span> <span class=nx>doc</span><span class=p>,</span> <span class=p>[</span><span class=nx>options</span><span class=p>],</span> <span class=p>[</span><span class=nx>callback</span><span class=p>])</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>根据指定条件更新一个：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=nx>Model</span><span class=p>.</span><span class=nx>findOneAndUpdate</span><span class=p>([</span><span class=nx>condition</span><span class=p>],</span> <span class=p>[</span><span class=nx>update</span><span class=p>],</span> <span class=p>[</span><span class=nx>options</span><span class=p>],</span> <span class=p>[</span><span class=nx>callback</span><span class=p>])</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>根据 id 更新一个</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=nx>User</span><span class=p>.</span><span class=nx>findByIdAndUpdate</span><span class=p>(</span><span class=s1>&#39;afdafdadsfasf&#39;</span><span class=p>,{</span>
+    <span class=nx>password</span><span class=o>:</span><span class=s1>&#39;123&#39;</span>
+<span class=p>},</span> <span class=kd>function</span><span class=p>(</span><span class=nx>err</span><span class=p>,</span> <span class=nx>ret</span><span class=p>){</span>
+	<span class=k>if</span><span class=p>(</span><span class=nx>err</span><span class=p>){</span>
+		<span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;更新失败&#39;</span><span class=p>)</span>
+	<span class=p>}</span><span class=k>else</span><span class=p>{</span>
+		<span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;更新成功&#39;</span><span class=p>)</span>
+	<span class=p>}</span>
+<span class=p>})</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=经验注意>经验&注意</h2>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=kd>var</span> <span class=nx>userSchema</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Schema</span><span class=p>({</span>
+    <span class=nx>email</span><span class=o>:</span> <span class=p>{</span>
+		<span class=nx>type</span><span class=o>:</span> <span class=nx>a</span> <span class=o>+</span> <span class=nx>b</span><span class=p>,</span> <span class=c1>// new 的同时已经算好了
+</span><span class=c1></span>		<span class=nx>required</span><span class=o>:</span> <span class=kc>true</span>
+    <span class=p>},</span>
+    <span class=nx>creat_time</span><span class=o>:</span> <span class=p>{</span>
+    	<span class=nx>type</span><span class=o>:</span> <span class=nb>Date</span><span class=p>,</span>
+    	<span class=nx>required</span><span class=o>:</span> <span class=nb>Date</span><span class=p>.</span><span class=nx>now</span> <span class=c1>// 如果加()，时间立即创建，就写死了
+</span><span class=c1></span>    <span class=p>}</span>
+<span class=p>})</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id=promise>promise</h1>
+<h2 id=回调地狱>回调地狱</h2>
+<p>嵌套回调函数以保证执行顺序，导致<img src="https://pic1.zhimg.com/v2-cf1c78890006e078a538842a0caa7127_1440w.jpg?source=172ae18b" alt></p>
+<h2 id=用法>用法</h2>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>
+
+<span class=c1>// 结果：1243
+</span><span class=c1>// Promise 本身不是异步，它里面的任务是异步
+</span><span class=c1>// Promise 容器一旦创建，就开始执行里面的代码
+</span><span class=c1></span><span class=k>new</span> <span class=nb>Promise</span><span class=p>(</span><span class=kd>function</span><span class=p>(){</span>
+	<span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=mi>2</span><span class=p>)</span>
+	<span class=nx>fs</span><span class=p>.</span><span class=nx>readFile</span><span class=p>(</span><span class=s1>&#39;./a.txt&#39;</span><span class=p>,</span> <span class=s1>&#39;utf8&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span><span class=nx>err</span><span class=p>,</span> <span class=nx>data</span><span class=p>){</span>
+		<span class=k>if</span><span class=p>(</span><span class=nx>err</span><span class=p>){</span>
+			<span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
+            <span class=c1>// 失败了，把容器的 Pending 状态变为 Rejected
+</span><span class=c1></span>            <span class=nx>reject</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
+		<span class=p>}</span><span class=k>else</span><span class=p>{</span>
+			<span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=mi>3</span><span class=p>)</span>
+			<span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>data</span><span class=p>)</span>
+            <span class=c1>//成功了，把容器的 Pending 状态变为 Resolved
+</span><span class=c1></span>            <span class=nx>resolve</span><span class=p>(</span><span class=nx>data</span><span class=p>)</span>
+		<span class=p>}</span>
+	<span class=p>})</span>
+<span class=p>})</span>
+<span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=mi>4</span><span class=p>)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js>
+<span class=nx>p1</span>
+  <span class=p>.</span><span class=nx>then</span><span class=p>(</span><span class=kd>function</span><span class=p>(</span><span class=nx>data</span><span class=p>){</span> <span class=c1>// 这个 function 就是 resolve
+</span><span class=c1></span>      <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>data</span><span class=p>)</span>
+      <span class=c1>// 如果没有return，后面受到的就是undefined
+</span><span class=c1></span>      <span class=c1>// return 123 // 给了下面一个 then 
+</span><span class=c1></span>      <span class=k>return</span> <span class=nx>p2</span> <span class=c1>//  return 一个 Promise 对象，后续的 then 方法的第一个参数作为p2的 resolve
+</span><span class=c1></span>  <span class=p>},</span> <span class=kd>function</span><span class=p>(</span><span class=nx>err</span><span class=p>){</span>
+      <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;读取文件失败&#39;</span><span class=p>)</span>
+  <span class=p>})</span>
+  <span class=p>.</span><span class=nx>then</span><span class=p>(</span><span class=kd>function</span><span class=p>(</span><span class=nx>data</span><span class=p>){</span>
+      <span class=c1>// console.log(data) // 是前面 return 123 中的data
+</span><span class=c1></span>      <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>data</span><span class=p>)</span> <span class=c1>// p2 处理 data，顺序保证了
+</span><span class=c1></span>  <span class=p>})</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=实战>实战</h2>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=c1>// 按顺序读取文件
+</span><span class=c1></span><span class=kd>var</span> <span class=nx>fs</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;fs&#39;</span><span class=p>)</span>
+<span class=kd>function</span> <span class=nx>pReadFile</span><span class=p>(</span><span class=nx>filePath</span><span class=p>){</span>
+	<span class=k>return</span> <span class=k>new</span> <span class=nb>Promise</span><span class=p>(</span><span class=kd>function</span><span class=p>(</span><span class=nx>resolve</span><span class=p>,</span> <span class=nx>reject</span><span class=p>){</span>
+		<span class=k>if</span><span class=p>(</span><span class=nx>err</span><span class=p>){</span>
+			<span class=nx>reject</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
+		<span class=p>}</span><span class=k>else</span><span class=p>{</span>
+			<span class=nx>resolve</span><span class=p>(</span><span class=nx>data</span><span class=p>)</span>
+		<span class=p>}</span>
+	<span class=p>})</span>
+<span class=p>}</span>
+
+<span class=nx>pReadFile</span><span class=p>(</span><span class=s1>&#39;./data/a.txt&#39;</span><span class=p>)</span>
+  <span class=p>.</span><span class=nx>then</span><span class=p>(</span><span class=kd>function</span><span class=p>(</span><span class=nx>data</span><span class=p>){</span>
+      <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>data</span><span class=p>)</span>
+      <span class=k>return</span> <span class=nx>pReadFile</span><span class=p>(</span><span class=s1>&#39;./data/b.txt&#39;</span><span class=p>)</span>
+  <span class=p>})</span>
+  <span class=p>.</span><span class=nx>then</span><span class=p>(</span><span class=kd>function</span><span class=p>(</span><span class=nx>data</span><span class=p>){</span>
+      <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>data</span><span class=p>)</span>
+      <span class=k>return</span> <span class=nx>pReadFile</span><span class=p>(</span><span class=s1>&#39;./data/c.txt&#39;</span><span class=p>)</span>
+  <span class=p>})</span>
+  <span class=p>.</span><span class=nx>then</span><span class=p>(</span><span class=kd>function</span><span class=p>(</span><span class=nx>data</span><span class=p>){</span>
+      <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>data</span><span class=p>)</span>
+  <span class=p>})</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=async--await>async & await</h2>
+<ul>
+<li>The keyword <code>async</code> before a function makes the function return a promise</li>
+</ul>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=kr>async</span> <span class=kd>function</span> <span class=nx>myFunction</span><span class=p>()</span> <span class=p>{</span>
+  <span class=k>return</span> <span class=s2>&#34;Hello&#34;</span><span class=p>;</span>
+<span class=p>}</span>
+<span class=nx>myFunction</span><span class=p>().</span><span class=nx>then</span><span class=p>(</span>
+  <span class=kd>function</span><span class=p>(</span><span class=nx>value</span><span class=p>)</span> <span class=p>{</span><span class=nx>myDisplayer</span><span class=p>(</span><span class=nx>value</span><span class=p>);},</span>
+  <span class=kd>function</span><span class=p>(</span><span class=nx>error</span><span class=p>)</span> <span class=p>{</span><span class=nx>myDisplayer</span><span class=p>(</span><span class=nx>error</span><span class=p>);}</span> <span class=c1>// 可以没有这一行
+</span><span class=c1></span><span class=p>);</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=kd>let</span> <span class=nx>hello</span> <span class=o>=</span> <span class=kr>async</span> <span class=kd>function</span><span class=p>()</span> <span class=p>{</span> <span class=k>return</span> <span class=s2>&#34;Hello&#34;</span> <span class=p>};</span>
+<span class=nx>hello</span><span class=p>();</span>
+
+<span class=kd>let</span> <span class=nx>hello</span> <span class=o>=</span> <span class=kr>async</span> <span class=p>()</span> <span class=p>=&gt;</span> <span class=p>{</span> <span class=k>return</span> <span class=s2>&#34;Hello&#34;</span> <span class=p>};</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>await</code> only works inside async functions. This can be put in front of any async promise-based function to pause your code on that line until the promise fulfills, then return the resulting value.</li>
+</ul>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=c1>// .then() 变为 await
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id=jquery--兼容-promise>jquery ??? 兼容 Promise</h2>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=nx>data</span> <span class=o>=</span> <span class=p>{}</span>
+<span class=nx>$</span><span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=s1>&#39;http://127.0.0.1:3000&#39;</span><span class=p>)</span>
+    <span class=p>.</span><span class=nx>then</span><span class=p>(</span><span class=kd>function</span><span class=p>(</span><span class=nx>user</span><span class=p>){</span>
+    <span class=nx>data</span><span class=p>.</span><span class=nx>user</span> <span class=o>=</span> <span class=nx>user</span>
+    <span class=k>return</span> <span class=nx>$</span><span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=s1>&#39;http://127.0.0.1:3000/jobs&#39;</span><span class=p>)</span>
+<span class=p>})</span>
+<span class=p>.</span><span class=nx>then</span><span class=p>(</span><span class=kd>function</span><span class=p>(</span><span class=nx>jobs</span><span class=p>){</span>
+    <span class=nx>data</span><span class=p>.</span><span class=nx>jobs</span> <span class=o>=</span> <span class=nx>jobs</span>
+<span class=p>})</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id=中间件>中间件</h1>
+<p>本质是请求处理方法</p>
+<h2 id=消费规则与控制>消费规则与控制</h2>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=nx>app</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=kd>function</span><span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>,</span> <span class=nx>next</span><span class=p>){</span> <span class=c1>// 没有路径参数，万能匹配
+</span><span class=c1></span>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;1&#34;</span><span class=p>)</span>
+    <span class=nx>next</span><span class=p>()</span>  <span class=c1>// 这个函数消费完后，继续往后面走
+</span><span class=c1></span><span class=p>})</span>
+
+<span class=c1>// 严格匹配请求方法和路径的中间件 app.get app.post
+</span><span class=c1></span><span class=nx>app</span><span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=s1>&#39;&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>,</span> <span class=nx>next</span><span class=p>){</span>
+
+<span class=p>})</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=错误处理-1>错误处理</h2>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=nx>app</span><span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=s1>&#39;/&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>,</span> <span class=nx>next</span><span class=p>){</span>
+    <span class=nx>fs</span><span class=p>.</span><span class=nx>readFile</span><span class=p>(</span><span class=s1>&#39;./a/ad&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span><span class=nx>err</span><span class=p>,</span> <span class=nx>data</span><span class=p>){</span>
+        <span class=k>if</span><span class=p>(</span><span class=nx>err</span><span class=p>){</span>
+            <span class=c1>// 当调用 next 的时候，如果传递了参数，则直接往后找到带有四个参数的中间件
+</span><span class=c1></span>            <span class=nx>next</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
+        <span class=p>}</span>
+    <span class=p>})</span>
+<span class=p>})</span>
+
+<span class=c1>// 配置错误处理中间件
+</span><span class=c1></span><span class=nx>app</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=kd>function</span><span class=p>(</span><span class=nx>err</span><span class=p>,</span> <span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>,</span> <span class=nx>next</span><span class=p>){</span>
+    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;app error handler&#39;</span><span class=p>)</span>
+<span class=p>})</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=第三方中间件-1>第三方中间件</h2>
+<p>Express 框架中，默认不支持 Session 和 Cookie，但是可以使用第三方中间件：express-session 来解决：<code>npm install express-session</code>；在app.use(router)前配置；使用：通过 req.session 来访问和设置 session 成员</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=nx>req</span><span class=p>.</span><span class=nx>session</span><span class=p>.</span><span class=nx>xxx</span> <span class=o>=</span> <span class=s1>&#39;bar&#39;</span> <span class=c1>// 添加
+</span><span class=c1></span><span class=nx>req</span><span class=p>.</span><span class=nx>session</span><span class=p>.</span><span class=nx>xxx</span> <span class=c1>// 读
+</span><span class=c1></span><span class=nx>req</span><span class=p>.</span><span class=nx>session</span><span class=p>.</span><span class=nx>xxx</span> <span class=o>=</span> <span class=kc>null</span> <span class=c1>// 删除（不严谨）
+</span><span class=c1></span><span class=k>delete</span> <span class=nx>req</span><span class=p>.</span><span class=nx>session</span><span class=p>.</span><span class=nx>xxx</span> <span class=c1>// 删除（严谨）
+</span></code></pre></td></tr></table>
+</div>
+</div><div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=nx>app</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=nx>session</span><span class=p>({</span>
+	<span class=nx>secret</span><span class=o>:</span> <span class=s1>&#39;keyboard cat&#39;</span><span class=p>,</span>
+	<span class=nx>resave</span><span class=o>:</span> <span class=kc>false</span><span class=p>,</span>
+	<span class=nx>saveUninitialize</span><span class=o>:</span> <span class=kc>true</span>
+<span class=p>}))</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=其他>其他</h2>
+<p>中间件，需要经验积累</p>
+<h1 id=path-路径操作模块>path 路径操作模块</h1>
+<h2 id=文件操作同一转换为动态的绝对路径>文件操作同一转换为动态的绝对路径</h2>
+<p>__dirname <strong>动态获取</strong>可以用来获取当前文件模块所属目录的绝对路径
+__filename <strong>动态获取</strong>可以用来获取当前文件的绝对路径
+__dirname 和 __filename 不受执行node命令所属路径影响
+拼接路径：path.join()</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=nx>app</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=s1>&#39;/public/&#39;</span><span class=p>,</span> <span class=nx>express</span><span class=p>.</span><span class=kr>static</span><span class=p>(</span><span class=nx>path</span><span class=p>.</span><span class=nx>join</span><span class=p>(</span><span class=mi>__</span><span class=nx>dirname</span><span class=p>,</span> <span class=s1>&#39;./public/&#39;</span><span class=p>)))</span>
+<span class=nx>app</span><span class=p>.</span><span class=nx>set</span><span class=p>(</span><span class=s1>&#39;views&#39;</span><span class=p>,</span> <span class=nx>path</span><span class=p>.</span><span class=nx>join</span><span class=p>(</span><span class=mi>__</span><span class=nx>dirname</span><span class=p>,</span> <span class=s1>&#39;./views/&#39;</span><span class=p>))</span> <span class=c1>// 默认就是 ./views 目录
+</span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>path.basename</p>
+<p>获取一个路径的文件名（默认包含扩展名）</p>
+</li>
+<li>
+<p>path.dirname</p>
+<p>获取一个路径的目录部分</p>
+</li>
+<li>
+<p>path.extname</p>
+<p>获取一个路径的扩展名部分</p>
+</li>
+<li>
+<p>path.parse
+把一个路径转为对象
+root 根目录
+dir 目录
+base 包含后缀名的文件名
+ext 后缀名
+name 不包含后缀名的文件名</p>
+</li>
+<li>
+<p>path.join
+路径拼接方法</p>
+</li>
+<li>
+<p>path.isAbsolute
+判断一个路径是否为绝对路径</p>
+</li>
+</ul>
+<h1 id=cheerio>cheerio</h1>
+<h2 id=chrome-console-debug>chrome console debug</h2>
+<blockquote>
+<p>语法和 jQuary 基本一致，调试是若网页无<code>$</code>，则引入 jQuary</p>
+</blockquote>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=kd>var</span> <span class=nx>script</span> <span class=o>=</span> <span class=nb>document</span><span class=p>.</span><span class=nx>createElement</span><span class=p>(</span><span class=s2>&#34;script&#34;</span><span class=p>);</span>
+<span class=nx>script</span><span class=p>.</span><span class=nx>src</span> <span class=o>=</span> <span class=s2>&#34;https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js&#34;</span><span class=p>;</span>
+<span class=nb>document</span><span class=p>.</span><span class=nx>getElementsByTagName</span><span class=p>(</span><span class=s1>&#39;head&#39;</span><span class=p>)[</span><span class=mi>0</span><span class=p>].</span><span class=nx>appendChild</span><span class=p>(</span><span class=nx>script</span><span class=p>);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=jquary-学习笔记>jQuary 学习笔记</h2>
+<h3 id=特性>特性</h3>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=c1>// 入口函数：防止页面还没被渲染出来脚本就执行了
+</span><span class=c1></span>	<span class=c1>// 1.1、原生Js会等到DOM元素加载完毕，并且图片也加载完毕才会执行；
+</span><span class=c1></span>	<span class=c1>// 1.2、jQuery会等到DOM元素加载完毕，但不会等到图片加载完毕就会执行。
+</span><span class=c1></span>	<span class=c1>// 2.1、原生Js如果编写多个入口函数，后面编写的会覆盖前面编写的；
+</span><span class=c1></span>	<span class=c1>// 2.2、JQuery中编写多个入口函数，后面的不会覆盖前面的。
+</span><span class=c1>// 三种写法
+</span><span class=c1></span><span class=nx>$</span><span class=p>(</span><span class=nb>document</span><span class=p>).</span><span class=nx>ready</span><span class=p>(</span><span class=kd>function</span> <span class=p>()</span> <span class=p>{</span> <span class=c1>// 文档加载出来以后执行
+</span><span class=c1></span>	<span class=nx>alert</span><span class=p>(</span><span class=err>“</span><span class=nx>入口函数1</span><span class=err>”</span><span class=p>);</span>
+    <span class=nx>$</span><span class=p>(</span><span class=s1>&#39;div&#39;</span><span class=p>).</span><span class=nx>width</span><span class=p>(</span><span class=mi>100</span><span class=p>).</span><span class=nx>height</span><span class=p>(</span><span class=mi>100</span><span class=p>).</span><span class=nx>css</span><span class=p>(</span><span class=s1>&#39;backgroundColor&#39;</span><span class=p>,</span> <span class=s1>&#39;red&#39;</span><span class=p>).</span><span class=nx>text</span><span class=p>(</span><span class=s2>&#34;ada&#34;</span><span class=p>);</span> <span class=c1>// 操作元素，链式编程
+</span><span class=c1></span><span class=p>});</span>
+
+<span class=nx>$</span><span class=p>(</span><span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+<span class=c1>//文档和图片都加载完成 相当于原生的 window.onload
+</span><span class=c1></span><span class=nx>alert</span><span class=p>(</span><span class=err>“</span><span class=nx>JQ的第一个入口</span><span class=err>”</span><span class=p>);</span>
+<span class=p>});</span>
+
+<span class=nx>$</span><span class=p>(</span><span class=nb>window</span><span class=p>).</span><span class=nx>ready</span><span class=p>(</span><span class=kd>function</span> <span class=p>()</span> <span class=p>{</span> <span class=c1>//文档和图片全部加载完 执行
+</span><span class=c1></span><span class=nx>alert</span><span class=p>(</span><span class=err>“</span><span class=nx>window加载完</span><span class=err>”</span><span class=p>);</span>
+<span class=p>})</span>
+
+<span class=nx>$</span><span class=p>(</span><span class=s1>&#39;.wrap&gt;ul&gt;li&#39;</span><span class=p>).</span><span class=nx>mouseenter</span><span class=p>(</span><span class=kd>function</span><span class=p>(){</span> 	   <span class=c1>// mouseover 有冒泡，mouseenter阻止冒泡
+</span><span class=c1></span>    <span class=c1>// js 一般在前面多一个 on, e.g. onmouseover	// mouseout			mouseleave
+</span><span class=c1></span>    <span class=c1>//this是触发了鼠标移动事件的dom对象	// hide() 相当于css(&#39;display&#39;, &#39;none&#39;)
+</span><span class=c1></span>    <span class=nx>$</span><span class=p>(</span><span class=k>this</span><span class=p>).</span><span class=nx>children</span><span class=p>(</span><span class=s1>&#39;url&#39;</span><span class=p>).</span><span class=nx>show</span><span class=p>();</span>    <span class=c1>// show() 相当于css(&#39;display&#39;, &#39;block&#39;)
+</span><span class=c1></span><span class=p>})</span>								
+
+<span class=c1>// css 设置多样式，可传入对象
+</span><span class=c1></span><span class=nx>$</span><span class=p>(</span><span class=s1>&#39;#div1&#39;</span><span class=p>).</span><span class=nx>css</span><span class=p>({</span>
+    <span class=nx>width</span><span class=o>:</span> <span class=mi>300</span><span class=p>,</span>
+    <span class=s1>&#39;height&#39;</span><span class=o>:</span> <span class=s1>&#39;300px&#39;</span><span class=p>,</span>
+    <span class=s1>&#39;background-color&#39;</span><span class=o>:</span> <span class=s1>&#39;green&#39;</span><span class=p>,</span>
+    <span class=nx>border</span><span class=o>:</span> <span class=s1>&#39;10px solid pink&#39;</span>
+<span class=p>})</span>
+
+<span class=c1>// 案例：突出展示
+</span><span class=c1></span><span class=nx>$</span><span class=p>(</span><span class=s1>&#39;.swap&#39;</span><span class=p>).</span><span class=nx>find</span><span class=p>(</span><span class=s1>&#39;li&#39;</span><span class=p>).</span><span class=nx>mouseenter</span><span class=p>(</span><span class=kd>function</span><span class=p>(){</span>
+    <span class=c1>// $(this).css(&#39;opacity&#39;, 1) 返回设置这个方法的元素本身
+</span><span class=c1></span>    <span class=nx>$</span><span class=p>(</span><span class=k>this</span><span class=p>).</span><span class=nx>css</span><span class=p>(</span><span class=s1>&#39;opacity&#39;</span><span class=p>,</span> <span class=mi>1</span><span class=p>).</span><span class=nx>siblings</span><span class=p>(</span><span class=s1>&#39;li&#39;</span><span class=p>).</span><span class=nx>css</span><span class=p>(</span><span class=s1>&#39;opacity&#39;</span><span class=p>,</span> <span class=mf>0.4</span><span class=p>);</span>
+<span class=p>})</span>
+<span class=nx>$</span><span class=p>(</span><span class=s1>&#39;.swap&#39;</span><span class=p>).</span><span class=nx>mouseleave</span><span class=p>(</span><span class=kd>function</span><span class=p>(){</span>
+    <span class=nx>$</span><span class=p>(</span><span class=k>this</span><span class=p>).</span><span class=nx>find</span><span class=p>(</span><span class=s1>&#39;li&#39;</span><span class=p>).</span><span class=nx>css</span><span class=p>(</span><span class=s1>&#39;opacity&#39;</span><span class=p>,</span> <span class=mi>1</span><span class=p>);</span>
+<span class=p>})</span>
+
+<span class=c1>// 案例：手风琴
+</span><span class=c1></span><span class=cm>/*
+</span><span class=cm>&lt;li class=&#34;menuGroup&#34;&gt;
+</span><span class=cm>	&lt;span class=&#34;groupTitle&#34;&gt;标题i&lt;/span&gt;
+</span><span class=cm>	&lt;div&gt;我是弹出来的divi&lt;/div&gt;
+</span><span class=cm>&lt;/li&gt;
+</span><span class=cm>*/</span>
+<span class=nx>$</span><span class=p>(</span><span class=s1>&#39;.parentWrap&gt;.menuGroup&#39;</span><span class=p>).</span><span class=nx>click</span><span class=p>(</span><span class=kd>function</span><span class=p>(){</span>
+    <span class=c1>// 隐式迭代，链式编程
+</span><span class=c1></span>    <span class=nx>$</span><span class=p>(</span><span class=k>this</span><span class=p>).</span><span class=nx>children</span><span class=p>(</span><span class=s1>&#39;div&#39;</span><span class=p>).</span><span class=nx>show</span><span class=p>().</span><span class=nx>parent</span><span class=p>().</span><span class=nx>siblings</span><span class=p>(</span><span class=s1>&#39;li&#39;</span><span class=p>).</span><span class=nx>children</span><span class=p>(</span><span class=s1>&#39;div&#39;</span><span class=p>.</span><span class=nx>hide</span><span class=p>());</span>
+<span class=p>})</span>
+
+<span class=c1>// 案例：淘宝服饰精品
+</span><span class=c1></span><span class=nx>$</span><span class=p>(</span><span class=s1>&#39;#left&gt;li&#39;</span><span class=p>).</span><span class=nx>mouseenter</span><span class=p>(</span><span class=kd>function</span><span class=p>(){</span>
+    <span class=kd>var</span> <span class=nx>idx</span> <span class=o>=</span> <span class=nx>$</span><span class=p>(</span><span class=k>this</span><span class=p>).</span><span class=nx>index</span><span class=p>()</span> <span class=c1>// 当鼠标移入时，获取这个li标签的索引
+</span><span class=c1></span>    <span class=nx>$</span><span class=p>(</span><span class=s1>&#39;#center&gt;li&#39;</span><span class=p>).</span><span class=nx>eq</span><span class=p>(</span><span class=nx>idx</span><span class=p>).</span><span class=nx>show</span><span class=p>().</span><span class=nx>siblings</span><span class=p>(</span><span class=s1>&#39;li&#39;</span><span class=p>).</span><span class=nx>hide</span><span class=p>();</span> <span class=c1>// idx对应的索引显示，其余隐藏
+</span><span class=c1></span><span class=p>})</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=选择器>选择器</h3>
+<p><img src=/img/image-20210228204309314.png alt=image-20210228204309314></p>
+<p><img src=/img/image-20210228204326342.png alt=image-20210228204326342></p>
+<p><img src=/img/image-20210228204339673.png alt=image-20210228204339673></p>
+<h2 id=vue-学习笔记>Vue 学习笔记</h2>
+<h3 id=体验>体验</h3>
+<p>区别与传统 js 的命令式编程，它的编程范式是声明式编程。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=p>&lt;</span><span class=nt>div</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;app&#34;</span><span class=p>&gt;</span>
+    <span class=p>&lt;</span><span class=nt>h2</span><span class=p>&gt;</span>当前计数：{{counter}}<span class=p>&lt;/</span><span class=nt>h2</span><span class=p>&gt;</span>
+    <span class=p>&lt;</span><span class=nt>button</span> <span class=na>v-on:click</span><span class=o>=</span><span class=s>&#34;add&#34;</span><span class=p>&gt;</span>+<span class=p>&lt;/</span><span class=nt>button</span><span class=p>&gt;</span>
+    <span class=p>&lt;</span><span class=nt>button</span> <span class=na>v-on:click</span><span class=o>=</span><span class=s>&#34;sub&#34;</span><span class=p>&gt;</span>-<span class=p>&lt;/</span><span class=nt>button</span><span class=p>&gt;</span>
+    <span class=p>&lt;</span><span class=nt>ul</span><span class=p>&gt;</span>
+        <span class=p>&lt;</span><span class=nt>li</span> <span class=na>v-for</span><span class=o>=</span><span class=s>&#34;item in movies&#34;</span><span class=p>&gt;</span>{{item}}<span class=p>&lt;/</span><span class=nt>li</span><span class=p>&gt;</span>
+    <span class=p>&lt;/</span><span class=nt>ul</span><span class=p>&gt;</span>
+<span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+
+<span class=p>&lt;</span><span class=nt>script</span> <span class=na>src</span><span class=o>=</span><span class=s>&#34;../js/vue.js&#34;</span><span class=p>&gt;&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+<span class=p>&lt;</span><span class=nt>script</span><span class=p>&gt;</span>
+	<span class=kr>const</span> <span class=nx>app</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Vue</span><span class=p>({</span>
+        <span class=nx>el</span><span class=o>:</span> <span class=s2>&#34;#app&#34;</span><span class=p>,</span>  <span class=c1>// 挂载要管理的元素
+</span><span class=c1></span>        <span class=nx>data</span><span class=o>:</span> <span class=p>{</span>		<span class=c1>// 定义数据
+</span><span class=c1></span>            <span class=nx>counter</span><span class=o>:</span> <span class=mi>0</span><span class=p>,</span>
+            <span class=nx>movies</span><span class=o>:</span> <span class=p>[</span><span class=s1>&#39;进击的巨人&#39;</span><span class=p>,</span> <span class=s1>&#39;龙珠&#39;</span><span class=p>,</span> <span class=s1>&#39;天空之城&#39;</span><span class=p>]</span>
+        <span class=p>},</span>
+        <span class=nx>methods</span><span class=o>:</span> <span class=p>{</span>
+            <span class=nx>add</span><span class=o>:</span> <span class=nx>funciton</span><span class=p>(){</span>
+            	<span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;add&#39;</span><span class=p>);</span>
+        		<span class=k>this</span><span class=p>.</span><span class=nx>counter</span><span class=o>++</span>
+        	<span class=p>},</span>
+            <span class=nx>sub</span><span class=o>:</span> <span class=kd>function</span><span class=p>(){</span>
+        		<span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;sub&#39;</span><span class=p>);</span>
+        		<span class=k>this</span><span class=p>.</span><span class=nx>counter</span><span class=o>--</span>
+    		<span class=p>}</span>
+        <span class=p>}</span>
+    <span class=p>})</span>
+<span class=p>&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=前置知识>前置知识</h3>
+<h4 id=webpack>webpack</h4>
+<h4 id=yarn>yarn</h4>
+<h4 id=vue-in-nodejs>vue in node.js</h4>
+<h2 id=vuepress>vuepress</h2>
+</div>
+<div class=post-copyright>
+<p class=copyright-item>
+<span class=item-title>Author</span>
+<span class=item-content>magictomagic</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>LastMod</span>
+<span class=item-content>
+2021-01-11
+</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>License</span>
+<span class=item-content><a rel="license noopener" href=https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License target=_blank>Creative Commons Attribution-ShareAlike License</a></span>
+</p>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/node.js/>node.js</a>
+</div>
+<nav class=post-nav>
+<a class=prev href=/post/python-%E7%88%AC%E8%99%AB%E7%AC%94%E8%AE%B0/>
+<i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">Python 爬虫笔记</span>
+<span class="prev-text nav-mobile">Prev</span>
+</a>
+<a class=next href=/post/%E6%9C%89%E9%81%93%E8%AF%8D%E5%85%B8%E5%8E%BB%E5%B9%BF%E5%91%8A/>
+<span class="next-text nav-default">有道词典去广告</span>
+<span class="next-text nav-mobile">Next</span>
+<i class="iconfont icon-right"></i>
+</a>
+</nav>
+</footer>
+</article>
+</div>
+</div>
+</main>
+<footer id=footer class=footer>
+<div class=social-links>
+<a href=mailto:your@email.com class="iconfont icon-email" title=email></a>
+<a href=http://localhost:1313 class="iconfont icon-stack-overflow" title=stack-overflow></a>
+<a href=http://localhost:1313 class="iconfont icon-twitter" title=twitter></a>
+<a href=http://localhost:1313 class="iconfont icon-facebook" title=facebook></a>
+<a href=http://localhost:1313 class="iconfont icon-linkedin" title=linkedin></a>
+<a href=http://localhost:1313 class="iconfont icon-google" title=google></a>
+<a href=http://localhost:1313 class="iconfont icon-github" title=github></a>
+<a href=http://localhost:1313 class="iconfont icon-weibo" title=weibo></a>
+<a href=http://localhost:1313 class="iconfont icon-zhihu" title=zhihu></a>
+<a href=http://localhost:1313 class="iconfont icon-douban" title=douban></a>
+<a href=http://localhost:1313 class="iconfont icon-pocket" title=pocket></a>
+<a href=http://localhost:1313 class="iconfont icon-tumblr" title=tumblr></a>
+<a href=http://localhost:1313 class="iconfont icon-instagram" title=instagram></a>
+<a href=http://localhost:1313 class="iconfont icon-gitlab" title=gitlab></a>
+<a href=http://localhost:1313 class="iconfont icon-bilibili" title=bilibili></a>
+<a href=https://magictomagic.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
+</div>
+<div class=copyright>
+<span class=power-by>
+Powered by <a class=hexo-link href=https://gohugo.io>Hugo</a>
+</span>
+<span class=division>|</span>
+<span class=theme-info>
+Theme -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a>
+</span>
+<span class=copyright-year>
+&copy;
+2017 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+</span>
+</div>
+</footer>
+<div class=back-to-top id=back-to-top>
+<i class="iconfont icon-up"></i>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
+</body>
+</html>

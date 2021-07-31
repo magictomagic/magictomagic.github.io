@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://magictomagic.github.io/sitemap.xml

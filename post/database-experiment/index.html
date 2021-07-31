@@ -1,0 +1,441 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<title>Database experiment - Iron Age</title>
+<meta name=renderer content="webkit">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta http-equiv=cache-control content="no-transform">
+<meta http-equiv=cache-control content="no-siteapp">
+<meta name=theme-color content="#f8f5ec">
+<meta name=msapplication-navbutton-color content="#f8f5ec">
+<meta name=apple-mobile-web-app-capable content="yes">
+<meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
+<meta name=author content="magictomagic"><meta name=description content="数据库实验 环境选择 目标：切题、易用、熟悉数据库命令 切题：选择数据库版本为 SQL SERVER 易用：支持 Excel 导入数据 熟悉数据库命令：支持命令行操作 客户端 环境：W"><meta name=keywords content="Hugo,theme,even">
+<meta name=generator content="Hugo 0.86.1 with theme even">
+<link rel=canonical href=https://magictomagic.github.io/post/database-experiment/>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
+<link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
+<meta property="og:title" content="Database experiment">
+<meta property="og:description" content="数据库实验 环境选择 目标：切题、易用、熟悉数据库命令 切题：选择数据库版本为 SQL SERVER 易用：支持 Excel 导入数据 熟悉数据库命令：支持命令行操作 客户端 环境：W">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://magictomagic.github.io/post/database-experiment/"><meta property="article:section" content="post">
+<meta property="article:published_time" content="2020-05-08T01:37:56+08:00">
+<meta property="article:modified_time" content="2020-05-08T01:37:56+08:00">
+<meta itemprop=name content="Database experiment">
+<meta itemprop=description content="数据库实验 环境选择 目标：切题、易用、熟悉数据库命令 切题：选择数据库版本为 SQL SERVER 易用：支持 Excel 导入数据 熟悉数据库命令：支持命令行操作 客户端 环境：W"><meta itemprop=datePublished content="2020-05-08T01:37:56+08:00">
+<meta itemprop=dateModified content="2020-05-08T01:37:56+08:00">
+<meta itemprop=wordCount content="2025">
+<meta itemprop=keywords content="database,project,experiment,"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="Database experiment">
+<meta name=twitter:description content="数据库实验 环境选择 目标：切题、易用、熟悉数据库命令 切题：选择数据库版本为 SQL SERVER 易用：支持 Excel 导入数据 熟悉数据库命令：支持命令行操作 客户端 环境：W"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
+</head>
+<body>
+<div id=mobile-navbar class=mobile-navbar>
+<div class=mobile-header-logo>
+<a href=/ class=logo>Iron</a>
+</div>
+<div class=mobile-navbar-icon>
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+<nav id=mobile-menu class="mobile-menu slideout-menu">
+<ul class=mobile-menu-list>
+<a href=/>
+<li class=mobile-menu-item>Home</li>
+</a><a href=/post/>
+<li class=mobile-menu-item>Archives</li>
+</a><a href=/tags/>
+<li class=mobile-menu-item>Tags</li>
+</a><a href=/categories/>
+<li class=mobile-menu-item>Categories</li>
+</a>
+</ul>
+</nav>
+<div class=container id=mobile-panel>
+<header id=header class=header>
+<div class=logo-wrapper>
+<a href=/ class=logo>Iron</a>
+</div>
+<nav class=site-navbar>
+<ul id=menu class=menu>
+<li class=menu-item>
+<a class=menu-item-link href=/>Home</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/post/>Archives</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/tags/>Tags</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/categories/>Categories</a>
+</li>
+</ul>
+</nav>
+</header>
+<main id=main class=main>
+<div class=content-wrapper>
+<div id=content class=content>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>Database experiment</h1>
+<div class=post-meta>
+<span class=post-time> 2020-05-08 </span>
+<div class=post-category>
+<a href=/categories/exp/> exp </a>
+</div>
+</div>
+</header>
+<div class=post-toc id=post-toc>
+<h2 class=post-toc-title>Contents</h2>
+<div class="post-toc-content always-active">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#数据库实验>数据库实验</a>
+<ul>
+<li><a href=#环境选择>环境选择</a></li>
+</ul>
+</li>
+<li><a href=#常用命令>常用命令</a></li>
+<li><a href=#实验截图>实验截图</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+<div class=post-content>
+<h2 id=数据库实验>数据库实验</h2>
+<h3 id=环境选择>环境选择</h3>
+<h4 id=目标切题易用熟悉数据库命令>目标：切题、易用、熟悉数据库命令</h4>
+<p>切题：选择数据库版本为 SQL SERVER</p>
+<p>易用：支持 Excel 导入数据</p>
+<p>熟悉数据库命令：支持命令行操作</p>
+<h4 id=客户端>客户端</h4>
+<blockquote>
+<p>环境：Windows 10</p>
+</blockquote>
+<p><a href=https://github.com/magictomagic/magictomagic.github.io/blob/master/files/Navicat%20Premium%2015.x%E6%9C%80%E6%96%B0%E6%B3%A8%E5%86%8C%E6%9C%BA.rar>安装</a>图形化管理软件。</p>
+<blockquote>
+<p>支持 2020/5/8 版本，if you are rich，请支持正版。</p>
+</blockquote>
+<h4 id=连接-sql-server>连接 SQL SERVER</h4>
+<h5 id=客户端-1>客户端</h5>
+<p>可以使用自带的 2008 年的版本，也可以参考<a href="https://docs.microsoft.com/en-us/sql/relational-databases/native-client/applications/installing-sql-server-native-client?view=sql-server-ver15">提示</a>在<a href="https://www.microsoft.com/en-us/download/confirmation.aspx?id=29065">官网</a>找到 Microsoft® SQL Server® 2012 ADOMD.NET，选择对应版本的软件。</p>
+<h5 id=服务端>服务端</h5>
+<p>可以选择远程或本地，因为租赁服务器要花钱，服务器没了数据都没了，且远程实现和本地实现知数连接的主机不同，其它操作无异。</p>
+<h6 id=服务端安装与连接>服务端安装与连接</h6>
+<p>可以参考<a href=https://stackoverflow.com/questions/38556327/any-free-version-of-sql-server>stackoverflow</a>的优质回答，也可以直接安装<a href=https://www.microsoft.com/en-us/sql-server/sql-server-2017-pricing#CP_StickyNav_1>开发版</a>，虽然比起付费的，版本又老，功能又少，但功能完全满足实验需求，且占内存小，适合本地环境。</p>
+<p><img src=/img/Snipaste_2020-05-07_00-04-33.png alt></p>
+<p>保存数据</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>Server=localhost;Database=master;Trusted_Connection=True;
+C:\Program Files\Microsoft SQL Server\140\Setup Bootstrap\Log\20200506_235813
+C:\SQLServer2017Media\Developer_ENU
+C:\Program Files\Microsoft SQL Server\140\SSEI\Resources
+</code></pre></td></tr></table>
+</div>
+</div><p>装 SSMS 最好尽可能多地关闭其它正在运行的程序，之后参考<a href="https://docs.microsoft.com/zh-cn/sql/relational-databases/lesson-1-connecting-to-the-database-engine?view=sql-server-ver15">官网教程</a>，配置好用户，利用之前装的 GUI 工具连接。</p>
+<p><img src=/img/Snipaste_2020-05-07_01-01-12.png alt></p>
+<h4 id=导入数据8><a href=https://www.sqlshack.com/import-data-excel-file-sql-server-database/>导入数据</a></h4>
+<h5 id=excel-导入>Excel 导入</h5>
+<p><strong><a href=https://www.sqlshack.com/import-data-excel-file-sql-server-database/>四种方法</a></strong></p>
+<h6 id=通过-ssms-导入7><a href="https://docs.microsoft.com/en-us/sql/relational-databases/import-export/import-data-from-excel-to-sql?view=sql-server-ver15#wiz">通过 SSMS 导入</a></h6>
+<h6 id=通过-navicat-cli-导入>通过 Navicat CLI 导入</h6>
+<blockquote>
+<p>我选择在 Navicat + CLI 管理表，一方面是因为图形化界面对照教程用用太麻烦，另一方面，毕竟要对得起我的专业啊，多写代码 :)</p>
+</blockquote>
+<p><strong>问题说明</strong></p>
+<p>S# 在 Excel 里自动把前面的【0】丢掉了，后来才看见老师在群里说不能省略【0】。</p>
+<p><strong>创建表</strong></p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=k>CREATE</span><span class=w> </span><span class=k>TABLE</span><span class=w> </span><span class=n>JSJ74_S634</span><span class=w>
+</span><span class=w> </span><span class=p>(</span><span class=n>S</span><span class=o>#</span><span class=w>			</span><span class=nb>CHAR</span><span class=p>(</span><span class=mi>20</span><span class=p>)</span><span class=w>			</span><span class=k>NOT</span><span class=w> </span><span class=k>NULL</span><span class=p>,</span><span class=w>
+</span><span class=w>  </span><span class=n>SNAME</span><span class=w> 	</span><span class=nb>VARCHAR</span><span class=p>(</span><span class=mi>8</span><span class=p>)</span><span class=w>	</span><span class=k>NOT</span><span class=w> </span><span class=k>NULL</span><span class=p>,</span><span class=w>
+</span><span class=w>	</span><span class=n>SEX</span><span class=w> 		</span><span class=nb>VARCHAR</span><span class=p>(</span><span class=mi>4</span><span class=p>)</span><span class=w>	</span><span class=k>DEFAULT</span><span class=w> </span><span class=s1>&#39;男&#39;</span><span class=p>,</span><span class=w>
+</span><span class=w>	</span><span class=n>BDATE</span><span class=w> 	</span><span class=nb>DATE</span><span class=w> 				</span><span class=k>NOT</span><span class=w> </span><span class=k>NULL</span><span class=p>,</span><span class=w>
+</span><span class=w>	</span><span class=n>HEIGHT</span><span class=w> 	</span><span class=nb>NUMERIC</span><span class=p>(</span><span class=mi>3</span><span class=p>,</span><span class=mi>2</span><span class=p>)</span><span class=w> </span><span class=k>NOT</span><span class=w> </span><span class=k>NULL</span><span class=p>,</span><span class=w>
+</span><span class=w>	</span><span class=n>DORM</span><span class=w>    </span><span class=nb>VARCHAR</span><span class=p>(</span><span class=mi>20</span><span class=p>)</span><span class=w>	</span><span class=k>NOT</span><span class=w> </span><span class=k>NULL</span><span class=p>,</span><span class=w>
+</span><span class=w> </span><span class=k>PRIMARY</span><span class=w> </span><span class=k>KEY</span><span class=w> </span><span class=p>(</span><span class=n>S</span><span class=o>#</span><span class=p>),</span><span class=w>
+</span><span class=w> </span><span class=p>)</span><span class=w>
+</span><span class=w>
+</span><span class=w> </span><span class=k>CREATE</span><span class=w> </span><span class=k>TABLE</span><span class=w> </span><span class=n>JSJ74_C634</span><span class=w>
+</span><span class=w>  </span><span class=p>(</span><span class=k>C</span><span class=o>#</span><span class=w>			</span><span class=nb>VARCHAR</span><span class=p>(</span><span class=mi>20</span><span class=p>)</span><span class=w>	</span><span class=k>NOT</span><span class=w> </span><span class=k>NULL</span><span class=p>,</span><span class=w>
+</span><span class=w>	 </span><span class=n>CNAME</span><span class=w> 	</span><span class=nb>VARCHAR</span><span class=p>(</span><span class=mi>160</span><span class=p>)</span><span class=w> </span><span class=k>NOT</span><span class=w> </span><span class=k>NULL</span><span class=p>,</span><span class=w>
+</span><span class=w>	 </span><span class=n>PERIOD</span><span class=w> </span><span class=nb>INT</span><span class=w>			</span><span class=k>NOT</span><span class=w> </span><span class=k>NULL</span><span class=p>,</span><span class=w>
+</span><span class=w>	 </span><span class=n>CREDIT</span><span class=w> </span><span class=nb>INT</span><span class=w>			</span><span class=k>NOT</span><span class=w> </span><span class=k>NULL</span><span class=p>,</span><span class=w>
+</span><span class=w>	 </span><span class=n>TEACHER</span><span class=w> </span><span class=nb>VARCHAR</span><span class=p>(</span><span class=mi>8</span><span class=p>)</span><span class=w> </span><span class=k>NOT</span><span class=w> </span><span class=k>NULL</span><span class=p>,</span><span class=w>
+</span><span class=w> </span><span class=k>PRIMARY</span><span class=w> </span><span class=k>KEY</span><span class=w> </span><span class=p>(</span><span class=k>C</span><span class=o>#</span><span class=p>),</span><span class=w>
+</span><span class=w> </span><span class=p>)</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=k>CREATE</span><span class=w> </span><span class=k>TABLE</span><span class=w> </span><span class=n>JSJ74_SC634</span><span class=w>
+</span><span class=w>	</span><span class=p>(</span><span class=n>S</span><span class=o>#</span><span class=w>			</span><span class=nb>CHAR</span><span class=p>(</span><span class=mi>20</span><span class=p>)</span><span class=w>			</span><span class=k>NOT</span><span class=w> </span><span class=k>NULL</span><span class=p>,</span><span class=w>
+</span><span class=w>   </span><span class=k>C</span><span class=o>#</span><span class=w>     </span><span class=nb>VARCHAR</span><span class=p>(</span><span class=mi>20</span><span class=p>)</span><span class=w> </span><span class=k>NOT</span><span class=w> </span><span class=k>NULL</span><span class=p>,</span><span class=w>
+</span><span class=w>	</span><span class=n>GRADE</span><span class=w>   </span><span class=nb>DEC</span><span class=p>(</span><span class=mi>4</span><span class=p>,</span><span class=mi>1</span><span class=p>)</span><span class=w>    </span><span class=k>DEFAULT</span><span class=w> </span><span class=k>NULL</span><span class=p>,</span><span class=w>
+</span><span class=w></span><span class=k>PRIMARY</span><span class=w> </span><span class=k>KEY</span><span class=w> </span><span class=p>(</span><span class=n>S</span><span class=o>#</span><span class=p>,</span><span class=w> </span><span class=k>C</span><span class=o>#</span><span class=p>),</span><span class=w>
+</span><span class=w></span><span class=k>FOREIGN</span><span class=w> </span><span class=k>KEY</span><span class=w> </span><span class=p>(</span><span class=n>S</span><span class=o>#</span><span class=p>)</span><span class=w>
+</span><span class=w>		</span><span class=k>REFERENCES</span><span class=w> </span><span class=n>JSJ74_S634</span><span class=w>
+</span><span class=w>		</span><span class=k>ON</span><span class=w> </span><span class=k>DELETE</span><span class=w>  </span><span class=k>CASCADE</span><span class=p>,</span><span class=w>   
+</span><span class=w></span><span class=k>FOREIGN</span><span class=w> </span><span class=k>KEY</span><span class=w> </span><span class=p>(</span><span class=k>C</span><span class=o>#</span><span class=p>)</span><span class=w>
+</span><span class=w>		</span><span class=k>REFERENCES</span><span class=w> </span><span class=n>JSJ74_C634</span><span class=w>
+</span><span class=w>		</span><span class=k>ON</span><span class=w> </span><span class=k>DELETE</span><span class=w> </span><span class=k>NO</span><span class=w> </span><span class=n>ACTION</span><span class=p>,</span><span class=w>
+</span><span class=w></span><span class=k>CHECK</span><span class=w> </span><span class=p>(</span><span class=n>GRADE</span><span class=w> </span><span class=k>IS</span><span class=w> </span><span class=k>NULL</span><span class=w> </span><span class=k>OR</span><span class=w> </span><span class=n>GRADE</span><span class=w> </span><span class=k>BETWEEN</span><span class=w> </span><span class=mi>0</span><span class=w> </span><span class=k>AND</span><span class=w> </span><span class=mi>100</span><span class=p>)</span><span class=w>
+</span><span class=w>	</span><span class=p>)</span><span class=w>
+</span></code></pre></td></tr></table>
+</div>
+</div><p><img src=/img/Snipaste_2020-05-08_02-33-24.png alt></p>
+<p><strong>注意点</strong>：</p>
+<p>中文一个字算两个字，在 CREATE TABLE JSJ74_C634 的 TEACHER VARCHAR(6) NOT NULL 中, 只能容纳 3 个字的名字。</p>
+<p>程序顺序执行，若后面遇到问题，前面的命令做出的改变仍然提交，可以用回滚或相反的命令撤销操作；若前面遇到问题，则后面的操作不被执行。</p>
+<p>使用 HEIGHT DECIMAL(1,2) NOT NULL 会有截断错误，因为原始数据小数点后不是严格的两位，可以在原始数据中将格式统一设置好，或使用 NUMERIC 数据类型。</p>
+<p><strong>CLI 导入</strong></p>
+<p>将 Excel 数据另存为 .txt 格式。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-txt data-lang=txt>1032010	王涛	男	1992-04-05	1.72	东14舍221
+1032023	孙文	男	1993-06-10	1.8	东14舍221
+1032001	张晓梅	女	1993-11-17	1.58	东1舍312
+1032005	刘静	女	1992-01-10	1.63	东1舍312
+1032112	董蔚	男	1992-02-20	1.71	东14舍221
+3031011	王倩	女	1993-12-20	1.66	东2舍104
+3031014	赵思扬	男	1991-06-06	1.85	东18舍421
+3031051	周剑	男	1991-05-08	1.68	东18舍422
+3031009	田婷	女	1992-08-11	1.6	东2舍104
+3031033	蔡明明	男	1992-03-12	1.75	东18舍423
+</code></pre></td></tr></table>
+</div>
+</div><p>执行 BULK 命令。</p>
+<blockquote>
+<p>感谢 <a href=https://stackoverflow.com/questions/13124680/how-to-bulk-insert-from-xlsx-file-extension>stackoverflow</a>。</p>
+</blockquote>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=n>BULK</span><span class=w> </span><span class=k>INSERT</span><span class=w> </span><span class=n>JSJ74_S634</span><span class=w>
+</span><span class=w></span><span class=k>FROM</span><span class=w> </span><span class=s1>&#39;C:\Users\magic\Desktop\JSJ74_S634.txt&#39;</span><span class=w>
+</span><span class=w></span><span class=k>WITH</span><span class=w>     
+</span><span class=w>   </span><span class=p>(</span><span class=w>
+</span><span class=w>                </span><span class=n>FIELDTERMINATOR</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s1>&#39;\t&#39;</span><span class=p>,</span><span class=w>
+</span><span class=w>                </span><span class=n>ROWTERMINATOR</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s1>&#39;\n&#39;</span><span class=w>
+</span><span class=w>    </span><span class=p>)</span><span class=w>
+</span><span class=w></span><span class=k>GO</span><span class=w>
+</span></code></pre></td></tr></table>
+</div>
+</div><p>反馈。</p>
+<p><img src=/img/Snipaste_2020-05-09_00-11-26.png alt></p>
+<p>之后数据的导入类似，截图见文末。</p>
+<h4 id=练习题>练习题</h4>
+<h5 id=查询>查询</h5>
+<p>(1) 查询电子工程系所开课程的课程编号、课程名称及学分数。</p>
+<p><img src=/img/Snipaste_2020-05-09_01-08-46.png alt></p>
+<p>(2) 查询未选修课程“CS-01”的女生学号及其已选课程编号、成绩。</p>
+<p><img src=/img/Snipaste_2020-05-09_01-57-48.png alt></p>
+<p>(3) <a href=https://stackoverflow.com/questions/44528286/date-is-incompatible-with-int>查询1993年～1994年出生的学生的基本信息。</a></p>
+<p><img src=/img/Snipaste_2020-05-09_02-08-15.png alt></p>
+<p>(4) 查询每位学生的学号、学生姓名及其已修学分数。</p>
+<p><img src=/img/Snipaste_2020-05-09_04-11-06.png alt></p>
+<p>(5) 查询选修课程“CS-02”的学生中成绩第二高的学生学号。</p>
+<p><img src=/img/Snipaste_2020-05-09_03-10-46.png alt></p>
+<p>(6) 查询平均成绩超过“王涛“同学的学生学号、姓名和平均成绩，并按学号进行降序排列。</p>
+<p><img src=/img/Snipaste_2020-05-09_04-26-40.png alt></p>
+<p>(7) 查询选修了3门以上课程（包括3门）的学生中平均成绩最高的同学学号及姓名</p>
+<p><img src=/img/Snipaste_2020-05-09_18-45-18.png alt></p>
+<h5 id=增删改>增删改</h5>
+<p>(1) 分别在JSJ74_S634和JSJ74_C634表中加入记录(‘01032005’，‘刘竞’，‘男’，‘1993-12-10’，1.75，‘东14舍312’)及(‘CS-03’，“离散数学”，64，4，‘陈建明’)。</p>
+<p><img src=/img/Snipaste_2020-05-09_19-02-25.png alt>
+<img src=/img/Snipaste_2020-05-09_19-03-56.png alt></p>
+<p>(2) 将JSJ74_S634表中已修学分数大于60的学生记录删除。</p>
+<p><img src=/img/Snipaste_2020-05-09_20-24-12.png alt></p>
+<p>(3) 将“张明”老师负责的“信号与系统”课程的学时数调整为64，同时增加一个学分。</p>
+<p><img src=/img/Snipaste_2020-05-10_02-00-57.png alt></p>
+<h5 id=视图>视图</h5>
+<p>(1)居住在“东18舍”的男生视图，包括学号、姓名、出生日期、身高等属性。</p>
+<p><img src=/img/Snipaste_2020-05-10_02-15-05.png alt></p>
+<p>(2)“张明”老师所开设课程情况的视图，包括课程编号、课程名称、平均成绩等属性。</p>
+<p><img src=/img/Snipaste_2020-05-10_02-46-48.png alt>
+<img src=/img/Snipaste_2020-05-10_03-04-15.png alt></p>
+<p>(3)所有选修了“人工智能”课程的学生视图，包括学号、姓名、成绩等属性。</p>
+<p><img src=/img/Snipaste_2020-05-10_02-56-33.png alt>
+<img src=/img/Snipaste_2020-05-10_02-57-09.png alt></p>
+<h2 id=常用命令>常用命令</h2>
+<p>清空表中所有数据</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=k>truncate</span><span class=w> </span><span class=k>TABLE</span><span class=w> </span><span class=n>JSJ74_C634</span><span class=w>
+</span></code></pre></td></tr></table>
+</div>
+</div><p>删除所有表，因为存在依赖，执行两次。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=k>DROP</span><span class=w> </span><span class=k>TABLE</span><span class=w> </span><span class=n>JSJ74_S634</span><span class=w>
+</span><span class=w></span><span class=k>DROP</span><span class=w> </span><span class=k>TABLE</span><span class=w> </span><span class=n>JSJ74_C634</span><span class=w>
+</span><span class=w></span><span class=k>DROP</span><span class=w> </span><span class=k>TABLE</span><span class=w> </span><span class=n>JSJ74_SC634</span><span class=w>
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id=实验截图>实验截图</h2>
+<p><img src=/img/Snipaste_2020-05-09_00-21-14.png alt>
+<img src=/img/Snipaste_2020-05-09_00-23-49.png alt></p>
+</div>
+<div class=post-copyright>
+<p class=copyright-item>
+<span class=item-title>Author</span>
+<span class=item-content>magictomagic</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>LastMod</span>
+<span class=item-content>
+2020-05-08
+</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>License</span>
+<span class=item-content><a rel="license noopener" href=https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License target=_blank>Creative Commons Attribution-ShareAlike License</a></span>
+</p>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/database/>database</a>
+<a href=/tags/project/>project</a>
+<a href=/tags/experiment/>experiment</a>
+</div>
+<nav class=post-nav>
+<a class=prev href=/post/linux-v2ray-proxy-configuration/>
+<i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">Linux V2ray proxy configuration</span>
+<span class="prev-text nav-mobile">Prev</span>
+</a>
+<a class=next href=/post/simple-chat-program/>
+<span class="next-text nav-default">Simple chat program</span>
+<span class="next-text nav-mobile">Next</span>
+<i class="iconfont icon-right"></i>
+</a>
+</nav>
+</footer>
+</article>
+</div>
+</div>
+</main>
+<footer id=footer class=footer>
+<div class=social-links>
+<a href=mailto:your@email.com class="iconfont icon-email" title=email></a>
+<a href=http://localhost:1313 class="iconfont icon-stack-overflow" title=stack-overflow></a>
+<a href=http://localhost:1313 class="iconfont icon-twitter" title=twitter></a>
+<a href=http://localhost:1313 class="iconfont icon-facebook" title=facebook></a>
+<a href=http://localhost:1313 class="iconfont icon-linkedin" title=linkedin></a>
+<a href=http://localhost:1313 class="iconfont icon-google" title=google></a>
+<a href=http://localhost:1313 class="iconfont icon-github" title=github></a>
+<a href=http://localhost:1313 class="iconfont icon-weibo" title=weibo></a>
+<a href=http://localhost:1313 class="iconfont icon-zhihu" title=zhihu></a>
+<a href=http://localhost:1313 class="iconfont icon-douban" title=douban></a>
+<a href=http://localhost:1313 class="iconfont icon-pocket" title=pocket></a>
+<a href=http://localhost:1313 class="iconfont icon-tumblr" title=tumblr></a>
+<a href=http://localhost:1313 class="iconfont icon-instagram" title=instagram></a>
+<a href=http://localhost:1313 class="iconfont icon-gitlab" title=gitlab></a>
+<a href=http://localhost:1313 class="iconfont icon-bilibili" title=bilibili></a>
+<a href=https://magictomagic.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
+</div>
+<div class=copyright>
+<span class=power-by>
+Powered by <a class=hexo-link href=https://gohugo.io>Hugo</a>
+</span>
+<span class=division>|</span>
+<span class=theme-info>
+Theme -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a>
+</span>
+<span class=copyright-year>
+&copy;
+2017 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+</span>
+</div>
+</footer>
+<div class=back-to-top id=back-to-top>
+<i class="iconfont icon-up"></i>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
+</body>
+</html>

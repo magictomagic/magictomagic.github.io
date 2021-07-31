@@ -1,0 +1,782 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<title>My First Android Application - Iron Age</title>
+<meta name=renderer content="webkit">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta http-equiv=cache-control content="no-transform">
+<meta http-equiv=cache-control content="no-siteapp">
+<meta name=theme-color content="#f8f5ec">
+<meta name=msapplication-navbutton-color content="#f8f5ec">
+<meta name=apple-mobile-web-app-capable content="yes">
+<meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
+<meta name=author content="magictomagic"><meta name=description content="Android Field 假话 学习安卓要有锲而不舍的精神与浓厚的兴趣。 大话 学习安卓要坚持四个自信。 空话 要密切关注所选择教程的日期。 套话 Android Studio 的发展日新月异。 废话 学习"><meta name=keywords content="Hugo,theme,even">
+<meta name=generator content="Hugo 0.86.1 with theme even">
+<link rel=canonical href=https://magictomagic.github.io/post/myfirstandroidapp-process/>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
+<link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
+<meta property="og:title" content="My First Android Application">
+<meta property="og:description" content="Android Field 假话 学习安卓要有锲而不舍的精神与浓厚的兴趣。 大话 学习安卓要坚持四个自信。 空话 要密切关注所选择教程的日期。 套话 Android Studio 的发展日新月异。 废话 学习">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://magictomagic.github.io/post/myfirstandroidapp-process/"><meta property="article:section" content="post">
+<meta property="article:published_time" content="2020-05-05T01:37:56+08:00">
+<meta property="article:modified_time" content="2020-05-05T01:37:56+08:00">
+<meta itemprop=name content="My First Android Application">
+<meta itemprop=description content="Android Field 假话 学习安卓要有锲而不舍的精神与浓厚的兴趣。 大话 学习安卓要坚持四个自信。 空话 要密切关注所选择教程的日期。 套话 Android Studio 的发展日新月异。 废话 学习"><meta itemprop=datePublished content="2020-05-05T01:37:56+08:00">
+<meta itemprop=dateModified content="2020-05-05T01:37:56+08:00">
+<meta itemprop=wordCount content="3140">
+<meta itemprop=keywords content="Android,project,experiment,"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="My First Android Application">
+<meta name=twitter:description content="Android Field 假话 学习安卓要有锲而不舍的精神与浓厚的兴趣。 大话 学习安卓要坚持四个自信。 空话 要密切关注所选择教程的日期。 套话 Android Studio 的发展日新月异。 废话 学习"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
+</head>
+<body>
+<div id=mobile-navbar class=mobile-navbar>
+<div class=mobile-header-logo>
+<a href=/ class=logo>Iron</a>
+</div>
+<div class=mobile-navbar-icon>
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+<nav id=mobile-menu class="mobile-menu slideout-menu">
+<ul class=mobile-menu-list>
+<a href=/>
+<li class=mobile-menu-item>Home</li>
+</a><a href=/post/>
+<li class=mobile-menu-item>Archives</li>
+</a><a href=/tags/>
+<li class=mobile-menu-item>Tags</li>
+</a><a href=/categories/>
+<li class=mobile-menu-item>Categories</li>
+</a>
+</ul>
+</nav>
+<div class=container id=mobile-panel>
+<header id=header class=header>
+<div class=logo-wrapper>
+<a href=/ class=logo>Iron</a>
+</div>
+<nav class=site-navbar>
+<ul id=menu class=menu>
+<li class=menu-item>
+<a class=menu-item-link href=/>Home</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/post/>Archives</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/tags/>Tags</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/categories/>Categories</a>
+</li>
+</ul>
+</nav>
+</header>
+<main id=main class=main>
+<div class=content-wrapper>
+<div id=content class=content>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>My First Android Application</h1>
+<div class=post-meta>
+<span class=post-time> 2020-05-05 </span>
+<div class=post-category>
+<a href=/categories/exp/> exp </a>
+</div>
+</div>
+</header>
+<div class=post-toc id=post-toc>
+<h2 class=post-toc-title>Contents</h2>
+<div class="post-toc-content always-active">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#android-field>Android Field</a>
+<ul>
+<li><a href=#环境搭建常见问题待完善>环境搭建常见问题(待完善)</a></li>
+<li><a href=#安卓常识8><a href=http://c.biancheng.net/android/10/>安卓常识</a></a></li>
+<li><a href=#添加第三方库>添加第三方库</a></li>
+<li><a href=#注册登陆系统实现7><a href=https://blog.csdn.net/StayFoolish_Fan/article/details/51933563>注册登陆系统实现</a></a></li>
+<li><a href=#安卓端实现-rtmp-点播>安卓端实现 rtmp 点播</a></li>
+</ul>
+</li>
+<li><a href=#战略放弃>战略放弃</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href=#java>java</a>
+<ul>
+<li><a href=#回忆>回忆</a></li>
+<li><a href=#新>新</a></li>
+</ul>
+</li>
+<li><a href=#实现结果>实现结果</a>
+<ul>
+<li><a href=#bug-与局限性>BUG 与局限性</a></li>
+<li><a href=#可以优化的地方>可以优化的地方</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+<div class=post-content>
+<h2 id=android-field>Android Field</h2>
+<blockquote>
+<p><strong>假</strong>话
+学习安卓要有<strong>锲而不舍</strong>的精神与浓厚的<strong>兴趣</strong>。</p>
+</blockquote>
+<blockquote>
+<p><strong>大</strong>话
+学习安卓要坚持<strong>四个自信</strong>。</p>
+</blockquote>
+<blockquote>
+<p><strong>空</strong>话
+要密切关注所选择教程的<strong>日期</strong>。</p>
+</blockquote>
+<blockquote>
+<p><strong>套</strong>话
+Android Studio 的发展<strong>日新月异</strong>。</p>
+</blockquote>
+<blockquote>
+<p><strong>废</strong>话
+学习 Android 要习惯看<strong>英文</strong>的文档与问答。</p>
+</blockquote>
+<h3 id=环境搭建常见问题待完善>环境搭建常见问题(待完善)</h3>
+<p>绝大部分问题都是 GFW 造成的。</p>
+<p><a href=https://developer.android.com/studio/intro/studio-config.html#proxy>流量走 http，很多包不能通过 https 下载</a></p>
+<blockquote>
+<p>具体实现是：AS 端口无论是 https 的还是 http 的全部填系统代理的 http 端口。</p>
+</blockquote>
+<h3 id=安卓常识8><a href=http://c.biancheng.net/android/10/>安卓常识</a></h3>
+<h3 id=添加第三方库>添加第三方库</h3>
+<p>根据<a href="https://developer.android.com/studio/build/dependencies?hl=zh-cn">文档</a>/<a href=https://stackoverflow.com/questions/49592197/packaging-jar-with-jsch-with-gradle>问答</a>。
+以添加 jsch 为例</p>
+<p>In file &mldr;\app\build.gradle</p>
+<p><img src=/img/Snipaste_2020-05-05_04-44-29.png alt></p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-gradle data-lang=gradle><span class=n>dependencies</span> <span class=o>{</span>
+    <span class=o>...</span>
+    <span class=n>implementation</span> <span class=s1>&#39;com.jcraft:jsch:0.1.55&#39;</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>another e.g.
+<a href=https://docs.gradle.org/current/userguide/java_library_plugin.html#sec:java_library_separation>gradle doc</a> \ <a href=https://stackoverflow.com/questions/44493378/whats-the-difference-between-implementation-and-compile-in-gradle>新版本变化</a></p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-gradle data-lang=gradle><span class=n>implementation</span> <span class=s1>&#39;me.neavo:vitamio:4.2.2&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=注册登陆系统实现7><a href=https://blog.csdn.net/StayFoolish_Fan/article/details/51933563>注册登陆系统实现</a></h3>
+<h3 id=安卓端实现-rtmp-点播>安卓端实现 rtmp 点播</h3>
+<h4 id=服务端搭建9><a href=https://github.com/magictomagic/magictomagic.github.io/blob/master/_posts/2020-05-04-CentOS-FFmpeg-%E6%B5%81%E5%AA%92%E4%BD%93%E6%92%AD%E6%94%BE.md>服务端搭建</a></h4>
+<h4 id=用-java-获取链接>用 java 获取链接</h4>
+<p>在 eclipse 上开发</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kn>package</span> <span class=nn>getLinkThroughSftp</span><span class=o>;</span>
+
+<span class=kn>import</span> <span class=nn>java.io.InputStream</span><span class=o>;</span>
+<span class=kn>import</span> <span class=nn>java.util.ArrayList</span><span class=o>;</span>
+<span class=kn>import</span> <span class=nn>java.util.Arrays</span><span class=o>;</span>
+<span class=kn>import</span> <span class=nn>java.util.List</span><span class=o>;</span>  
+
+<span class=kn>import</span> <span class=nn>com.jcraft.jsch.Channel</span><span class=o>;</span>  
+<span class=kn>import</span> <span class=nn>com.jcraft.jsch.ChannelExec</span><span class=o>;</span>  
+<span class=kn>import</span> <span class=nn>com.jcraft.jsch.JSch</span><span class=o>;</span>  
+<span class=kn>import</span> <span class=nn>com.jcraft.jsch.JSchException</span><span class=o>;</span>  
+<span class=kn>import</span> <span class=nn>com.jcraft.jsch.Session</span><span class=o>;</span>
+
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>getVideoLink</span> <span class=o>{</span>
+    <span class=kd>final</span> <span class=kd>private</span> <span class=kd>static</span> <span class=n>String</span> <span class=n>protocalName</span> <span class=o>=</span> <span class=s>&#34;rtmp&#34;</span><span class=o>;</span>
+    <span class=kd>final</span> <span class=kd>private</span> <span class=kd>static</span> <span class=n>String</span> <span class=n>IPaddress</span> <span class=o>=</span> <span class=s>&#34;149.248.57.125&#34;</span><span class=o>;</span>
+    <span class=kd>final</span> <span class=kd>private</span> <span class=kd>static</span> <span class=kt>int</span> <span class=n>ffmpegPort</span> <span class=o>=</span> <span class=n>1935</span><span class=o>;</span>
+    <span class=kd>final</span> <span class=kd>private</span> <span class=kd>static</span> <span class=n>String</span> <span class=n>applicationName</span> <span class=o>=</span> <span class=s>&#34;vod&#34;</span><span class=o>;</span>
+
+    <span class=kd>final</span> <span class=kd>private</span> <span class=kd>static</span> <span class=kt>int</span> <span class=n>defaultSSHport</span> <span class=o>=</span> <span class=n>22</span><span class=o>;</span>
+    <span class=kd>final</span> <span class=kd>private</span> <span class=kd>static</span> <span class=n>String</span> <span class=n>password</span> <span class=o>=</span> <span class=s>&#34;B2$nBo7!]UkEL1@w&#34;</span><span class=o>;</span>
+    <span class=kd>final</span> <span class=kd>private</span> <span class=kd>static</span> <span class=n>String</span> <span class=n>defaultUserName</span> <span class=o>=</span> <span class=s>&#34;root&#34;</span><span class=o>;</span>
+    <span class=kd>final</span> <span class=kd>public</span> <span class=kd>static</span> <span class=n>String</span> <span class=n>command</span> <span class=o>=</span> <span class=s>&#34;ls /mnt/mp4s&#34;</span><span class=o>;</span>
+
+    <span class=kd>public</span> <span class=kd>static</span> <span class=kt>int</span> <span class=n>totalVideos</span><span class=o>;</span>
+
+    <span class=kd>static</span> <span class=n>List</span><span class=o>&lt;</span><span class=n>String</span><span class=o>&gt;</span> <span class=n>videoNameList</span> <span class=o>=</span> <span class=k>new</span> <span class=n>ArrayList</span><span class=o>&lt;</span><span class=n>String</span><span class=o>&gt;();</span>
+
+    <span class=kd>private</span> <span class=kd>static</span> <span class=n>String</span> <span class=nf>protocol</span><span class=o>(){</span>
+        <span class=n>String</span> <span class=n>pro</span> <span class=o>=</span> <span class=n>protocalName</span><span class=o>;</span>
+        <span class=k>return</span> <span class=n>pro</span><span class=o>;</span>
+    <span class=o>}</span>
+
+    <span class=kd>private</span> <span class=kd>static</span> <span class=n>String</span> <span class=nf>address</span><span class=o>(){</span>
+        <span class=n>String</span> <span class=n>adr</span> <span class=o>=</span> <span class=n>IPaddress</span><span class=o>;</span>
+        <span class=k>return</span> <span class=n>adr</span><span class=o>;</span>
+    <span class=o>}</span>
+
+    <span class=kd>private</span> <span class=kd>static</span> <span class=n>String</span> <span class=nf>application</span><span class=o>(){</span>
+        <span class=n>String</span> <span class=n>app</span> <span class=o>=</span> <span class=n>applicationName</span><span class=o>;</span>
+        <span class=k>return</span> <span class=n>app</span><span class=o>;</span>
+    <span class=o>}</span>
+
+    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>convertStringToList</span><span class=o>(</span><span class=n>String</span> <span class=n>s</span><span class=o>)</span> <span class=o>{</span>
+    	<span class=n>String</span> <span class=n>str</span><span class=o>[]</span> <span class=o>=</span> <span class=n>s</span><span class=o>.</span><span class=na>split</span><span class=o>(</span><span class=s>&#34;\\s+&#34;</span><span class=o>);</span>
+    	<span class=n>videoNameList</span> <span class=o>=</span> <span class=n>Arrays</span><span class=o>.</span><span class=na>asList</span><span class=o>(</span><span class=n>str</span><span class=o>);</span> 	
+    <span class=o>}</span>
+
+    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>getVideoNameList</span><span class=o>(){</span>
+        <span class=n>JSch</span> <span class=n>jsch</span> <span class=o>=</span> <span class=k>new</span> <span class=n>JSch</span><span class=o>();</span>    
+        <span class=k>try</span> <span class=o>{</span>
+        	<span class=n>java</span><span class=o>.</span><span class=na>util</span><span class=o>.</span><span class=na>Properties</span> <span class=n>config</span> <span class=o>=</span> <span class=k>new</span> <span class=n>java</span><span class=o>.</span><span class=na>util</span><span class=o>.</span><span class=na>Properties</span><span class=o>();</span>
+        	<span class=n>config</span><span class=o>.</span><span class=na>put</span><span class=o>(</span><span class=s>&#34;StrictHostKeyChecking&#34;</span><span class=o>,</span> <span class=s>&#34;no&#34;</span><span class=o>);</span>
+        	<span class=n>Session</span> <span class=n>session</span> <span class=o>=</span> <span class=n>jsch</span><span class=o>.</span><span class=na>getSession</span><span class=o>(</span><span class=n>defaultUserName</span><span class=o>,</span> <span class=n>IPaddress</span><span class=o>,</span> <span class=n>defaultSSHport</span><span class=o>);</span>
+        	<span class=n>session</span><span class=o>.</span><span class=na>setPassword</span><span class=o>(</span><span class=n>password</span><span class=o>);</span>
+        	<span class=n>session</span><span class=o>.</span><span class=na>setConfig</span><span class=o>(</span><span class=n>config</span><span class=o>);</span>
+        	<span class=n>session</span><span class=o>.</span><span class=na>connect</span><span class=o>();</span>
+	    	<span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;Connected&#34;</span><span class=o>);</span>
+
+	    	<span class=c1>// Create and connect channel.  
+</span><span class=c1></span>            <span class=n>Channel</span> <span class=n>channel</span> <span class=o>=</span> <span class=n>session</span><span class=o>.</span><span class=na>openChannel</span><span class=o>(</span><span class=s>&#34;exec&#34;</span><span class=o>);</span>  
+            <span class=o>((</span><span class=n>ChannelExec</span><span class=o>)</span> <span class=n>channel</span><span class=o>).</span><span class=na>setCommand</span><span class=o>(</span><span class=n>command</span><span class=o>);</span>
+            <span class=n>channel</span><span class=o>.</span><span class=na>setInputStream</span><span class=o>(</span><span class=kc>null</span><span class=o>);</span>
+	        <span class=o>((</span><span class=n>ChannelExec</span><span class=o>)</span><span class=n>channel</span><span class=o>).</span><span class=na>setErrStream</span><span class=o>(</span><span class=n>System</span><span class=o>.</span><span class=na>err</span><span class=o>);</span>
+	        <span class=n>InputStream</span> <span class=n>in</span><span class=o>=</span><span class=n>channel</span><span class=o>.</span><span class=na>getInputStream</span><span class=o>();</span>
+	        <span class=n>channel</span><span class=o>.</span><span class=na>connect</span><span class=o>();</span>
+
+	        <span class=kt>byte</span><span class=o>[]</span> <span class=n>tmp</span><span class=o>=</span><span class=k>new</span> <span class=kt>byte</span><span class=o>[</span><span class=n>1024</span><span class=o>];</span>
+	        <span class=k>while</span><span class=o>(</span><span class=kc>true</span><span class=o>){</span>
+	          <span class=k>while</span><span class=o>(</span><span class=n>in</span><span class=o>.</span><span class=na>available</span><span class=o>()&gt;</span><span class=n>0</span><span class=o>){</span>
+	            <span class=kt>int</span> <span class=n>i</span><span class=o>=</span><span class=n>in</span><span class=o>.</span><span class=na>read</span><span class=o>(</span><span class=n>tmp</span><span class=o>,</span> <span class=n>0</span><span class=o>,</span> <span class=n>1024</span><span class=o>);</span>
+	            <span class=k>if</span><span class=o>(</span><span class=n>i</span><span class=o>&lt;</span><span class=n>0</span><span class=o>)</span><span class=k>break</span><span class=o>;</span>
+	            <span class=n>convertStringToList</span><span class=o>(</span><span class=k>new</span> <span class=n>String</span><span class=o>(</span><span class=n>tmp</span><span class=o>,</span> <span class=n>0</span><span class=o>,</span> <span class=n>i</span><span class=o>));</span>
+	          <span class=o>}</span>
+	          <span class=k>if</span><span class=o>(</span><span class=n>channel</span><span class=o>.</span><span class=na>isClosed</span><span class=o>()){</span>
+	            <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;exit-status: &#34;</span><span class=o>+</span><span class=n>channel</span><span class=o>.</span><span class=na>getExitStatus</span><span class=o>());</span>
+	            <span class=k>break</span><span class=o>;</span>
+	          <span class=o>}</span>
+	          <span class=k>try</span><span class=o>{</span><span class=n>Thread</span><span class=o>.</span><span class=na>sleep</span><span class=o>(</span><span class=n>1000</span><span class=o>);}</span><span class=k>catch</span><span class=o>(</span><span class=n>Exception</span> <span class=n>ee</span><span class=o>){}</span>
+	        <span class=o>}</span>
+	        <span class=n>channel</span><span class=o>.</span><span class=na>disconnect</span><span class=o>();</span>
+	        <span class=n>session</span><span class=o>.</span><span class=na>disconnect</span><span class=o>();</span>
+	        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;DONE&#34;</span><span class=o>);</span>
+
+        <span class=o>}</span><span class=k>catch</span> <span class=o>(</span><span class=n>JSchException</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>  
+            <span class=c1>// TODO Auto-generated catch block  
+</span><span class=c1></span>            <span class=n>e</span><span class=o>.</span><span class=na>printStackTrace</span><span class=o>();</span>  
+        <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>Exception</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>  
+            <span class=n>e</span><span class=o>.</span><span class=na>printStackTrace</span><span class=o>();</span>  
+        <span class=o>}</span>  
+    <span class=o>}</span>
+
+    <span class=kd>public</span> <span class=n>String</span> <span class=nf>getVideoName</span><span class=o>(</span><span class=kt>int</span> <span class=n>index</span><span class=o>)</span> <span class=o>{</span>		
+    	<span class=k>return</span> <span class=n>videoNameList</span><span class=o>.</span><span class=na>get</span><span class=o>(</span><span class=n>index</span><span class=o>);</span>
+    <span class=o>}</span>
+
+    <span class=kd>public</span> <span class=n>String</span> <span class=nf>jointLink</span><span class=o>(</span><span class=kt>int</span> <span class=n>index</span><span class=o>){</span>
+    	<span class=k>return</span> <span class=n>protocol</span><span class=o>()</span> <span class=o>+</span> <span class=s>&#34;://&#34;</span> <span class=o>+</span> <span class=n>address</span><span class=o>()</span> <span class=o>+</span> <span class=s>&#34;:&#34;</span> <span class=o>+</span> <span class=n>ffmpegPort</span> <span class=o>+</span> <span class=s>&#34;/&#34;</span> <span class=o>+</span> <span class=n>application</span><span class=o>()</span> <span class=o>+</span> <span class=s>&#34;/&#34;</span> <span class=o>+</span>
+                <span class=n>getVideoName</span><span class=o>(</span><span class=n>index</span><span class=o>);</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p>可以运行成功，但之后在 AS 里就不行。</p>
+<h4 id=安卓端的开发>安卓端的开发</h4>
+<p>之前的 Java 代码在 AS 不能运行原因是 jsch 的方法为耗时进程，作为主进程时会被阻塞，导致应用程式结束，解决方法是用 <a href=https://developer.android.com/reference/android/os/AsyncTask#onPostExecute(Result)>AsyncTask</a> 将获取链接的动作作为子进程。参考<a href=https://www.coder.work/article/687084>相似的代码</a>，将 onPostExecute 作为返回主线程的方法。</p>
+<p>打算在 onPostExecute 中进行后续的将 List 中的元素一链接的方式显示在 UI 上。</p>
+<h5 id=根据上一个接口获得的-list-生成-xml>根据上一个接口获得的 list 生成 xml</h5>
+<blockquote>
+<p>之前的想法：<a href=https://ithelp.ithome.com.tw/articles/10208440>List</a>、<a href="https://blog.csdn.net/zhiboshequ/article/details/53845993?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-3&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-3">Intent</a></p>
+</blockquote>
+<p><strong>使用 AsyncTask 遇到的问题</strong></p>
+<p>结束时设置 flagOfAsync 加一个 while 来确保 videoNameList 拿到值</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java>    <span class=nd>@Override</span>
+        <span class=kd>protected</span> <span class=kt>void</span> <span class=nf>onPostExecute</span><span class=o>(</span><span class=n>String</span> <span class=n>host</span><span class=o>){</span>
+            <span class=n>Log</span><span class=o>.</span><span class=na>d</span><span class=o>(</span><span class=s>&#34;video&#34;</span><span class=o>,</span><span class=s>&#34;videoNameList.toString()&#34;</span><span class=o>);</span>
+            <span class=n>Log</span><span class=o>.</span><span class=na>d</span><span class=o>(</span><span class=s>&#34;video&#34;</span><span class=o>,</span><span class=n>videoNameList</span><span class=o>.</span><span class=na>toString</span><span class=o>());</span>
+            <span class=n>Toast</span><span class=o>.</span><span class=na>makeText</span><span class=o>(</span><span class=n>getVideoLink</span><span class=o>.</span><span class=na>this</span><span class=o>,</span><span class=s>&#34;连接成功&#34;</span><span class=o>,</span> <span class=n>Toast</span><span class=o>.</span><span class=na>LENGTH_LONG</span><span class=o>).</span><span class=na>show</span><span class=o>();</span>
+            <span class=n>flagOfAsync</span> <span class=o>=</span> <span class=kc>true</span><span class=o>;</span>
+        <span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=k>while</span> <span class=o>(!</span><span class=n>flagOfAsync</span><span class=o>)</span> <span class=o>{</span>
+            <span class=n>Log</span><span class=o>.</span><span class=na>d</span><span class=o>(</span><span class=s>&#34;video&#34;</span><span class=o>,</span> <span class=s>&#34;mainThread&#34;</span><span class=o>);</span>
+            <span class=n>Log</span><span class=o>.</span><span class=na>d</span><span class=o>(</span><span class=s>&#34;video&#34;</span><span class=o>,</span> <span class=n>videoNameList</span><span class=o>.</span><span class=na>toString</span><span class=o>());</span>
+            <span class=k>if</span><span class=o>(</span><span class=n>flagOfAsync</span><span class=o>){</span>
+                <span class=k>break</span><span class=o>;</span>
+            <span class=o>}</span>
+        <span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>一开始一直拿不到值，陷入循坏消耗资源，等待时间过长。</p>
+<p>分析：异步，AsyncTask 滞后执行，不是并发的。</p>
+<p>解决方法：尝试并发编程</p>
+<p>若用 wait()，则无论是异步还是并发都异常终止。</p>
+<p>最终的解决办法是把获取视频列表的方法作为一个线程放到前面的活动中去。</p>
+<p><strong>基于 MVC 模式对安卓应用程式的理解</strong></p>
+<p>V: View接受用户的请求，然后将请求传递给Controller</p>
+<blockquote>
+<p>View 与部分 Activity</p>
+</blockquote>
+<p>C: Controller进行业务逻辑处理后，通知Model去更新。</p>
+<blockquote>
+<p>Activity</p>
+</blockquote>
+<p>M: Model数据更新后，通知View去更新界面显示。我们针对业务模型，建立的数据结构和相关的类。</p>
+<blockquote>
+<p><a href=https://stackoverflow.com/questions/23345434/mvc-who-should-fetch-data-adapter-or-activity>the Activity with the fresh data should feed it to do Adapter.</a></p>
+</blockquote>
+<p>参考 <a href=https://stackoverflow.com/questions/23345434/mvc-who-should-fetch-data-adapter-or-activity>stackoverflow</a> 中的回答与 MVC 的定义，个人认为 Adapter 是 Model。</p>
+<h5 id=播放-rtmp-链接的视频>播放 rtmp 链接的视频</h5>
+<p><strong>vitamio + ffmpeg</strong>
+<a href=https://blog.csdn.net/u010181592/article/details/49406353>Vitamio API</a>。</p>
+<p>参考<a href=https://github.com/hehonghui/android-tech-frontier/blob/master/issue-10/Android%E5%A6%82%E4%BD%95%E7%9B%B4%E6%92%ADRTMP%E6%B5%81.md>教程</a>实现代码。</p>
+<p>ffmpeg 出现 libavcodec.so: has text relocations 的问题，可以<a href=https://stackoverflow.com/questions/32346402/libavcodec-so-has-text-relocations>降低版本</a>解决，但不符合我的信仰，<a href=https://trac.ffmpeg.org/ticket/4928>官方</a>给出的 x86 模拟器的解决方案，但内容过于陈旧，不适合现在的环境，仍然无法解决问题。</p>
+<p><img src=%5Cimg%5CSnipaste_2020-05-05_11-55-41.png alt></p>
+<p>尝试更换 arm 模拟器，无法连接。。。</p>
+<p>尝试连接 蛟骁 865 的真机，添加配置参数</p>
+<p>in :app</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-gradle data-lang=gradle><span class=n>defaultConfig</span> <span class=o>{</span>
+<span class=o>...</span>
+    <span class=n>ndk</span> <span class=o>{</span>
+                <span class=n>abiFilters</span> <span class=s2>&#34;armeabi&#34;</span><span class=o>,</span> <span class=s2>&#34;armeabi-v7a&#34;</span><span class=o>,</span> <span class=s2>&#34;x86&#34;</span><span class=o>,</span> <span class=s2>&#34;mips&#34;</span><span class=o>,</span><span class=s2>&#34;arm64_v8a&#34;</span>
+            <span class=o>}</span>
+<span class=o>...</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>add a line in gradle.properties</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>android.useDeprecatedNdk=true
+</code></pre></td></tr></table>
+</div>
+</div><p>然后，报错与 x86 模拟器下相同</p>
+<p>下面从两个方向寻找解决方法</p>
+<ol>
+<li>
+<p>参考 Sat, Jul 16, 2016 的<a href=https://yesimroy.gitbooks.io/android-note/content/compile_ffmpeg_for_android.html>教程</a>，从源码编译 x264 和 ffmpeg。</p>
+</li>
+<li>
+<p><a href=https://www.jianshu.com/p/53581512ba3f>寻找非 vitamio 包，播放 rtmp 链接</a></p>
+</li>
+</ol>
+<ul>
+<li><a href=https://blog.csdn.net/u011277123/article/details/70207854>jiecao:jiecaovideoplayer</a>: 尝试后放弃。</li>
+</ul>
+<p><strong>After 9 days intermittently tring, ijkplayer saved me.</strong></p>
+<p>对照这个<a href=https://github.com/jiutianbian/android_learn/blob/0903fdeba571724b18cf442c25b0dd8a68ee9927/MyTV/app/src/main/java/jiutianbian/com/mytv/MainActivity.java>Activity</a>，与前面说的<a href=https://www.jianshu.com/p/64e8d6fcef33>教程</a>，将相关的一串依赖全部复制粘贴进来。</p>
+<p><strong>考虑到 vitamio 搜到的都是远古时代的，且配置过于麻烦，不想再编译 ffmpeg 和 x264 了，就尝试下面的方法</strong></p>
+<ul>
+<li><a href=https://github.com/Streamaxia/Android-Open-SDK/blob/master/StreamaxiaOpenSDKDemo/appdemo/src/main/java/com/streamaxia/opensdkdemo/StreamActivity.java>Streamaxia</a>: latest technology, need to learn build Android github project to test and integrate which Android <a href=https://github.com/Streamaxia/Android-Open-SDK>method</a>.</li>
+</ul>
+<p>5/5/2020 saved <a href=/files/OpenSDK_Android_3.2.1.pdf>tutorial</a>. <strong>在 CentOS 8 用 wget 下载 pdf 文件不全，有损坏，不知道为什么。</strong></p>
+<p><a href=https://raw.githubusercontent.com/Streamaxia/Android-Open-SDK/master/files/>official tutorial directory</a>.</p>
+<p>遇到困难：下载了 .aar 文件并作为模块导入，但无法使用类似 import com.karumi.dexter.PermissionToken; 的函数。</p>
+<ul>
+<li>ijkplayer</li>
+</ul>
+<p>参考<a href=https://www.jianshu.com/p/64e8d6fcef33>这篇教程</a>，添加 implementation 后，将与播放 Rtmp 链接相关的 class，xml 复制粘贴到自己的工程中。最终成功播放。</p>
+<ul>
+<li><a href=https://juejin.im/post/5e5d17276fb9a07cc01a29d3#heading-62>偏底层</a></li>
+</ul>
+<p><a href=https://stackoverflow.com/questions/53278193/java-lang-unsatisfiedlinkerror-dlopen-libffmpeg-so-has-text-relocations>stackoverflow</a></p>
+<h5 id=学到>学到</h5>
+<p><a href=http://daking.tech/kotlin/Kotlin%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80.html#%E5%9F%BA%E6%9C%AC%E5%85%83%E7%B4%A0>Kotlin 优质博客</a></p>
+<p>《第一行代码(第三版)》</p>
+<h6 id=整合别人的库待尝试>整合别人的库（待尝试）</h6>
+<p><strong>其它尝试</strong></p>
+<blockquote>
+<p>将所有依赖打包起来</p>
+</blockquote>
+<p>.AppImage格式的包</p>
+<p><strong>之前失败</strong></p>
+<p>.arr .so 模块导入</p>
+<h6 id=android设备的-cpu-类型参数说明>Android设备的 cpu 类型(参数说明)：</h6>
+<p>armeabiv-v7a: 第7代及以上的ARM处理器;</p>
+<p>arm64-v8a: 第8代、64位ARM处理器;</p>
+<p>armeabi: 第5代、第6代的ARM处理器;</p>
+<p>mips:一种RISC处理器。</p>
+<p>mips64:64位的。</p>
+<p>x86: 平板;</p>
+<p>x86_64:64位的平板。</p>
+<h6 id=google-play-sdk-版本管理>Google Play sdk 版本管理</h6>
+<p>Google Play 会利用在应用清单中声明的 <uses-sdk>属性，从不符合其平台版本要求的设备上滤除您的应用。<a href="https://developer.android.com/guide/topics/manifest/uses-sdk-element?hl=zh-cn">17</a></p>
+<h6 id=avd-manager-参数19><a href=https://www.jianshu.com/p/170f65439844>AVD Manager 参数</a></h6>
+<p><strong><a href=https://developer.android.com/ndk/guides/abis>ABI</a>: Application Binary Interface</strong></p>
+<p>ABI常表示两个程序模块之间的接口，且其中一个模块常为机器码级别的library或操作系统。</p>
+<p>ABI定义了函数库的调用、应用的二进制文件（尤其是.so）如何运行在相应的系统平台上等细节。</p>
+<p>Android目前支持以下七种ABI：armeabi、armeabi-v7a、arm64-v8a、x86、x86_64、mips、mips64。</p>
+<h6 id=日期-oriented-信息-filter>日期-oriented-信息-filter</h6>
+<p><strong><a href=https://cn.engadget.com/2019/04/11/google-search-before-after-date/>Google 搜索指令</a></strong></p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>how to build FFmpeg-Android.sh               # all in English
+android studio  play rtmp stream  after:2019 # latest
+avengers endgame before:2019-04-01           # previous
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>Chrome plugin</strong></p>
+<p>Finitimus</p>
+<h6 id=code-搜索技巧>code 搜索技巧</h6>
+<blockquote>
+<p>github</p>
+</blockquote>
+<p><strong><a href=https://help.github.com/cn/github/searching-for-information-on-github/searching-code>搜索文件或路径中的字符</a></strong></p>
+<pre><code>octocat in:file,path 匹配文件内容或文件路径中出现 &quot;octocat&quot; 的代码。
+</code></pre>
+<p><strong>搜索文件名</strong></p>
+<blockquote>
+<p>AS</p>
+</blockquote>
+<p>Ctrl + Shift + F 全局搜索某个变量</p>
+<p>path/ 中直接找</p>
+<h6 id=findviewbyid-中的-id-存在>.findViewById 中的 Id 存在</h6>
+<p>通过前一条方法寻找</p>
+<p>string，color &mldr; 标签中，res/下.xml文件中定义的标签</p>
+<p>xml 本身的文件名</p>
+<h6 id=兼容性>兼容性</h6>
+<p><strong>NDK 兼容性</strong></p>
+<p>NDK平台不是向后兼容（兼容过去的版本）的，而是向前兼容（兼容未来的版本）的。</p>
+<p>NDK编译的版本应该尽量使用较低的版本，如minSdkVersion=&ldquo;8&rdquo;。</p>
+<p><strong>libxxx.so- text relocations <a href=https://blog.csdn.net/ahence/article/details/68953878>解决方案</a></strong></p>
+<p>放弃降低版本的方法，放弃在 Windows 下编译底层 ffmpeg 的解决方案，使用 ijkplayer 或基于 Linux 的 AS。</p>
+<h6 id=从-vps-下载各种文件>从 VPS 下载各种文件</h6>
+<p><strong>解决：git clone 速度慢，中断。</strong>
+<a href=https://www.138vps.com/vpsjc/914.html>设置 Xshell</a>下载路径。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>yum install -y lrzsz   <span class=c1># for CentOS</span>
+tar cvf FileName.tar DirName
+sz FileName.tar
+</code></pre></td></tr></table>
+</div>
+</div><h6 id=开发时的易错点待完善>开发时的易错点(待完善)</h6>
+<p><strong><a href=https://www.jianshu.com/p/170f65439844>so库的常见错误</a></strong></p>
+<p>使用高版本编译出的so库运行在低版本的平台上会出错。考虑到NDK是向前兼容的，应使用低版本编译。</p>
+<p>so库放置的路径有误。</p>
+<p>没有在每个生效的ABI目录下放置对应的so库。</p>
+<p><strong>解决方法</strong></p>
+<p>若某应用有armeabi和arm64-v8a两个ABI目录，armeabi目录里有a.so和b.so，但arm64-v8a只有a.so。
+当ARMv8设备在安装此应用时，根据ABI优先级，首先发现arm64-v8a目录存在，并决定使用此ABI下的so库。
+但arm64-v8a目录中没有b.so，于是报错。</p>
+<p>此时的解决方案有：一，删除arm64-v8a目录；二，arm64-v8a目录的so库情况要与armeabi一致。</p>
+<h2 id=战略放弃>战略放弃</h2>
+<p>数据库同步云端
+web登陆同步，配合nginx与Django
+安卓端邮箱验证机制</p>
+<h4 id=行迈靡靡中心摇摇>行迈靡靡，中心摇摇</h4>
+<p>停止运行的原因，无 finish?
+生命周期，理解，防止崩溃？
+<a href=https://source.android.com/devices/architecture/vintf/objects>remain to see see</a></p>
+<h2 id=java>java</h2>
+<h3 id=回忆>回忆</h3>
+<h4 id=调用非静态方法>调用非静态方法：</h4>
+<p>方法静态化</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>static</span> <span class=kt>int</span> <span class=nf>fxn</span><span class=o>(</span><span class=kt>int</span> <span class=n>y</span><span class=o>)</span> <span class=o>{</span>
+    <span class=n>y</span> <span class=o>=</span> <span class=n>5</span><span class=o>;</span>
+    <span class=k>return</span> <span class=n>y</span><span class=o>;</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>生成对象</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=n>Two</span> <span class=n>two</span> <span class=o>=</span> <span class=k>new</span> <span class=n>Two</span><span class=o>();</span>
+<span class=n>x</span> <span class=o>=</span> <span class=n>two</span><span class=o>.</span><span class=na>fxn</span><span class=o>(</span><span class=n>x</span><span class=o>);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id=调用静态方法10><a href=https://stackoverflow.com/questions/5642834/why-should-the-static-field-be-accessed-in-a-static-way>调用静态方法</a></h4>
+<h4 id=键值-选择数据类型6待完善><a href=https://blog.csdn.net/chenchudongsg/article/details/39561817>键值-选择数据类型</a>(待完善)</h4>
+<h4 id=eclipse如何在项目中添加第三方jar文件>eclipse如何在项目中添加第三方jar文件</h4>
+<p>鼠标右击你的项目的名称->Buid Path->单击Add External Archives…->选择文件</p>
+<h3 id=新>新</h3>
+<h4 id=截取字符串2convert-string-to-arraylist3><a href=https://blog.csdn.net/tterminator/article/details/52761483>截取字符串</a>/<a href=https://beginnersbook.com/2015/05/java-string-to-arraylist-conversion/>convert string to arraylist</a></h4>
+<h2 id=实现结果>实现结果</h2>
+<ul>
+<li>注册登陆系统</li>
+<li>通过 SSH 获取服务器上的视频名称集合，生成相应的 ListView</li>
+<li>刷新按钮，获取服务器新的视频名称集合</li>
+<li>CentOS 8 上搭建可产生 Rtmp 流的服务器</li>
+<li>基于 ijkplayer，点击相应的 ListView 播放视频</li>
+</ul>
+<h3 id=bug-与局限性>BUG 与局限性</h3>
+<ul>
+<li>视频观看时退出后，部分系统声音仍在播放</li>
+<li>只支持安卓10及以上系统</li>
+<li>登录注册系统数据库未同步云端，且没有邮箱注册验证机制</li>
+</ul>
+<h3 id=可以优化的地方>可以优化的地方</h3>
+<ul>
+<li>UI</li>
+<li>ListView 换效率更高的 RecyclerView，且按照日期从新到旧排列</li>
+<li>CentOS 8 上搭建 ffmpeg 的过程写成自动化脚本</li>
+<li>push 视频到服务器的自动化</li>
+</ul>
+</div>
+<div class=post-copyright>
+<p class=copyright-item>
+<span class=item-title>Author</span>
+<span class=item-content>magictomagic</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>LastMod</span>
+<span class=item-content>
+2020-05-05
+</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>License</span>
+<span class=item-content><a rel="license noopener" href=https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License target=_blank>Creative Commons Attribution-ShareAlike License</a></span>
+</p>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/android/>Android</a>
+<a href=/tags/project/>project</a>
+<a href=/tags/experiment/>experiment</a>
+</div>
+<nav class=post-nav>
+<a class=prev href=/post/simple-chat-program/>
+<i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">Simple chat program</span>
+<span class="prev-text nav-mobile">Prev</span>
+</a>
+<a class=next href=/post/centos-ffmpeg-streaming/>
+<span class="next-text nav-default">點播平臺的搭建</span>
+<span class="next-text nav-mobile">Next</span>
+<i class="iconfont icon-right"></i>
+</a>
+</nav>
+</footer>
+</article>
+</div>
+</div>
+</main>
+<footer id=footer class=footer>
+<div class=social-links>
+<a href=mailto:your@email.com class="iconfont icon-email" title=email></a>
+<a href=http://localhost:1313 class="iconfont icon-stack-overflow" title=stack-overflow></a>
+<a href=http://localhost:1313 class="iconfont icon-twitter" title=twitter></a>
+<a href=http://localhost:1313 class="iconfont icon-facebook" title=facebook></a>
+<a href=http://localhost:1313 class="iconfont icon-linkedin" title=linkedin></a>
+<a href=http://localhost:1313 class="iconfont icon-google" title=google></a>
+<a href=http://localhost:1313 class="iconfont icon-github" title=github></a>
+<a href=http://localhost:1313 class="iconfont icon-weibo" title=weibo></a>
+<a href=http://localhost:1313 class="iconfont icon-zhihu" title=zhihu></a>
+<a href=http://localhost:1313 class="iconfont icon-douban" title=douban></a>
+<a href=http://localhost:1313 class="iconfont icon-pocket" title=pocket></a>
+<a href=http://localhost:1313 class="iconfont icon-tumblr" title=tumblr></a>
+<a href=http://localhost:1313 class="iconfont icon-instagram" title=instagram></a>
+<a href=http://localhost:1313 class="iconfont icon-gitlab" title=gitlab></a>
+<a href=http://localhost:1313 class="iconfont icon-bilibili" title=bilibili></a>
+<a href=https://magictomagic.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
+</div>
+<div class=copyright>
+<span class=power-by>
+Powered by <a class=hexo-link href=https://gohugo.io>Hugo</a>
+</span>
+<span class=division>|</span>
+<span class=theme-info>
+Theme -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a>
+</span>
+<span class=copyright-year>
+&copy;
+2017 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+</span>
+</div>
+</footer>
+<div class=back-to-top id=back-to-top>
+<i class="iconfont icon-up"></i>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
+</body>
+</html>
